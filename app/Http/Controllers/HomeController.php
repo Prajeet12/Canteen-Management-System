@@ -15,7 +15,7 @@ class HomeController extends Controller
                 return view('dashboard');
             }
             else if($usertype=='admin'){
-                return view('adminhome');
+                return view('admin.adminhome');
             }
             else{
                 return redirect();
@@ -23,4 +23,5 @@ class HomeController extends Controller
         }
 
     }
+  
 }
