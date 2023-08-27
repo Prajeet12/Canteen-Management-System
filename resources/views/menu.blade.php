@@ -10,46 +10,48 @@
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
-    <nav class="navbar navbar-expand-lg" style="background-color: #26647C;" data-bs-theme="dark">
-        <div class="container-fluid">
-          <a class="navbar-brand fs-4 fw-bold" href="{{ url('/') }}" style="font-family: Poppins">Canteen Management System</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-          <div class="collapse navbar-collapse m-2  w-50" id="navbarNav">
-            <ul class="navbar-nav ">
-              <li class="nav-item">
-                <a class="nav-link p-3 fs-6 active link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" aria-current="page" href="{{ url('/') }}" style="font-family: Poppins" >Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link fs-6 text-white p-3" href="{{ url('/menu') }}" style="font-family: Poppins color: $gray-100">Menu</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link p-3 fs-6 text-white link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" href="#" style="font-family: Poppins">Contact Us</a>
-              </li>
-              <li class="nav-item ">
-                @if (Route::has('login'))
-                
-                    @auth
-                        <a href="{{ url('/home') }}" class="font-semibold p-3 fs-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="nav-link p-3 fs-6 text-white" style="font-family: Poppins">Log in</a>
-                        <li class="nav-item">
-                            @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="nav-link p-3 fs-6 text-white" style="font-family: Poppins">Register</a>
-                        @endif
-                          </li>
-              </li>
-                        
-                    @endauth
-                </div>
-            @endif
+    <nav class="navbar navbar-expand-lg px-0 py-0 " style="background-color: #EF4037;" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a href="{{ url('/') }}">
+          <img src="{{ asset('Image/Logo.png') }}" class="img-fluid ms-4 mt-2" style="max-width: 200px" alt="...">
+          </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+        <div class="collapse navbar-collapse m-2  w-50" id="navbarNav">
+          <ul class="navbar-nav ">
+            <li class="nav-item  {{ request()-> is('/') ? 'active' : ''}}">
+              <a class="nav-link p-3 fs-6 link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover"  href="{{ url('/')}}" style="font-family: Poppins" >Home</a>
+            </li>
+            <li class="nav-item {{ request()-> is('/menu') ? 'active' : ''}}">
+              <a class=" nav-link p-3 fs-6 text-white link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" href="{{ url('/menu') }}" style="font-family: Poppins color: $gray-100">Menu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link p-3 fs-6 text-white link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" href="#" style="font-family: Poppins">Contact Us</a>
+            </li>
+            <li class="nav-item ">
+              @if (Route::has('login'))
               
-            </ul>
-          </div>
+                  @auth
+                      <a href="{{ url('/home') }}" class="font-semibold p-3 fs-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                  @else
+                      <a href="{{ route('login') }}" class="nav-link p-3 fs-6 text-white link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" style="font-family: Poppins">Log in</a>
+                      <li class="nav-item">
+                          @if (Route::has('register'))
+                          <a href="{{ route('register') }}" class="nav-link p-3 fs-6 text-white link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" style="font-family: Poppins">Register</a>
+                      @endif
+                        </li>
+            </li>
+                      
+                  @endauth
+              </div>
+          @endif
+            
+          </ul>
         </div>
-      </nav>
+      </div>
+    </nav>
       <!DOCTYPE html>
 <html lang="en">
 <head>

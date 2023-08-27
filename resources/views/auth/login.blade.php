@@ -40,8 +40,8 @@
     
                 
             </div>
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <x-primary-button class="mt-4 w-full">
+            <div class="d-grid gap-2 mx-auto">
+                <x-primary-button class="mt-4 w-full px-3 py-3">
                     {{ __('Log in') }}
                 </x-primary-button>
             </div>
