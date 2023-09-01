@@ -25,7 +25,7 @@
                 <div class="col-6 w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                     <div class="row">
                         <div class="col align-self-center" >
-                            <a href="/">
+                            <a href="/menu">
                                 <x-application-logo class="w-20 h-20 fill-current align-self-center" />
                             </a>
                         </div>
