@@ -12,7 +12,7 @@
 
     <nav class="navbar navbar-expand-lg px-0 py-0 " style="background-color: #EF4037;" data-bs-theme="light">
         <div class="container-fluid">
-          <a href="{{ url('/menu') }}">
+          <a href="{{ url('/') }}">
             <img src="{{ asset('Image/Logo.png') }}" class="img-fluid ms-4 mt-2" style="max-width: 200px" alt="...">
             </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +32,7 @@
               </li>
 
               <li class="nav-item {{ 'menu' == request()->path() ? 'active':''}} ">
-                <a class=" nav-link p-3 fs-6 text-white link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" href="{{ url('/menu') }}" style="font-family: Poppins color: $gray-100">Menu</a>
+                <a class=" nav-link p-3 fs-6 text-white link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" href="{{ route('menu') }}" style="font-family: Poppins color: $gray-100">Menu</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link p-3 fs-6 text-white link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" href="#" style="font-family: Poppins">Contact Us</a>

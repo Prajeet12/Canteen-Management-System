@@ -19,13 +19,13 @@
     
     <body class="font-sans text-gray-900 antialiased">
         
-        <div class="min-h-screen flex flex-col sm:justify-center items-center sm:pt-0" style="background-color: #EF4037;">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center sm:pt-0" style="background-color: #ce1212;">
             
            
                 <div class="col-6 w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                     <div class="row">
                         <div class="col align-self-center" >
-                            <a href="/menu">
+                            <a href="/">
                                 <x-application-logo class="w-20 h-20 fill-current align-self-center" />
                             </a>
                         </div>

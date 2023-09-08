@@ -37,50 +37,7 @@
               <div class="container-fluid page-body-wrapper">
                 
                 <!-- partial:partials/_sidebar.html -->
-                <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                    
-                  <ul class="nav">
-                    {{-- <div class="shrink-0 flex items-center">
-                        <a href="{{ route('home') }}">
-                            <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                        </a>
-                    </div> --}}
-                 
-                    <li class="nav-item">
-                      <a class="nav-link" href="index.html">
-                        <span class="menu-title">Dashboard</span>
-                        <i class="mdi mdi-home menu-icon"></i>
-                      </a>
-                    </li>
-                   
-                    <li class="nav-item">
-                      <a class="nav-link" href="pages/icons/mdi.html">
-                        <span class="menu-title">Icons</span>
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="pages/forms/basic_elements.html">
-                        <span class="menu-title">Forms</span>
-                        <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="pages/charts/chartjs.html">
-                        <span class="menu-title">Charts</span>
-                        <i class="mdi mdi-chart-bar menu-icon"></i>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="pages/tables/basic-table.html">
-                        <span class="menu-title">Tables</span>
-                        <i class="mdi mdi-table-large menu-icon"></i>
-                      </a>
-                    </li>
-                    
-                    
-                  </ul>
-                </nav>
+                @include('admin.sidebar')
                 <!-- partial -->
                 <div class="main-panel">
                   <div class="content-wrapper">
@@ -98,6 +55,7 @@
                         </ul>
                       </nav>
                     </div>
+
                     <div class="row">
                       <div class="col-md-4 stretch-card grid-margin">
                         <div class="card bg-gradient-danger card-img-holder text-white">
@@ -123,6 +81,7 @@
                       </div>
                       <div class="col-md-4 stretch-card grid-margin">
                         <div class="card bg-gradient-success card-img-holder text-white">
+
                           <div class="card-body">
                             <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                             <h4 class="font-weight-normal mb-3">Visitors Online <i class="mdi mdi-diamond mdi-24px float-right"></i>
@@ -133,7 +92,9 @@
                         </div>
                       </div>
                     </div>
-                    <div class="row">
+                    
+
+                    {{-- <div class="row">
                       <div class="col-md-7 grid-margin stretch-card">
                         <div class="card">
                           <div class="card-body">
@@ -154,7 +115,7 @@
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> --}}
                     
                     
                    
@@ -164,10 +125,26 @@
             <script src="admin/assets/js/dashboard.js"></script>
             <script src="admin/assets/js/todolist.js"></script>
             <!-- End custom js for this page -->
+            <!-- plugins:js -->
+    <script src="admin/assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="admin/assets/vendors/chart.js/Chart.min.js"></script>
+    <script src="admin/assets/js/jquery.cookie.js" type="text/javascript"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="admin/assets/js/off-canvas.js"></script>
+    <script src="admin/assets/js/hoverable-collapse.js"></script>
+    <script src="admin/assets/js/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="admin/assets/js/dashboard.js"></script>
+    <script src="admin/assets/js/todolist.js"></script>
+    <!-- End custom js for this page -->
           </body>
         </html>
-        </body>
-        </html>
+        
+       
     </x-app-layout>
    
 </body>

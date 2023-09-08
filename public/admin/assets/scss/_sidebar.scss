@@ -80,7 +80,7 @@
         }
 
         .menu-title {
-          color: inherit;
+          
           display: inline-block;
           font-size: $sidebar-menu-font-size;
           line-height: 1;
@@ -105,7 +105,7 @@
         background: $sidebar-light-menu-active-bg;
         > .nav-link {
           .menu-title {
-            color: $sidebar-light-menu-active-color;
+            color: $sidebarlight-menu-active-color;
             font-family: $type1-medium;            
           }
           i {
