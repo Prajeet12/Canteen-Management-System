@@ -68,8 +68,11 @@
                           @csrf
                           <div class="row">
                             <div class="col-xl-6 form-group">
-                              <label for="">Title</label>
-                              <input type="text" name="title" class="form-control" id="title" value="{{$data->title}}" placeholder="Food Name" required>
+                              <div class="form-group">
+                                
+                                <label for="">Title</label>
+                                <input type="text" name="title" class="form-control" id="title" value="{{$data->title}}" placeholder="Food Name" required>
+                              </div>
                             </div>
                     
                             <div class="col-xl-6 form-group">

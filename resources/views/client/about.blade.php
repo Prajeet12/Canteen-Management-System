@@ -9,8 +9,8 @@
       <div class="row gy-4">
         <div class="col-lg-7 position-relative about-img" style="background-image: url(menu1/assets/img/about.jpg) ;" data-aos="fade-up" data-aos-delay="150">
           <div class="call-us position-absolute">
-            <h4>Book a Table</h4>
-            <p>+1 5589 55488 55</p>
+            <h4>"We provide healthy and fresh food here!"</h4>
+            <p>Come and Eat with Us!</p>
           </div>
         </div>
         <div class="col-lg-5 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
@@ -31,7 +31,7 @@
 
             <div class="position-relative mt-4">
               <img src="menu1/assets/img/about-2.jpg" class="img-fluid" alt="">
-              <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
+              {{-- <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a> --}}
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@
 
         <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
           <div class="why-box">
-            <h3>Why Choose Yummy?</h3>
+            <h3>Why to choose Hamro Canteen?</h3>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
               Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis.

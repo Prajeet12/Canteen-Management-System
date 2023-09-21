@@ -21,20 +21,23 @@
       </a>
     </li> --}}
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-        <span class="menu-title">Menu List</span>
-        <i class="menu-arrow"></i>
-        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-      </a>
-      <div class="collapse" id="ui-basic">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="{{url('/foodmenu')}}">Today's Special</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{url('/breakfastmenu')}}">Breakfast</a></li>
-          <li class="nav-item"> <a class="nav-link" href="#">Lunch</a></li>
-          <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Drinks</a></li>
-        </ul>
-      </div>
+     
+      
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{url('/category')}}">
+        <span class="menu-title">Category</span>
+        <i class="mdi mdi-contacts menu-icon"></i>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{{url('/menu')}}">
+        <span class="menu-title">Menu</span>
+        <i class="mdi mdi-contacts menu-icon"></i>
+      </a>
+    </li>
+
     <li class="nav-item">
       <a class="nav-link" href="pages/forms/basic_elements.html">
         <span class="menu-title">Order List</span>

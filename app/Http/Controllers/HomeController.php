@@ -7,94 +7,45 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Food;
-
+use App\Models\Category;
 
 class HomeController extends Controller
 {
-    public function index(){
-        if(Auth::id()){
-            $usertype=Auth()->user()->usertype;
-            if($usertype=='user'){
+    public function index()
+    {
+        if (Auth::id()) {
+            $usertype = Auth()->user()->usertype;
+            if ($usertype == 'user') {
                 return view('admin.adminhome');
-            }
-            else if($usertype=='admin'){
+            } else if ($usertype == 'Admin') {
                 return view('admin.adminhome');
-            }
-            else{
+            } else {
                 return redirect();
             }
         }
     }
-
-  
-    public function foodmenu()
+    public function create()
     {
-        $special=Food::get();
-        return view('admin.foodmenu',compact('special'));
+        return view('admin.add');
     }
 
-    public function breakfastmenu()
+    public function menu()
     {
-        
-        return view('admin.breakfastmenu');
+        $data = Category::with('food')->get();
+        return view('client.master', compact('data'));
     }
-    public function upload(Request $request)
+
+
+    public function viewcategory($category_name)
     {
-        $data = new food;
-        $image= $request->image;
+        if (Food::where('category_name', $category_name)->exists()) {
+            $special = Food::where('category_name', $category_name)->first();
+            $categories = Category::where('cate_id', $special->id)->where('status', '0')->get();
+            return view('client.food', compact('special', 'categories'));
 
-        $imagename = time().'.'.$image->getClientOriginalExtension();
-        $request->image->move('foodimage',$imagename);
-        
-        $data->image=$imagename;
-
-        $data->title=$request->title;
-        $data->price=$request->price;
-        $data->description=$request->description;
-        $data->save();
-
-        return redirect('/foodmenu')->with('success','Data Saved');
-
-        
-
-    }
-    public function menu(){
-        $data=Food::get();
-        return view('client.master',compact('data'));
+        } else {
+            return redirect('/')->with('status', "Not Found");
+        }
     }
 
-    public function deletemenu($id)
-    {
-$special=Food::find($id);
-$special->delete();
-return redirect()->back();
-
-
-    }
-    public function updateview($id)
-    {
-        $data=Food::find($id);
-        return view('admin.updateview',compact('data'));
-
-    }
-    public function update(Request $request,$id)
-    {
-        $data=Food::find($id);
-        $image= $request->image;
-
-        $imagename = time().'.'.$image->getClientOriginalExtension();
-        $request->image->move('foodimage',$imagename);
-        
-        $data->image=$imagename;
-
-        $data->title=$request->title;
-        $data->price=$request->price;
-        $data->description=$request->description;
-        $data->save();
-
-        return redirect('/foodmenu')->with('success','Data Saved');
-
-        
-    }
-  
 }

@@ -3,6 +3,8 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FoodController;
 
 
 /*
@@ -35,13 +37,28 @@ Route::get('/about', function () {
 Route::get('/',[HomeController::class,'menu'])->name('client.home');
 Route::get('/home',[HomeController::class,'index'])->middleware('auth')->name('home');
 Route::get('/foodmenu',[HomeController::class,'foodmenu'])->name('foodmenu');
+Route::get('/add',[HomeController::class,'create'])->name('add');
 Route::get('/breakfastmenu',[HomeController::class,'breakfastmenu'])->name('breakfastmenu');
 Route::post('/uploadfood',[HomeController::class,'upload'])->name('uploadfood');
 
+//category
+Route::get('/category',[CategoryController::class,'category'])->name('category');
+Route::post('/add-category',[CategoryController::class,'add'])->name('add-category');
+Route::post('/update-category/{id}', [CategoryController::class, 'update'])->name('update-category');
+Route::delete('/delete-category/{id}', [CategoryController::class, 'delete'])->name('delete-category');
+
+//menu
+Route::get('/menu', [FoodController::class, 'menu'])->name('menu');
+Route::post('/add-menu', [FoodController::class, 'add'])->name('add-menu');
+Route::post('/update-menu/{id}', [FoodController::class, 'update'])->name('update-menu');
+Route::delete('/delete-menu/{id}', [FoodController::class, 'delete'])->name('delete-menu');
+
+//menu
 Route::get('/deletemenu/{id}',[HomeController::class,'deletemenu'])->name('client.deletemenu');
 Route::get('/updateview/{id}',[HomeController::class,'updateview'])->name('client.updateview');
 Route::post('/update/{id}',[HomeController::class,'update'])->name('client.update');
 
+//profile
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -14191,10 +14191,10 @@ dl {
       .sidebar .nav .nav-item.active {
         background: #ffffff; }
         .sidebar .nav .nav-item.active > .nav-link .menu-title {
-          color: #b66dff;
+          color: #ce1212;
           font-family: "ubuntu-medium", sans-serif; }
         .sidebar .nav .nav-item.active > .nav-link i {
-          color: #b66dff; }
+          color: #ce1212; }
       .sidebar .nav .nav-item:hover {
         background: #fcfcfc; }
       .sidebar .nav .nav-item.nav-profile .nav-link {
@@ -14261,7 +14261,7 @@ dl {
               left: auto;
               right: 0; }
           .sidebar .nav.sub-menu .nav-item .nav-link.active {
-            color: #b66dff;
+            color: #ce1212;
             background: transparent; }
           .sidebar .nav.sub-menu .nav-item .nav-link:hover {
             color: #555555; }

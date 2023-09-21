@@ -43,8 +43,8 @@
                   <div class="content-wrapper">
                     <div class="page-header">
                       <h3 class="page-title">
-                        <span class="page-title-icon bg-gradient-primary text-white me-2">
-                          <i class="mdi mdi-home"></i>
+                        <span class="page-title-icon  text-white me-2" style="background:#ce1212";>
+                          <i class="mdi mdi-home" style="background:#ce1212";></i>
                         </span> Dashboard
                       </h3>
                       <nav aria-label="breadcrumb">
