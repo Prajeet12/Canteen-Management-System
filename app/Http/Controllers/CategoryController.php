@@ -16,7 +16,7 @@ class CategoryController extends Controller
 
     public function add(Request $request)
     {
-        $categories = new Category;        
+        $categories = new Category;
         $categories->category_name = $request->category_name;
         $categories->save();
         return redirect('/category')->with('success', 'Data Saved');
@@ -25,7 +25,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $data = Category::find($id);
-       
+
         $data->category_name = $request->category_name;
         $data->save();
 

@@ -53,6 +53,11 @@ Route::post('/add-menu', [FoodController::class, 'add'])->name('add-menu');
 Route::post('/update-menu/{id}', [FoodController::class, 'update'])->name('update-menu');
 Route::delete('/delete-menu/{id}', [FoodController::class, 'delete'])->name('delete-menu');
 
+//aboutus
+Route::get('/aboutus', [HomeController::class, 'about'])->name('aboutus');
+Route::post('/add-about', [HomeController::class, 'addabout'])->name('add-about');
+Route::post('/update-about/{id}', [HomeController::class, 'update'])->name('update-about');
+
 //menu
 Route::get('/deletemenu/{id}',[HomeController::class,'deletemenu'])->name('client.deletemenu');
 Route::get('/updateview/{id}',[HomeController::class,'updateview'])->name('client.updateview');
