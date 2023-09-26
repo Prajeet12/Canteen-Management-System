@@ -76,24 +76,6 @@
                                 <p>{{ \Session::get('success') }}</p>
                             </div>
                         @endif
-                        <!-- End of Succession notification -->
-                        <!-- Scrollable modal -->
-                        <!-- Button trigger modal -->
-                        {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" style="background:#ce1212">
-                            Add Food
-                        </button> --}}
-
-                        <!-- Modal -->
-                        {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div> --}}
                         <div class="modal-body">
                             <form action="{{ url('add-about') }}" method="POST" role="form"
                                 enctype="multipart/form-data" class="php-email-form p-3 p-md-4">
@@ -128,7 +110,7 @@
                                         changes</button>
                                 </div>
                             </form>
-                            <table  class="table table-striped">
+                            <table class="table table-striped">
                                 <thead class="thead-primary table-info" style="background:#ce1212">
 
                                     <tr>

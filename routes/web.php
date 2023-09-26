@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\OrderController;
 
 
 /*
@@ -62,6 +63,12 @@ Route::post('/update-about/{id}', [HomeController::class, 'update'])->name('upda
 Route::get('/deletemenu/{id}',[HomeController::class,'deletemenu'])->name('client.deletemenu');
 Route::get('/updateview/{id}',[HomeController::class,'updateview'])->name('client.updateview');
 Route::post('/update/{id}',[HomeController::class,'update'])->name('client.update');
+
+//order
+Route::get('/order', [OrderController::class, 'index'])->name('order');
+Route::get('/breakfast', [OrderController::class, 'breakfast'])->name('breakfast');
+Route::post('/add-about', [HomeController::class, 'addabout'])->name('add-about');
+Route::post('/update-about/{id}', [HomeController::class, 'update'])->name('update-about');
 
 //profile
 Route::middleware('auth')->group(function () {

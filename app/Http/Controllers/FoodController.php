@@ -16,6 +16,8 @@ class FoodController extends Controller
         return view('admin.food.foodmenu', compact('menus', 'categories'));
     }
 
+    
+
     public function add(Request $request)
     {
         $data = new food;

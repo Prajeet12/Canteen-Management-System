@@ -63,8 +63,59 @@
                         </div>
                     </div> --}}
 
+                    <div class="d-flex flex-row mb-3 grid gap-0 ">
+                        <div class="col-sm-6 mb-2 mb-sm-0 bg-gray p-2 g-col-6  ">
+                            <form class="d-flex" role="search">
+                                <input class="form-control me-2" type="search" placeholder="Search"
+                                    aria-label="Search">
+                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            </form>
+                            <hr class="y-4">
+                            <div class="row">
+                                <div class="col-sm-6  mb-sm-0">
+                                    <h1>Breakfast</h1>
+                                </div>
 
-                    <div class="row py-4 px-3">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">First</th>
+                                            <th scope="col">Last</th>
+                                            <th scope="col">Handle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td colspan="2">Larry the Bird</td>
+                                            <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+
+                        </div>
+
+                        @include('admin.order.invoice')
+                    </div>
+
+
+                    <div class="row">
                         <div class="col-md-4 stretch-card grid-margin">
                             <div class="card bg-gradient-danger card-img-holder text-white">
                                 <div class="card-body">
@@ -76,7 +127,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 stretch-card grid-margin">
+                        {{-- <div class="col-md-4 stretch-card grid-margin">
                                 <div class="card bg-gradient-info card-img-holder text-white">
                                     <div class="card-body">
                                         <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute"
@@ -88,7 +139,7 @@
                                         <h6 class="card-text">Decreased by 10%</h6>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         <div class="col-md-4 stretch-card grid-margin mr-0.6">
                             <div class="card bg-gradient-success card-img-holder text-white">
 
@@ -127,6 +178,7 @@
                     <!-- Custom js for this page -->
                     <script src="admin/assets/js/dashboard.js"></script>
                     <script src="admin/assets/js/todolist.js"></script>
+                    <script src="admin/assets/js/script.js"></script>
                     <!-- End custom js for this page -->
         </body>
 

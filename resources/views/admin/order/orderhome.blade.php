@@ -62,9 +62,59 @@
                             </nav>
                         </div>
                     </div> --}}
+                    <!DOCTYPE html>
 
 
-                    <div class="row py-4 px-3">
+
+                    <script src="{{ asset('js/script.js') }}"></script>
+
+                    <div class="d-flex flex-row mb-3 grid gap-0 ">
+                        <div class="col-sm-6 mb-2 mb-sm-0 bg-gray p-2 g-col-6  ">
+                            <form class="d-flex" role="search">
+                                <input class="form-control me-2" type="search" placeholder="Search"
+                                    aria-label="Search">
+                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            </form>
+                            <hr class="y-4">
+                            <div class="row">
+                                <div class="col-sm-6  mb-sm-0">
+                                    <div class="card text-bg-primary mb-3 " style="max-width: 18rem;">
+                                        <div class="card-body">
+                                            <h4 class="card-text">Special</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6  mb-sm-0">
+                                    <a href="{{ url('breakfast') }}">
+                                        <div class="card text-bg-primary mb-3 " style="max-width: 18rem;">
+                                            <div class="card-body">
+                                                <h4 class="card-text">Breakfast</h4>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                </div>
+                                <div class="col-sm-6  mb-sm-0">
+                                    <div class="card text-bg-primary mb-2 " style="max-width: 18rem;">
+                                        <div class="card-body">
+                                            <h4 class="card-text">Lunch</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6  mb-sm-0">
+                                    <div class="card text-bg-primary mb-3 " style="max-width: 18rem;">
+                                        <div class="card-body">
+                                            <h4 class="card-text">Drinks</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                       @include('admin.order.invoice') 
+
+                    <div class="row">
                         <div class="col-md-4 stretch-card grid-margin">
                             <div class="card bg-gradient-danger card-img-holder text-white">
                                 <div class="card-body">
@@ -76,19 +126,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 stretch-card grid-margin">
-                                <div class="card bg-gradient-info card-img-holder text-white">
-                                    <div class="card-body">
-                                        <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute"
-                                            alt="circle-image" />
-                                        <h4 class="font-weight-normal mb-3">Weekly Orders <i
-                                                class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
-                                        </h4>
-                                        <h2 class="mb-5">45,6334</h2>
-                                        <h6 class="card-text">Decreased by 10%</h6>
-                                    </div>
-                                </div>
-                            </div>
+                      
                         <div class="col-md-4 stretch-card grid-margin mr-0.6">
                             <div class="card bg-gradient-success card-img-holder text-white">
 
@@ -127,6 +165,7 @@
                     <!-- Custom js for this page -->
                     <script src="admin/assets/js/dashboard.js"></script>
                     <script src="admin/assets/js/todolist.js"></script>
+                    <script src="admin/assets/js/script.js"></script>
                     <!-- End custom js for this page -->
         </body>
 

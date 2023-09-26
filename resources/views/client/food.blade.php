@@ -85,28 +85,6 @@
                             </div><!-- Menu food -->
                         @endforeach
 
-                        {{-- <div class="col-lg-4 menu-item">
-                <a href="menu1/assets/img/menu/menu-item-5.png" class="glightbox"><img src="menu1/assets/img/menu/menu-item-5.png" class="menu-img img-fluid" alt=""></a>
-                <h4>Eos Luibusdam</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
-                <p class="price">
-                  $12.95
-                </p>
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="menu1/assets/img/menu/menu-item-6.png" class="glightbox"><img src="menu1/assets/img/menu/menu-item-6.png" class="menu-img img-fluid" alt=""></a>
-                <h4>Laboriosam Direva</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
-                <p class="price">
-                  $9.95
-                </p>
-              </div><!-- Menu Item --> --}}
-
                     </div>
 
 

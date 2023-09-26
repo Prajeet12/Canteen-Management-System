@@ -45,7 +45,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
+            <a class="nav-link" href="{{url('/order')}}">
                 <span class="menu-title">Order List</span>
                 <i class="mdi mdi-format-list-bulleted menu-icon"></i>
             </a>
