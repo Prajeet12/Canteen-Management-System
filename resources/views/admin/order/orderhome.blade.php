@@ -112,61 +112,61 @@
 
                         </div>
 
-                       @include('admin.order.invoice') 
+                        @include('admin.order.invoice')
 
-                    <div class="row">
-                        <div class="col-md-4 stretch-card grid-margin">
-                            <div class="card bg-gradient-danger card-img-holder text-white">
-                                <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 stretch-card grid-margin">
+                                <div class="card bg-gradient-danger card-img-holder text-white">
+                                    <div class="card-body">
 
-                                    <h4 class="font-weight-normal mb-3">Weekly Sales <i
-                                            class="mdi mdi-chart-line mdi-24px float-right"></i>
-                                    </h4>
-                                    <h2 class="mb-5">$ 15,0000</h2>
+                                        <h4 class="font-weight-normal mb-3">Weekly Sales <i
+                                                class="mdi mdi-chart-line mdi-24px float-right"></i>
+                                        </h4>
+                                        <h2 class="mb-5">$ 15,0000</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 stretch-card grid-margin mr-0.6">
+                                <div class="card bg-gradient-success card-img-holder text-white">
+
+                                    <div class="card-body">
+                                        <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute"
+                                            alt="circle-image" />
+                                        <h4 class="font-weight-normal mb-3">Visitors Online <i
+                                                class="mdi mdi-diamond mdi-24px float-right"></i>
+                                        </h4>
+                                        <h2 class="mb-5">95,5741</h2>
+                                        <h6 class="card-text">Increased by 5%</h6>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                      
-                        <div class="col-md-4 stretch-card grid-margin mr-0.6">
-                            <div class="card bg-gradient-success card-img-holder text-white">
-
-                                <div class="card-body">
-                                    <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute"
-                                        alt="circle-image" />
-                                    <h4 class="font-weight-normal mb-3">Visitors Online <i
-                                            class="mdi mdi-diamond mdi-24px float-right"></i>
-                                    </h4>
-                                    <h2 class="mb-5">95,5741</h2>
-                                    <h6 class="card-text">Increased by 5%</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
 
 
-                    <!-- endinject -->
-                    <!-- Custom js for this page -->
-                    <script src="admin/assets/js/dashboard.js"></script>
-                    <script src="admin/assets/js/todolist.js"></script>
-                    <!-- End custom js for this page -->
-                    <!-- plugins:js -->
-                    <script src="admin/assets/vendors/js/vendor.bundle.base.js"></script>
-                    <!-- endinject -->
-                    <!-- Plugin js for this page -->
-                    <script src="admin/assets/vendors/chart.js/Chart.min.js"></script>
-                    <script src="admin/assets/js/jquery.cookie.js" type="text/javascript"></script>
-                    <!-- End plugin js for this page -->
-                    <!-- inject:js -->
-                    <script src="admin/assets/js/off-canvas.js"></script>
-                    <script src="admin/assets/js/hoverable-collapse.js"></script>
-                    <script src="admin/assets/js/misc.js"></script>
-                    <!-- endinject -->
-                    <!-- Custom js for this page -->
-                    <script src="admin/assets/js/dashboard.js"></script>
-                    <script src="admin/assets/js/todolist.js"></script>
-                    <script src="admin/assets/js/script.js"></script>
-                    <!-- End custom js for this page -->
+                        <!-- endinject -->
+                        <!-- Custom js for this page -->
+                        <script src="admin/assets/js/dashboard.js"></script>
+                        <script src="admin/assets/js/todolist.js"></script>
+                        <!-- End custom js for this page -->
+                        <!-- plugins:js -->
+                        <script src="admin/assets/vendors/js/vendor.bundle.base.js"></script>
+                        <!-- endinject -->
+                        <!-- Plugin js for this page -->
+                        <script src="admin/assets/vendors/chart.js/Chart.min.js"></script>
+                        <script src="admin/assets/js/jquery.cookie.js" type="text/javascript"></script>
+                        <!-- End plugin js for this page -->
+                        <!-- inject:js -->
+                        <script src="admin/assets/js/off-canvas.js"></script>
+                        <script src="admin/assets/js/hoverable-collapse.js"></script>
+                        <script src="admin/assets/js/misc.js"></script>
+                        <!-- endinject -->
+                        <!-- Custom js for this page -->
+                        <script src="admin/assets/js/dashboard.js"></script>
+                        <script src="admin/assets/js/todolist.js"></script>
+                        <script src="admin/assets/js/script.js"></script>
+                        <!-- End custom js for this page -->
         </body>
 
         </html>

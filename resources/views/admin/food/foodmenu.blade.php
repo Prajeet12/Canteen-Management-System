@@ -54,8 +54,11 @@
                             <nav aria-label="breadcrumb">
                                 <ul class="breadcrumb">
                                     <li class="breadcrumb-item active" aria-current="page">
-                                        <span></span>Overview <i
-                                            class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                                        <form class="d-flex" role="search" method="get" action="/search">
+                                            <input class="form-control me-2" name="search" type="search"
+                                                placeholder="Search" aria-label="Search" value={{ isset($search) ? $search : '' }}>
+                                            <button class="btn btn-outline-success" type="submit">Search</button>
+                                        </form>
                                     </li>
                                 </ul>
                             </nav>
@@ -82,6 +85,8 @@
                             data-bs-target="#exampleModal" style="background:#ce1212">
                             Add Food
                         </button>
+
+
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -133,8 +138,8 @@
 
                                             <div class="mb-3">
                                                 <label for="formFile" class="form-label">Load the image</label>
-                                                <input class="form-control" type="file" name="image" id="image"
-                                                    required>
+                                                <input class="form-control" type="file" name="image"
+                                                    id="image" required>
                                             </div>
 
                                     </div>
@@ -313,7 +318,7 @@
                                                                     @method('DELETE')
                                                                     <h5>Are you sure you want to delete
                                                                         '{{ $item->title }}'?</h5>
-                                                                
+
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"

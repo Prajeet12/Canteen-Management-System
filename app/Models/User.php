@@ -42,4 +42,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public function food()
+    {
+        return $this->hasMany(Food::class, 'category_id', 'id');
+
+    }
 }

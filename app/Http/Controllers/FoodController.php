@@ -16,7 +16,25 @@ class FoodController extends Controller
         return view('admin.food.foodmenu', compact('menus', 'categories'));
     }
 
-    
+    public function search(Request $request)
+    {
+
+        $search = $request->search;
+        $categories = Category::all();
+        
+        $menus = Food::where(function ($query) use ($search) {
+            $query->where('title', 'like', "%$search%")->orWhere('description', 'like', "%$search%");
+
+        })
+            ->orWhereHas('category', function ($query) use ($search) {
+                $query->where('category_name', 'like', "%$search%");
+
+            })
+            ->get();
+        return view('admin.food.foodmenu', compact('menus','categories','search'));
+
+    }
+
 
     public function add(Request $request)
     {
