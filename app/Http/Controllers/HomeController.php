@@ -18,9 +18,9 @@ class HomeController extends Controller
         if (Auth::id()) {
             $usertype = Auth()->user()->usertype;
             if ($usertype == 'user') {
-                return view('admin.adminhome');
+                return view('admin.dashboard');
             } else if ($usertype == 'Admin') {
-                return view('admin.adminhome');
+                return view('admin.dashboard');
             } else {
                 return redirect();
             }
@@ -75,7 +75,7 @@ class HomeController extends Controller
         $imagename = time() . '.' . $image->getClientOriginalExtension();
         $request->image->move('foodimage', $imagename);
 
-        $abouts->image = $imagename; 
+        $abouts->image = $imagename;
         $abouts->title = $request->title;
         $abouts->description = $request->description;
         $abouts->save();

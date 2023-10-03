@@ -22,17 +22,20 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <title>Purple Admin</title>
             <!-- plugins:css -->
-            <link rel="stylesheet" href="admin/assets/vendors/mdi/css/materialdesignicons.min.css">
-            <link rel="stylesheet" href="admin/assets/vendors/css/vendor.bundle.base.css">
+            <link rel="stylesheet" href="{{ asset('admin/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('admin/assets/vendors/css/vendor.bundle.base.css') }}">
             <!-- endinject -->
             <!-- Plugin css for this page -->
             <!-- End plugin css for this page -->
             <!-- inject:css -->
             <!-- endinject -->
             <!-- Layout styles -->
-            <link rel="stylesheet" href="admin/assets/css/style.css">
+            <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
             <!-- End layout styles -->
-            <link rel="shortcut icon" href="admin/assets/images/favicon.ico" />
+            <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.icon') }}" />
+
+
+
         </head>
 
         <body>
@@ -45,89 +48,35 @@
                 @include('admin.sidebar')
                 <!-- partial -->
                 <div class="main-panel">
-                    {{-- <div class="content-wrapper">
-                        <div class="page-header">
-                            <h3 class="page-title">
-                                <span class="page-title-icon  text-white me-2" style="background:#ce1212";>
-                                    <i class="mdi mdi-home" style="background:#ce1212";></i>
-                                </span> Dashboard
-                            </h3>
-                            <nav aria-label="breadcrumb">
-                                <ul class="breadcrumb">
-                                    <li class="breadcrumb-item active" aria-current="page">
-                                        <span></span>Overview <i
-                                            class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div> --}}
 
 
-                    <div class="row py-4 px-3">
-                        <div class="col-md-4 stretch-card grid-margin">
-                            <div class="card bg-gradient-danger card-img-holder text-white">
-                                <div class="card-body">
-
-                                    <h4 class="font-weight-normal mb-3">Weekly Sales <i
-                                            class="mdi mdi-chart-line mdi-24px float-right"></i>
-                                    </h4>
-                                    <h2 class="mb-5">$ 15,0000</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 stretch-card grid-margin">
-                                <div class="card bg-gradient-info card-img-holder text-white">
-                                    <div class="card-body">
-                                        <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute"
-                                            alt="circle-image" />
-                                        <h4 class="font-weight-normal mb-3">Weekly Orders <i
-                                                class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
-                                        </h4>
-                                        <h2 class="mb-5">45,6334</h2>
-                                        <h6 class="card-text">Decreased by 10%</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        <div class="col-md-4 stretch-card grid-margin mr-0.6">
-                            <div class="card bg-gradient-success card-img-holder text-white">
-
-                                <div class="card-body">
-                                    <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute"
-                                        alt="circle-image" />
-                                    <h4 class="font-weight-normal mb-3">Visitors Online <i
-                                            class="mdi mdi-diamond mdi-24px float-right"></i>
-                                    </h4>
-                                    <h2 class="mb-5">95,5741</h2>
-                                    <h6 class="card-text">Increased by 5%</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @yield('content')
+                </div>
 
 
 
-                    <!-- endinject -->
-                    <!-- Custom js for this page -->
-                    <script src="admin/assets/js/dashboard.js"></script>
-                    <script src="admin/assets/js/todolist.js"></script>
-                    <!-- End custom js for this page -->
-                    <!-- plugins:js -->
-                    <script src="admin/assets/vendors/js/vendor.bundle.base.js"></script>
-                    <!-- endinject -->
-                    <!-- Plugin js for this page -->
-                    <script src="admin/assets/vendors/chart.js/Chart.min.js"></script>
-                    <script src="admin/assets/js/jquery.cookie.js" type="text/javascript"></script>
-                    <!-- End plugin js for this page -->
-                    <!-- inject:js -->
-                    <script src="admin/assets/js/off-canvas.js"></script>
-                    <script src="admin/assets/js/hoverable-collapse.js"></script>
-                    <script src="admin/assets/js/misc.js"></script>
-                    <!-- endinject -->
-                    <!-- Custom js for this page -->
-                    <script src="admin/assets/js/dashboard.js"></script>
-                    <script src="admin/assets/js/todolist.js"></script>
-                    <!-- End custom js for this page -->
+
+                <!-- endinject -->
+                <!-- Custom js for this page -->
+                <script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
+                <script src="{{ asset('admin/assets/js/todolist.js') }}"></script>
+                <!-- End custom js for this page -->
+                <!-- plugins:js -->
+                <script src="{{ asset('admin/assets/vendors/js/vendor.bundle.base.js') }}"></script>
+                <!-- endinject -->
+                <!-- Plugin js for this page -->
+                <script src="{{ asset('admin/assets/vendors/chart.js/Chart.min.js') }}"></script>
+                <script src="{{ asset('admin/assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
+                <!-- End plugin js for this page -->
+                <!-- inject:js -->
+                <script src="{{ asset('admin/assets/js/off-canvas.js') }}"></script>
+                <script src="{{ asset('admin/assets/js/hoverable-collapse.js') }}"></script>
+                <script src="{{ asset('admin/assets/js/misc.js') }}"></script>
+                <!-- endinject -->
+                <!-- Custom js for this page -->
+                <script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
+                <script src="{{ asset('admin/assets/js/todolist.js') }}"></script>
+                <!-- End custom js for this page -->
         </body>
 
         </html>

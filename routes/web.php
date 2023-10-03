@@ -35,16 +35,16 @@ Route::get('/about', function () {
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/',[HomeController::class,'menu'])->name('client.home');
-Route::get('/home',[HomeController::class,'index'])->middleware('auth')->name('home');
-Route::get('/foodmenu',[HomeController::class,'foodmenu'])->name('foodmenu');
-Route::get('/add',[HomeController::class,'create'])->name('add');
-Route::get('/breakfastmenu',[HomeController::class,'breakfastmenu'])->name('breakfastmenu');
-Route::post('/uploadfood',[HomeController::class,'upload'])->name('uploadfood');
+Route::get('/', [HomeController::class, 'menu'])->name('client.home');
+Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
+Route::get('/foodmenu', [HomeController::class, 'foodmenu'])->name('foodmenu');
+Route::get('/add', [HomeController::class, 'create'])->name('add');
+Route::get('/breakfastmenu', [HomeController::class, 'breakfastmenu'])->name('breakfastmenu');
+Route::post('/uploadfood', [HomeController::class, 'upload'])->name('uploadfood');
 
 //category
-Route::get('/category',[CategoryController::class,'category'])->name('category');
-Route::post('/add-category',[CategoryController::class,'add'])->name('add-category');
+Route::get('/category', [CategoryController::class, 'category'])->name('category');
+Route::post('/add-category', [CategoryController::class, 'add'])->name('add-category');
 Route::post('/update-category/{id}', [CategoryController::class, 'update'])->name('update-category');
 Route::delete('/delete-category/{id}', [CategoryController::class, 'delete'])->name('delete-category');
 
@@ -61,13 +61,18 @@ Route::post('/add-about', [HomeController::class, 'addabout'])->name('add-about'
 Route::post('/update-about/{id}', [HomeController::class, 'update'])->name('update-about');
 
 //menu
-Route::get('/deletemenu/{id}',[HomeController::class,'deletemenu'])->name('client.deletemenu');
-Route::get('/updateview/{id}',[HomeController::class,'updateview'])->name('client.updateview');
-Route::post('/update/{id}',[HomeController::class,'update'])->name('client.update');
+Route::get('/deletemenu/{id}', [HomeController::class, 'deletemenu'])->name('client.deletemenu');
+Route::get('/updateview/{id}', [HomeController::class, 'updateview'])->name('client.updateview');
+Route::post('/update/{id}', [HomeController::class, 'update'])->name('client.update');
 
 //order
 Route::get('/order', [OrderController::class, 'index'])->name('order');
-Route::get('/breakfast', [OrderController::class, 'breakfast'])->name('breakfast');
+Route::post('/add-order', [OrderController::class, 'generateorder'])->name('add-order');
+Route::get('/takeorder/{id}', [OrderController::class, 'takeorder'])->name('takeorder');
+Route::post('/add-quantity/{id}', [OrderController::class, 'quantity'])->name('addquantity');
+Route::post('/update-quantity/{id}', [OrderController::class, 'update'])->name('updatequantity');
+
+
 Route::post('/add-about', [HomeController::class, 'addabout'])->name('add-about');
 Route::post('/update-about/{id}', [HomeController::class, 'update'])->name('update-about');
 
@@ -78,4 +83,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
