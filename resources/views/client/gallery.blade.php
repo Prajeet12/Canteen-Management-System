@@ -1,24 +1,24 @@
 <section id="gallery" class="gallery section-bg">
     <div class="container" data-aos="fade-up">
 
-      <div class="section-header">
-        <h2>gallery</h2>
-        <p style="font-family: poppins; font-weight:300; font-size:2rem">Check <span>Our Gallery</span></p>
-      </div>
-
-      <div class="gallery-slider swiper">
-        <div class="swiper-wrapper align-items-center">
-          <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="menu1/assets/img/gallery/gallery-1.jpg"><img src="menu1/assets/img/gallery/gallery-1.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="menu1/assets/img/gallery/gallery-2.jpg"><img src="menu1/assets/img/gallery/gallery-2.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="menu1/assets/img/gallery/gallery-3.jpg"><img src="menu1/assets/img/gallery/gallery-3.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="menu1/assets/img/gallery/gallery-4.jpg"><img src="menu1/assets/img/gallery/gallery-4.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="menu1/assets/img/gallery/gallery-5.jpg"><img src="menu1/assets/img/gallery/gallery-5.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="menu1/assets/img/gallery/gallery-6.jpg"><img src="menu1/assets/img/gallery/gallery-6.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="menu1/assets/img/gallery/gallery-7.jpg"><img src="menu1/assets/img/gallery/gallery-7.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="menu1/assets/img/gallery/gallery-8.jpg"><img src="menu1/assets/img/gallery/gallery-8.jpg" class="img-fluid" alt=""></a></div>
+        <div class="section-header">
+            <h2>gallery</h2>
+            <p style="font-family: poppins; font-weight:300; font-size:2rem">Check <span>Our Gallery</span></p>
         </div>
-        <div class="swiper-pagination"></div>
-      </div>
+
+        <div class="gallery-slider swiper">
+
+            <div class="swiper-wrapper align-items-center">
+                @foreach ($galleries as $item)
+                    <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+                            href="{{ asset('foodimage/' . $item->image) }}"><img
+                                src="{{ asset('foodimage/' . $item->image) }}" class="img-fluid" alt=""></a>
+                    </div>
+                @endforeach
+            </div>
+
+            <div class="swiper-pagination"></div>
+        </div>
 
     </div>
-  </section>
+</section>

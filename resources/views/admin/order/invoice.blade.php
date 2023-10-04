@@ -69,9 +69,9 @@
                                                 <td>
                                                     <h5>{{ $item->fooditem->title }}</h5>
                                                 </td>
-                                                <td> Rs. {{$item->price}}</td>
-                                                <td>{{$item->quantity}}</td>
-                                                <td class="text-end">Rs. {{$item->total}}</td>
+                                                <td> Rs. {{ $item->price }}</td>
+                                                <td>{{ $item->quantity }}</td>
+                                                <td class="text-end">Rs. {{ $item->total }}</td>
                                                 <th scope="row">Remove</th>
                                             </tr>
                                             <!-- end tr -->
@@ -80,13 +80,26 @@
                                         <tr>
                                             <th scope="row" colspan="4" class="text-end">
                                                 Sub Total</th>
-                                            <td class="text-end">Rs. {{$order->total_amt}}</td>
+                                            <td class="text-end">Rs. {{ $order->total_amt }}</td>
                                         </tr>
                                         <!-- end tr -->
                                         <tr>
-                                            <th scope="row" colspan="4" class="border-0 text-end">
-                                                Discount :</th>
-                                            <td class="border-0 text-end">- $25.50</td>
+                                            <th scope="row" colspan="8" class="border-0 text-end form-group">
+                                                
+                                                    <select class="form-select" name="category_id"
+                                                        aria-label="Default select example">
+                                                        <option disabled selected>Payment</option>
+                                                        
+                                                            <option value="">Cash</option>
+                                                            <option value="">Khalti</option>
+                                                        
+
+
+                                                    </select>
+
+                                               
+                                            </th>
+
                                         </tr>
                                         <!-- end tr -->
 

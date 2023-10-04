@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gallery;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +36,8 @@ class HomeController extends Controller
     {
         $data = Category::with('food')->get();
         $abouts = Aboutus::all(); // Fetch 'abouts' data
-        return view('client.master', compact('data', 'abouts')); // Pass both 'data' and 'abouts' to the view
+        $galleries= Gallery::all();
+        return view('client.master', compact('data', 'abouts', 'galleries')); // Pass both 'data' and 'abouts' to the view
     }
 
     public function about()
@@ -72,14 +74,57 @@ class HomeController extends Controller
                 File::delete($path);
             }
         }
-        $imagename = time() . '.' . $image->getClientOriginalExtension();
-        $request->image->move('foodimage', $imagename);
+        $galleryimage = time() . '.' . $image->getClientOriginalExtension();
+        $request->image->move('foodimage', $galleryimage);
 
-        $abouts->image = $imagename;
+        $abouts->image = $galleryimage;
         $abouts->title = $request->title;
         $abouts->description = $request->description;
         $abouts->save();
         return redirect('/aboutus')->with('success', 'Data is updated.');
+
+
+    }
+
+    public function gallery()
+    {
+        $galleries = Gallery::all();
+
+        return view('admin.gallery', compact('galleries'));
+    }
+
+    public function addgallery(Request $request)
+    {
+        $galleries = new gallery;
+
+        $image = $request->image;
+
+        $galleryimage = time() . '.' . $image->getClientOriginalExtension();
+        $request->image->move('foodimage', $galleryimage);
+        $galleries->image = $galleryimage;
+        $galleries->save();
+
+        return redirect('/gallery')->with('success', 'Data Saved');
+    }
+
+    public function updategallery(Request $request, $id)
+    {
+        $galleries = Gallery::find($id);
+        $image = $request->image;
+
+        if ($image) {
+            $path = public_path('foodimage/' . $galleries->image);
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+        }
+        $galleryimage = time() . '.' . $image->getClientOriginalExtension();
+        $request->image->move('foodimage', $galleryimage);
+
+        $galleries->image = $galleryimage;
+
+        $galleries->save();
+        return redirect('/gallery')->with('success', 'Data is updated.');
 
 
     }

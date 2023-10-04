@@ -42,6 +42,11 @@ Route::get('/add', [HomeController::class, 'create'])->name('add');
 Route::get('/breakfastmenu', [HomeController::class, 'breakfastmenu'])->name('breakfastmenu');
 Route::post('/uploadfood', [HomeController::class, 'upload'])->name('uploadfood');
 
+//Gallery
+Route::get('/gallery', [HomeController::class, 'gallery'])->name('client.gallery');
+Route::post('/add-gallery', [HomeController::class, 'addgallery'])->name('add-gallery');
+Route::post('/update-gallery/{id}', [HomeController::class, 'updategallery'])->name('update-gallery');
+
 //category
 Route::get('/category', [CategoryController::class, 'category'])->name('category');
 Route::post('/add-category', [CategoryController::class, 'add'])->name('add-category');
@@ -71,7 +76,7 @@ Route::post('/add-order', [OrderController::class, 'generateorder'])->name('add-
 Route::get('/takeorder/{id}', [OrderController::class, 'takeorder'])->name('takeorder');
 Route::post('/add-quantity/{id}', [OrderController::class, 'quantity'])->name('addquantity');
 Route::post('/update-quantity/{id}', [OrderController::class, 'update'])->name('updatequantity');
-
+Route::get('/searchorder', [OrderController::class, 'searchorder'])->name('searchorder');
 
 Route::post('/add-about', [HomeController::class, 'addabout'])->name('add-about');
 Route::post('/update-about/{id}', [HomeController::class, 'update'])->name('update-about');

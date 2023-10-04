@@ -6,15 +6,20 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Food;
 
 class OrderController extends Controller
 {
     public function index()
     {
-        // $data = Category::with('food')->get();
+        //$data = Category::with('food')->get();
         $order = Order::latest()->get();
         return view('admin.order.orderhome', compact('order'));
     }
+
+    
+
+
 
     public function generateorder(Request $request)
     {
@@ -30,6 +35,23 @@ class OrderController extends Controller
         $data->save();
 
         return redirect('/order')->with('success', 'Data Saved');
+    }
+    public function searchorder(Request $request)
+    {
+        $search = $request->search;
+        $order = Order::latest()->first();
+        
+        $data = Food::where(function ($query) use ($search) {
+            $query->where('title', 'like', "%$search%")
+                ->orWhere('description', 'like', "%$search%");
+        })
+            ->orWhereHas('category', function ($query) use ($search) {
+                $query->where('category_id', 'like', "%$search%");
+
+            })->get();
+
+
+        return view('admin.order.takeorder', compact('order','data','search'));
     }
 
     public function takeorder($id)

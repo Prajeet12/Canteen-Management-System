@@ -5,8 +5,9 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <div class="d-flex flex-row mb-3 grid gap-0">
         <div class="col-sm-6 mb-2 mb-sm-0 bg-gray p-2 g-col-6">
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex" role="search" method="get" action="/searchorder">
+                <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search"
+                    value={{ isset($search) ? $search : '' }}>
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
             <hr class="my-4">
@@ -60,7 +61,8 @@
                                                 <td>
                                                     <span class="text-danger">Already Added.</span>
 
-                                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                                    <button type="button" class="btn btn-success btn-sm"
+                                                        data-bs-toggle="modal"
                                                         data-bs-target="#exampleModal{{ $food->id }}">
                                                         <i class="material-icons"><span class="material-symbols-outlined">
                                                                 update
@@ -118,7 +120,8 @@
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary"
                                                                             data-bs-dismiss="modal">Close</button>
-                                                                        <button type="submit" class="btn btn-primary">Save
+                                                                        <button type="submit"
+                                                                            class="btn btn-primary">Save
                                                                             changes</button>
                                                                     </div>
                                                                 </form>
@@ -128,7 +131,8 @@
                                                 </td>
                                             @else
                                                 <td><!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    <button type="button" class="btn btn-primary btn-m"
+                                                        data-bs-toggle="modal"
                                                         data-bs-target="#exampleModal{{ $food->id }}">
                                                         Add food
                                                     </button>

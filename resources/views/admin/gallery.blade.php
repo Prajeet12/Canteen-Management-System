@@ -6,7 +6,7 @@
             <h3 class="page-title">
                 <span class="page-title-icon text-white me-2" style="background:#ce1212";>
                     <i class="mdi mdi-contacts menu-icon" style="background:#ce1212";></i>
-                </span> About Us
+                </span> Gallery
             </h3>
             <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
@@ -32,7 +32,7 @@
             </div>
         @endif
         <div class="modal-body">
-            <form action="{{ url('add-about') }}" method="POST" role="form" enctype="multipart/form-data"
+            <form action="{{ url('add-gallery') }}" method="POST" role="form" enctype="multipart/form-data"
                 class="php-email-form p-3 p-md-4">
                 @csrf
                 <div class=" row">
@@ -40,47 +40,35 @@
                     <div class="form-group">
 
 
-                        <div class="form-group">
-                            <label for="">Title</label>
-                            <input type="text" name="title" class="form-control" id="title" placeholder="Food Name"
-                                required>
+
+
+                        <div class="mb-3">
+                            <h3 for="formFile" class="form-label">Load the image</h3>
+                            <input class="form-control" type="file" name="image" id="image" required>
                         </div>
-                    </div>
-                    <label for="">Description</label>
-                    <div class="form-group">
-                        <textarea class="form-control" name="description" rows="5" id="description" placeholder="Description" required></textarea>
-                    </div>
 
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Load the image</label>
-                        <input class="form-control" type="file" name="image" id="image" required>
                     </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" style="background:#ce1212">Save
-                        changes</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" style="background:#ce1212">Save
+                            changes</button>
+                    </div>
             </form>
-            <table class="table table-striped">
+            <table class="table table-sm table-striped">
                 <thead class="thead-primary table-info" style="background:#ce1212">
 
                     <tr>
-                        <th scope="col">Title</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Action</th>
+                        <th class="w-50" scope="col">SN</th>
+                        <th class="w-50" scope="col">Image</th>
+                        <th class="w-50" scope="col">Action</th>
 
 
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($hero as $item)
+                    @foreach ($galleries as $item)
                         <tr>
-                            <td>{{ $item->title }}</td>
-
-                            <td class="vertical-align-top">{{ $item->description }}</td>
+                            <th scope="row">{{ $loop->iteration }}</th>
                             <td><img src="{{ asset('foodimage/' . $item->image) }}" alt="">
                             </td>
                             <td>
@@ -98,41 +86,21 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                                Update About US</h1>
+                                                Update Photos</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{ url('/update-about/' . $item->id) }}" method="POST"
+                                            <form action="{{ url('/update-gallery/' . $item->id) }}" method="POST"
                                                 role="form" enctype="multipart/form-data"
                                                 class="php-email-form p-3 p-md-4">
                                                 @csrf
                                                 <div class=" row">
-
-
-                                                    <div class=" form-group">
-                                                        <div class="form-group">
-
-                                                            <label for="">Title</label>
-                                                            <input type="text" name="title" class="form-control"
-                                                                id="title" value="{{ $item->title }}"
-                                                                placeholder="Food Name" required>
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="form-group">
-                                                        <label for="">Description</label>
-                                                        <textarea class="form-control" name="description" rows="5" id="description" required>{{ $item->description }}</textarea>
-                                                    </div>
-
                                                     <div class="mb-3">
                                                         <label for="formFile" class="form-label">Old
                                                             image</label>
                                                         <img height="200" width="200"
-                                                            src="{{ asset('foodimage/' . $item->image) }}"
-                                                            alt="">
+                                                            src="{{ asset('foodimage/' . $item->image) }}" alt="">
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="formFile" class="form-label">New
