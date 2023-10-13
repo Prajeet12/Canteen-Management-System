@@ -107,13 +107,13 @@
                                         <tr>
                                             <th scope="row" colspan="4" class="border-0 text-end">
                                                 Tax</th>
-                                            <td class="border-0 text-end">$12.00</td>
+                                            <td class="border-0 text-end">Rs12.00</td>
                                         </tr>
                                         <!-- end tr -->
                                         <tr>
                                             <th scope="row" colspan="4" class="border-0 text-end">Total</th>
                                             <td class="border-0 text-end">
-                                                <h4 class="m-0 fw-semibold">$739.00</h4>
+                                                <h4 class="m-0 fw-semibold">Rs739.00</h4>
                                             </td>
                                         </tr>
                                         <!-- end tr -->
@@ -122,9 +122,9 @@
                             </div><!-- end table responsive -->
                             <div class="d-print-none mt-4">
                                 <div class="float-end">
-                                    <button class="btn btn-primary" onclick="printDiv('contentToPrint')">Print
-                                        Div</button>
-                                    <a href="#" class="btn btn-primary w-md">Send</a>
+                                    <button class="btn btn-primary" onclick="printDiv('contentToPrint')">Generate Bill
+                                        </button>
+                                    <a href="#" class="btn btn-primary w-md">Print Bill</a>
                                 </div>
                             </div>
                         </div>

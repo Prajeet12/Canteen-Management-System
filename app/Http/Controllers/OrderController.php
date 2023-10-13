@@ -17,7 +17,7 @@ class OrderController extends Controller
         return view('admin.order.orderhome', compact('order'));
     }
 
-    
+
 
 
 
@@ -40,7 +40,7 @@ class OrderController extends Controller
     {
         $search = $request->search;
         $order = Order::latest()->first();
-        
+
         $data = Food::where(function ($query) use ($search) {
             $query->where('title', 'like', "%$search%")
                 ->orWhere('description', 'like', "%$search%");
@@ -50,8 +50,9 @@ class OrderController extends Controller
 
             })->get();
 
+        return $data;
 
-        return view('admin.order.takeorder', compact('order','data','search'));
+        return view('admin.order.takeorder', compact('order', 'data', 'search'));
     }
 
     public function takeorder($id)

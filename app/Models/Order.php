@@ -15,5 +15,10 @@ class Order extends Model
 
     }
 
+    public function orderOnFood()
+    {
+        return $this->hasOne(Food::class, 'id', 'category_id');
+    }
+
 
 }
