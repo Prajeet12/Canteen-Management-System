@@ -47,6 +47,11 @@ Route::get('/gallery', [HomeController::class, 'gallery'])->name('client.gallery
 Route::post('/add-gallery', [HomeController::class, 'addgallery'])->name('add-gallery');
 Route::post('/update-gallery/{id}', [HomeController::class, 'updategallery'])->name('update-gallery');
 
+//home
+Route::get('/clienthome', [HomeController::class, 'clienthome'])->name('client.clienthome');
+Route::post('/add-clienthome', [HomeController::class, 'addclienthome'])->name('add-clienthome');
+Route::post('/update-clienthome/{id}', [HomeController::class, 'updateclienthome'])->name('update-clienthome');
+
 //category
 Route::get('/category', [CategoryController::class, 'category'])->name('category');
 Route::post('/add-category', [CategoryController::class, 'add'])->name('add-category');
@@ -77,6 +82,7 @@ Route::get('/takeorder/{id}', [OrderController::class, 'takeorder'])->name('take
 Route::post('/add-quantity/{id}', [OrderController::class, 'quantity'])->name('addquantity');
 Route::post('/update-quantity/{id}', [OrderController::class, 'update'])->name('updatequantity');
 Route::get('/searchorder', [OrderController::class, 'searchorder'])->name('searchorder');
+Route::delete('/delete-order/{id}', [OrderController::class, 'delete'])->name('delete-order');
 
 Route::post('/add-about', [HomeController::class, 'addabout'])->name('add-about');
 Route::post('/update-about/{id}', [HomeController::class, 'update'])->name('update-about');

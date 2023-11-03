@@ -48,22 +48,23 @@
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="hero d-flex align-items-center ">
         <div class="container">
-            @foreach ($abouts as $item)
+            @foreach ($homes as $item)
                 <div class="row justify-content-between gy-5">
-                    <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start"
+                    <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start"
                         style="font-family: poppins">
-                        <h3 data-aos="fade-up" style="font-family: poppins">{{ $item->title }}</h3>
+                        <h3 data-aos="fade-up" style="font-family: poppins">{{$item->title}}</h3>
                         <p data-aos="fade-up" data-aos-delay="100">{{$item->description}}</p>
                         <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
                         </div>
                     </div>
                     <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
-                        <img src="{{ asset('foodimage/' . $item->image) }}" class="img-fluid" alt="" data-aos="zoom-out"
-                            data-aos-delay="300">
+                        <img src="{{ asset('foodimage/' . $item->image) }}" class="img-fluid" alt=""
+                            data-aos="zoom-out" data-aos-delay="300">
                     </div>
                 </div>
             @endforeach
         </div>
+
     </section><!-- End Hero Section -->
 
     <main id="main">

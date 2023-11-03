@@ -44,7 +44,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ url('add-about') }}" method="POST" role="form" enctype="multipart/form-data"
+                        <form action="{{ url('add-clienthome') }}" method="POST" role="form" enctype="multipart/form-data"
                             class="php-email-form p-3 p-md-4">
                             @csrf
                             <div class=" row">
@@ -58,19 +58,16 @@
                                             placeholder="Food Name" required>
                                     </div>
                                 </div>
-                                <label for="">Description</label>
+                              <label for="">Description</label>
                                 <div class="form-group">
                                     <textarea class="form-control" name="description" rows="5" id="description" placeholder="Description" required></textarea>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="formFile" class="form-label">Load the first image</label>
-                                    <input class="form-control" type="file" name="image1" id="image" required>
+                                    <label for="formFile" class="form-label">Load the image</label>
+                                    <input class="form-control" type="file" name="image" id="image" required>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label">Load the second image</label>
-                                    <input class="form-control" type="file" name="image2" id="image" required>
-                                </div>
+                              
 
                             </div>
                             <div class="modal-footer">
@@ -95,21 +92,21 @@
                 <tr>
                     <th scope="col">Title</th>
                     <th scope="col">Description</th>
-                    <th scope="col">Image1</th>
-                    <th scope="col">Image2</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Action</th>
 
 
                 </tr>
             </thead>
             <tbody>
-                @foreach ($hero as $item)
+                @foreach ($homes as $item)
                     <tr>
                         <td>{{ $item->title }}</td>
+                        <td>{{ $item->description }}</td>
 
-                        <td class="vertical-align-top">{{ $item->description }}</td>
-                        <td><img src="{{ asset('foodimage/' . $item->image1) }}" alt="">
-                        <td><img src="{{ asset('foodimage/' . $item->image2) }}" alt="">
+                       
+                        <td><img src="{{ asset('foodimage/' . $item->image) }}" alt="">
+                        
                         </td>
                         <td>
 
@@ -131,7 +128,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{ url('/update-about/' . $item->id) }}" method="POST"
+                                        <form action="{{ url('/update-clienthome/' . $item->id) }}" method="POST"
                                             role="form" enctype="multipart/form-data"
                                             class="php-email-form p-3 p-md-4">
                                             @csrf

@@ -72,7 +72,45 @@
                                                 <td> Rs. {{ $item->price }}</td>
                                                 <td>{{ $item->quantity }}</td>
                                                 <td class="text-end">Rs. {{ $item->total }}</td>
-                                                <th scope="row">Remove</th>
+                                                <td scope="row"> 
+                                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal{{ $item->id }}">
+                                    <span class="material-symbols-outlined">
+delete
+</span>
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1"
+                                    aria-labelledby="deleteModal{{ $item->id }}Label" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                                    Category</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{ url('/delete-order/' . $item->id) }}" method="POST"
+                                                    role="form" enctype="multipart/form-data"
+                                                    class="php-email-form p-3 p-md-4">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <h5>Are you sure you want to delete the category
+                                                        '{{ $item->fooditem->title  }}'?</h5>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary"
+                                                    style="background:#ce1212">Delete</button>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div></td>
                                             </tr>
                                             <!-- end tr -->
                                         @endforeach
@@ -89,7 +127,7 @@
                                                     <select class="form-select" name="category_id"
                                                         aria-label="Default select example">
                                                         <option disabled selected>Payment</option>
-                                                        
+                                        
                                                             <option value="">Cash</option>
                                                             <option value="">Khalti</option>
                                                         

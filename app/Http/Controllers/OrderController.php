@@ -39,18 +39,18 @@ class OrderController extends Controller
     public function searchorder(Request $request)
     {
         $search = $request->search;
-        $order = Order::latest()->first();
-
+        // $order = Order::latest()->first();
+        $order = Order::with('orderitems.fooditem')->find($request->order);
         $data = Food::where(function ($query) use ($search) {
             $query->where('title', 'like', "%$search%")
                 ->orWhere('description', 'like', "%$search%");
-        })
-            ->orWhereHas('category', function ($query) use ($search) {
-                $query->where('category_id', 'like', "%$search%");
+        })->get();
+            // ->orWhereHas('category', function ($query) use ($search) {
+            //     $query->where('category_id', 'like', "%$search%");
 
-            })->get();
+            // })->get();
 
-        return $data;
+        // return $data;
 
         return view('admin.order.takeorder', compact('order', 'data', 'search'));
     }
@@ -103,6 +103,12 @@ class OrderController extends Controller
 
         return redirect()->back()->with('success', 'Data is Updated');
 
+    }
+    public function delete($id)
+    {
+        $data = OrderItem::find($id);
+        $data->delete();
+        return redirect()->back()->with('success', 'Data is Deleted.');
     }
 
 
