@@ -296,6 +296,12 @@
 
                                 </tbody>
                             </table>
+                            <div class="row">
+    <div class="col-md-12">
+        {{ $menus->links() }}
+    </div>
+</div>
+
                         </div>
                         {{-- <div class="row">
                       <div class="col-md-7 grid-margin stretch-card">

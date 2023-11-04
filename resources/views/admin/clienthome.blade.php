@@ -102,7 +102,7 @@
                 @foreach ($homes as $item)
                     <tr>
                         <td>{{ $item->title }}</td>
-                        <td>{{ $item->description }}</td>
+                        <td style="max-height: 100px; overflow: hidden;">{{ $item->description }}</td>
 
                        
                         <td><img src="{{ asset('foodimage/' . $item->image) }}" alt="">

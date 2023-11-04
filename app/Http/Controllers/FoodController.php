@@ -12,7 +12,7 @@ class FoodController extends Controller
     public function menu()
     {
         $categories = Category::all();
-        $menus = Food::with('category')->get();
+        $menus = Food::with('category')->paginate(7);
         return view('admin.food.foodmenu', compact('menus', 'categories'));
     }
 
@@ -30,7 +30,7 @@ class FoodController extends Controller
                 $query->where('category_name', 'like', "%$search%");
 
             })
-            ->get();
+            ->paginate(7);
         return view('admin.food.foodmenu', compact('menus','categories','search'));
 
     }

@@ -89,108 +89,113 @@
 
 
         </div>
-        <table class="table table-striped">
-            <thead class="thead-primary table-info" style="background:#ce1212">
+        <div class="table-responsive">
+            <table class="table table-striped vertical-align-top" style=" over-flow: break-word;">
+                <thead class="thead-primary table-info" style="background:#ce1212">
 
-                <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Image1</th>
-                    <th scope="col">Image2</th>
-                    <th scope="col">Action</th>
-
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($hero as $item)
                     <tr>
-                        <td>{{ $item->title }}</td>
-
-                        <td class="vertical-align-top">{{ $item->description }}</td>
-                        <td><img src="{{ asset('foodimage/' . $item->image1) }}" alt="">
-                        <td><img src="{{ asset('foodimage/' . $item->image2) }}" alt="">
-                        </td>
-                        <td>
-
-                            <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal{{ $item->id }}">
-                                Update
-                            </button>
-                        </td>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Image1</th>
+                        <th scope="col">Image2</th>
+                        <th scope="col">Action</th>
 
 
-                        <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1"
-                            aria-labelledby="exampleModal{{ $item->id }}Label" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                            Update About US</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="{{ url('/update-about/' . $item->id) }}" method="POST"
-                                            role="form" enctype="multipart/form-data"
-                                            class="php-email-form p-3 p-md-4">
-                                            @csrf
-                                            <div class=" row">
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($hero as $item)
+                        <tr>
+                            <td>{{ $item->title }}</td>
+                            <td class="word-wrap">{{ $item->description }}</td>
+
+                            <td><img src="{{ asset('foodimage/' . $item->image1) }}" alt="">
+                            <td><img src="{{ asset('foodimage/' . $item->image2) }}" alt="">
+                            </td>
+                            <td>
+
+                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal{{ $item->id }}">
+                                    Update
+                                </button>
+                            </td>
 
 
-                                                <div class=" form-group">
-                                                    <div class="form-group">
+                            <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1"
+                                aria-labelledby="exampleModal{{ $item->id }}Label" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                                Update About US</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ url('/update-about/' . $item->id) }}" method="POST"
+                                                role="form" enctype="multipart/form-data"
+                                                class="php-email-form p-3 p-md-4">
+                                                @csrf
+                                                <div class=" row">
 
-                                                        <label for="">Title</label>
-                                                        <input type="text" name="title" class="form-control"
-                                                            id="title" value="{{ $item->title }}"
-                                                            placeholder="Food Name" required>
+
+                                                    <div class=" form-group">
+                                                        <div class="form-group">
+
+                                                            <label for="">Title</label>
+                                                            <input type="text" name="title" class="form-control"
+                                                                id="title" value="{{ $item->title }}"
+                                                                placeholder="Food Name" required>
+                                                        </div>
                                                     </div>
+
+
+
+                                                    <div class="form-group">
+                                                        <label for="">Description</label>
+                                                        <textarea class="form-control" name="description" rows="5" id="description" required>{{ $item->description }}</textarea>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="formFile" class="form-label">Old
+                                                            image</label>
+                                                        <img height="200" width="200"
+                                                            src="{{ asset('foodimage/' . $item->image1) }}"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="formFile" class="form-label">New
+                                                            image</label>
+
+                                                        <input class="form-control" type="file" name="image1"
+                                                            id="image" required>
+                                                    </div>
+
                                                 </div>
-
-
-
-                                                <div class="form-group">
-                                                    <label for="">Description</label>
-                                                    <textarea class="form-control" name="description" rows="5" id="description" required>{{ $item->description }}</textarea>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary"
+                                                        style="background:#ce1212">Save
+                                                        changes</button>
                                                 </div>
-
-                                                <div class="mb-3">
-                                                    <label for="formFile" class="form-label">Old
-                                                        image</label>
-                                                    <img height="200" width="200"
-                                                        src="{{ asset('foodimage/' . $item->image) }}" alt="">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="formFile" class="form-label">New
-                                                        image</label>
-
-                                                    <input class="form-control" type="file" name="image"
-                                                        id="image" required>
-                                                </div>
-
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary"
-                                                    style="background:#ce1212">Save
-                                                    changes</button>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </tr>
-                @endforeach
+                        </tr>
+                    @endforeach
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
+
+
         <div><br></div>
 
-        
+
     </div>
-    </div> 
+    </div>
 
 @endsection
