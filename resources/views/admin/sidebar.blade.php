@@ -6,11 +6,17 @@
             <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
         </a>
     </div> --}}
-
+{{-- 
         <li class="nav-item">
             <a class="nav-link" href="{{ url('home') }}">
                 <span class="menu-title">Dashboard</span>
                 <i class="mdi mdi-home menu-icon"></i>
+            </a>
+        </li> --}}
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('/order')}}">
+                <span class="menu-title">Order List</span>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
             </a>
         </li>
 
@@ -44,12 +50,7 @@
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="{{url('/order')}}">
-                <span class="menu-title">Order List</span>
-                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-            </a>
-        </li>
+      
         <li class="nav-item">
             <a class="nav-link" href="pages/charts/chartjs.html">
                 <span class="menu-title">Order History</span>

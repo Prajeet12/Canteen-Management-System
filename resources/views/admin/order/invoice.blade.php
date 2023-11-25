@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="col-sm-6 mb-2 mb-sm-0   g-col-6 ">
+    <div class="col-sm-6 mb-2 mb-sm-0 g-col-6 ">
 
         <div class="row">
             <div class="col-lg-12">
@@ -72,45 +72,52 @@
                                                 <td> Rs. {{ $item->price }}</td>
                                                 <td>{{ $item->quantity }}</td>
                                                 <td class="text-end">Rs. {{ $item->total }}</td>
-                                                <td scope="row"> 
-                                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal{{ $item->id }}">
-                                    <span class="material-symbols-outlined">
-delete
-</span>
-                                </button>
+                                                <td scope="row">
+                                                    <button type="button" class="btn btn-danger btn-sm"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#deleteModal{{ $item->id }}">
+                                                        <span class="material-symbols-outlined">
+                                                            delete
+                                                        </span>
+                                                    </button>
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1"
-                                    aria-labelledby="deleteModal{{ $item->id }}Label" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                                    Category</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form action="{{ url('/delete-order/' . $item->id) }}" method="POST"
-                                                    role="form" enctype="multipart/form-data"
-                                                    class="php-email-form p-3 p-md-4">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <h5>Are you sure you want to delete the category
-                                                        '{{ $item->fooditem->title  }}'?</h5>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="deleteModal{{ $item->id }}"
+                                                        tabindex="-1"
+                                                        aria-labelledby="deleteModal{{ $item->id }}Label"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                                                        Category</h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form
+                                                                        action="{{ url('/delete-order/' . $item->id) }}"
+                                                                        method="POST" role="form"
+                                                                        enctype="multipart/form-data"
+                                                                        class="php-email-form p-3 p-md-4">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <h5>Are you sure you want to delete the category
+                                                                            '{{ $item->fooditem->title }}'?</h5>
 
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary"
-                                                    style="background:#ce1212">Delete</button>
-                                            </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div></td>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary"
+                                                                        style="background:#ce1212">Delete</button>
+                                                                </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <!-- end tr -->
                                         @endforeach
@@ -123,19 +130,18 @@ delete
                                         <!-- end tr -->
                                         <tr>
                                             <th scope="row" colspan="8" class="border-0 text-end form-group">
-                                                
-                                                    <select class="form-select" name="category_id"
-                                                        aria-label="Default select example">
-                                                        <option disabled selected>Payment</option>
-                                        
-                                                            <option value="">Cash</option>
-                                                            <option value="">Khalti</option>
-                                                        
+
+                                                <select class="form-select" name="category_id"
+                                                    aria-label="Default select example">
+                                                    <option disabled selected>Payment</option>
+                                                    <option value="">Cash</option>
+                                                    <option value="">Khalti</option>
 
 
-                                                    </select>
 
-                                               
+                                                </select>
+
+
                                             </th>
 
                                         </tr>
@@ -158,13 +164,13 @@ delete
                                     </tbody><!-- end tbody -->
                                 </table><!-- end table -->
                             </div><!-- end table responsive -->
+                            <!-- Place this button where you want to trigger the print action -->
                             <div class="d-print-none mt-4">
                                 <div class="float-end">
-                                    <button class="btn btn-primary" onclick="printDiv('contentToPrint')">Generate Bill
-                                        </button>
-                                    <a href="#" class="btn btn-primary w-md">Print Bill</a>
+                                    <button class="btn btn-primary" onclick="printBill()">Generate Bill</button>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -172,13 +178,23 @@ delete
         </div>
     </div>
     </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
+
 
 </body>
+<!-- Add this script in your HTML -->
+<script>
+    function printBill() {
+        var contentToPrint = document.getElementById('contentToPrint'); // Identify the content to print
+        var printWindow = window.open('', '_blank'); // Open a new window for printing
+        printWindow.document.open();
+        printWindow.document.write('<html><head><title>Print Bill</title></head><body>');
+        printWindow.document.write(contentToPrint.innerHTML); // Add the content to the new window
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print(); // Trigger the print dialog
+    }
+</script>
+
 <script src="admin/assets/js/script.js"></script>
 
 </html>

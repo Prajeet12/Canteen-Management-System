@@ -32,7 +32,7 @@
                 <li class="nav-item ">
                     @if (Route::has('login'))
                         @auth
-                            <a href="{{ url('/home') }}"
+                            <a href="{{ url('/order') }}"
                                 class="font-semibold p-3 fs-6 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
                         @else
                             <a href="{{ route('login') }}" class="btn-book-a-table" style="font-family: Poppins">Log in</a>

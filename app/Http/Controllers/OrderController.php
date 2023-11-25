@@ -104,13 +104,14 @@ class OrderController extends Controller
         return redirect()->back()->with('success', 'Data is Updated');
 
     }
-    public function delete($id)
+    public function deleteOrder($id)
     {
-        $data = OrderItem::find($id);
-        $data->delete();
+        $order = Order::findOrFail($id);
+        $order->delete();
         return redirect()->back()->with('success', 'Data is Deleted.');
     }
 
+   
 
 
 

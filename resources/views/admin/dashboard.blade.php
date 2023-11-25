@@ -8,7 +8,7 @@
 
                     <h4 class="font-weight-normal mb-3">Weekly Sales <i class="mdi mdi-chart-line mdi-24px float-right"></i>
                     </h4>
-                    <h2 class="mb-5">$ 15,0000</h2>
+                    <h2 class="mb-5">Rs. 15,0000</h2>
                 </div>
             </div>
         </div>
