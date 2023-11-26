@@ -144,17 +144,19 @@
 
                             <td>{{ $item->customer_name }}</td>
                             <td>{{ $item->order_no }}</td>
-                            <td><a href="{{ url('/takeorder/' . $item->id) }}">Add food</a>
-                                
-                            </td>
-                            <td>
+                            <td><a href="{{ url('/takeorder/' . $item->id) }}">
+                                 <button type="button" class="btn btn-info">
+                                    Add food
+                                </button>
+                                </a>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal{{ $item->id }}">
+                                    Delete
+                                </button>
                                 <form action="{{ route('deleteOrder', ['id' => $item->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteModal{{ $item->id }}">
-                                                    Delete
-                                                </button>
+                                    
                                     <div class="modal fade" id="deleteModal{{ $item->id }}"
                                                     tabindex="-1"
                                                     aria-labelledby="deleteModal{{ $item->id }}Label"
@@ -191,6 +193,7 @@
                                                 </div>
                                 </form>
                             </td>
+                            
 
                         </tr>
                     @endforeach

@@ -212,5 +212,16 @@ class HomeController extends Controller
 
 
     }
+    
+    public function deleteGallery($id)
+    {
+        $galleryItem = Gallery::findOrFail($id);
+        // Delete the image from storage if needed
+        // Storage::delete('foodimage/' . $galleryItem->image);
+
+        $galleryItem->delete();
+        return redirect()->back()->with('success', 'Data is Deleted.');
+    }
+
 
 }

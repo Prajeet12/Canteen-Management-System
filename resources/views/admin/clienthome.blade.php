@@ -114,6 +114,7 @@
                                 data-bs-target="#exampleModal{{ $item->id }}">
                                 Update
                             </button>
+                            
                         </td>
 
 
