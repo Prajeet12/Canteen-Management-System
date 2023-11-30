@@ -171,7 +171,7 @@
                                                                     aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form action="{{ url('/delete-order/' . $item->id) }}"
+                                                                <form action="{{ url('/deleteorder/' . $item->id) }}"
                                                                     method="POST" role="form"
                                                                     enctype="multipart/form-data"
                                                                     class="php-email-form p-3 p-md-4">

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\OrderController;
-
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,15 +85,17 @@ Route::post('/add-quantity/{id}', [OrderController::class, 'quantity'])->name('a
 Route::post('/update-quantity/{id}', [OrderController::class, 'update'])->name('updatequantity');
 Route::get('/searchorder', [OrderController::class, 'searchorder'])->name('searchorder');
 Route::delete('/delete-order/{id}', [OrderController::class, 'deleteOrder'])->name('deleteOrder');
-
+Route::delete('/deleteOrderItem/{id}', [OrderController::class, 'deleteOrderItem'])->name('deleteOrderItem');
 //about
 Route::post('/add-about', [HomeController::class, 'addabout'])->name('add-about');
 Route::post('/update-about/{id}', [HomeController::class, 'update'])->name('update-about');
 
 //contact
-use App\Http\Controllers\ContactController;
+
 
 Route::get('/contact', [ContactController::class, 'sendMessage'])->name('contact.sendMessage');
+Route::post('/submit-ContactForm', [ContactController::class, 'submitContactForm'])->name('submit.contact.form');
+
 
 
 //profile

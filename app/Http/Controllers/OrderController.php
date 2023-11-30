@@ -84,6 +84,13 @@ class OrderController extends Controller
         return redirect()->back()->with('success', 'Data Saved');
 
     }
+    public function deleteOrder($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->delete();
+        return redirect()->back()->with('success', 'Data is Deleted.');
+    }
+
 
     public function update(Request $request, $id)
     {
@@ -104,9 +111,9 @@ class OrderController extends Controller
         return redirect()->back()->with('success', 'Data is Updated');
 
     }
-    public function deleteOrder($id)
+    public function deleteOrderItem($id)
     {
-        $order = Order::findOrFail($id);
+        $order = OrderItem::findOrFail($id);
         $order->delete();
         return redirect()->back()->with('success', 'Data is Deleted.');
     }

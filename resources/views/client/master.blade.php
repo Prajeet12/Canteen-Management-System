@@ -52,8 +52,8 @@
                 <div class="row justify-content-between gy-5">
                     <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start"
                         style="font-family: poppins">
-                        <h3 data-aos="fade-up" style="font-family: poppins">{{$item->title}}</h3>
-                        <p data-aos="fade-up" data-aos-delay="100">{{$item->description}}</p>
+                        <h3 data-aos="fade-up" style="font-family: poppins">{{ $item->title }}</h3>
+                        <p data-aos="fade-up" data-aos-delay="100">{{ $item->description }}</p>
                         <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
                         </div>
                     </div>
@@ -100,7 +100,7 @@
     <script src="menu1/assets/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="menu1/assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="menu1/assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="menu1/assets/vendor/php-email-form/validate.js"></script>
+    {{-- <script src="menu1/assets/vendor/php-email-form/validate.js"></script> --}}
 
     <!-- Template Main JS File -->
     <script src="menu1/assets/js/main.js"></script>

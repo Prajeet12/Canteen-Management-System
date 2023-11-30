@@ -97,7 +97,7 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <form
-                                                                        action="{{ url('/delete-order/' . $item->id) }}"
+                                                                        action="{{ url('/deleteorderItem/' . $item->id) }}"
                                                                         method="POST" role="form"
                                                                         enctype="multipart/form-data"
                                                                         class="php-email-form p-3 p-md-4">
