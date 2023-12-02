@@ -71,7 +71,7 @@
                                                 </td>
                                                 <td> Rs. {{ $item->price }}</td>
                                                 <td>{{ $item->quantity }}</td>
-                                                <td class="text-end">Rs. {{ $item->total }}</td>
+                                                <td class="text">Rs. {{ $item->total }}</td>
                                                 <td scope="row">
                                                     <button type="button" class="btn btn-danger btn-sm"
                                                         data-bs-toggle="modal"

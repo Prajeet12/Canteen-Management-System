@@ -12,7 +12,8 @@ class ContactController extends Controller
   public function sendmessage()
   {
     $contact = Contact::all();
-    return view('admin.contact', compact('contact'));
+    $data=Contact::paginate(3);
+    return view('admin.contact', compact('contact','data'));
   }
   // Handle form submission
   public function submitContactForm(Request $request)

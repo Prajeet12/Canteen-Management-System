@@ -33,7 +33,7 @@
                         @else
                             @foreach ($data as $food)
                                 <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <th scope="row">{{ $data->firstItem() + $loop->index }}</th>
                                     <td>{{ $food->title }}</td>
                                     <td>{{ $food->price }}</td>
                                     @if ($order->orderitems->contains('food_id', $food->id))

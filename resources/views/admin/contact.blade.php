@@ -1,7 +1,7 @@
 @extends('admin.adminhome')
 
 @section('content')
-    <div class="content-wrapper">
+    <div class="content-wrapper" >
         <div class="page-header">
             <h3 class="page-title">
                 <span class="page-title-icon text-white me-2" style="background:#ce1212";>
@@ -16,21 +16,34 @@
                 </ul>
             </nav>
         </div>
-        <!-- Succession notification -->
-        @if (count($errors) > 0)
-            <div class="alert alert-success">
-                <ul>
-                    @foreach ($error->all as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        @if (\Session::has('success'))
-            <div class="alert alert-success">
-                <p>{{ \Session::get('success') }}</p>
-            </div>
-        @endif
+       <!-- Error Notification -->
+<!-- Error Notification -->
+@if ($errors->any())
+    <div class="notification notification-error">
+        <div class="notification-header">
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            <span>Error!</span>
+        </div>
+        <ul class="notification-body">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+<!-- Success Notification -->
+@if (\Session::has('success'))
+    <div class="notification notification-success">
+        <div class="notification-header">
+            <i class="bi bi-check-circle-fill"></i>
+            <span>Success!</span>
+        </div>
+        <p class="notification-body">{{ \Session::get('success') }}</p>
+    </div>
+@endif
+
+
 
         <button type="button" class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
             style="background:#ce1212">
@@ -40,37 +53,42 @@
 
 
 
-        <div class="row pt-3">
+       <table class="table table-striped">
+                <thead class="thead-primary table-info" style="background:#ce1212">
 
-            <form action="{{ route('submit.contact.form') }}" method="POST" role="form" enctype="multipart/form-data"
-                class="php-email-form p-3 p-md-4">
-                @csrf
-                <div class="row">
-                    <div class="col-xl-6 form-group">
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
-                            required>
-                    </div>
-                    <div class="col-xl-6 form-group">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
-                            required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                </div>
-                {{-- <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-            </div> --}}
-                <div class="text-center "><button type="submit">Send Message</button></div>
-            </form>
+                    <tr>
+                        <th scope="col gap-10">S.N</th>
+                        <th scope="col gap-10">Customer Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Message</th>
 
-        </div>
+                    </tr>
 
+
+                </thead>
+                <tbody>
+                    @foreach ($data as $item)
+                        <tr>
+
+                            <td>{{ $data->firstItem() + $loop->index }}</td>
+                            <td>{{$item->name}}</td>
+                            <td>{{$item->email}}</td>
+                            <td>{{$item->subject}}</td>
+                            <td>{{$item->message}}</td>              
+
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+ <div class="col-md-12">
+      <!-- Displaying Contact Data with Continuous Count -->
+
+
+<!-- Pagination Links -->
+{{ $data->links() }}
+
+    </div>
 
     </div>
 

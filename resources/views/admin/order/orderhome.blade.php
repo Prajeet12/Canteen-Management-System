@@ -67,22 +67,29 @@
                 </div>
             </div>
         </div>
-        <!-- Succession notification -->
-        @if (count($errors) > 0)
-            <div class="alert alert-success">
-                <ul>
-                    @foreach ($error->all as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+        <!-- Error Notification -->
+<!-- Error Notification -->
+@if (\Session::has('success'))
+    <div class="alert alert-success alert-dismissible fade show rounded-3 position-fixed top-0 end-0 m-4" role="alert" style="width: 30%; height: 15%;">
+        <div class="d-flex align-items-center justify-content-left h-100">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            <div>
+                <strong>Success!</strong>
+                <p class="mb-0">{{ \Session::get('success') }}</p>
             </div>
-        @endif
-        @if (\Session::has('success'))
-            <div class="alert alert-success">
-                <p>{{ \Session::get('success') }}</p>
-            </div>
-        @endif
-        <!-- End of Succession notification -->
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
+
+
+
+
+
+
+
+
         <!-- Scrollable modal -->
         <!-- Button trigger modal -->
 
@@ -130,6 +137,7 @@
                 <thead class="thead-primary table-info" style="background:#ce1212">
 
                     <tr>
+                        <th scope="col">S.N</th>
                         <th scope="col gap-10">Customer Name</th>
                         <th scope="col">Order No.</th>
                         <th scope="col">Action</th>
@@ -141,13 +149,13 @@
                 <tbody>
                     @foreach ($order as $item)
                         <tr>
-
+                            <td>{{ $order->firstItem() + $loop->index }}</td>
                             <td>{{ $item->customer_name }}</td>
                             <td>{{ $item->order_no }}</td>
                             <td><a href="{{ url('/takeorder/' . $item->id) }}">
-                                 <button type="button" class="btn btn-info">
-                                    Add food
-                                </button>
+                                    <button type="button" class="btn btn-info">
+                                        Add food
+                                    </button>
                                 </a>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#deleteModal{{ $item->id }}">
@@ -156,51 +164,49 @@
                                 <form action="{{ route('deleteOrder', ['id' => $item->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    
-                                    <div class="modal fade" id="deleteModal{{ $item->id }}"
-                                                    tabindex="-1"
-                                                    aria-labelledby="deleteModal{{ $item->id }}Label"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                                                    Delete</h1>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal"
-                                                                    aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form action="{{ url('/deleteorder/' . $item->id) }}"
-                                                                    method="POST" role="form"
-                                                                    enctype="multipart/form-data"
-                                                                    class="php-email-form p-3 p-md-4">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <h5>Are you sure you want to delete prder no.
-                                                                        '{{ $item->order_no }}'?</h5>
 
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-primary"
-                                                                    style="background:#ce1212">Delete</button>
-                                                            </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
+                                    <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1"
+                                        aria-labelledby="deleteModal{{ $item->id }}Label" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                                        Delete</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ url('/deleteorder/' . $item->id) }}" method="POST"
+                                                        role="form" enctype="multipart/form-data"
+                                                        class="php-email-form p-3 p-md-4">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <h5>Are you sure you want to delete prder no.
+                                                            '{{ $item->order_no }}'?</h5>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary"  data-bs-dismiss="alert" aria-label="Close"
+                                                        style="background:#ce1212">Delete</button>
                                                 </div>
                                 </form>
-                            </td>
-                            
-
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
         </div>
+    </div>
+    </div>
+    </form>
+    </td>
 
+
+    </tr>
+    @endforeach
+    </tbody>
+    </table>
+    </div>
+    <div class="col-md-12">
+        {{ $order->links() }}
+    </div>
     </div>
     </div>
     </div>

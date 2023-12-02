@@ -14,6 +14,7 @@ class OrderController extends Controller
     {
         //$data = Category::with('food')->get();
         $order = Order::latest()->get();
+        $order = Order::paginate(5);
         return view('admin.order.orderhome', compact('order'));
     }
 

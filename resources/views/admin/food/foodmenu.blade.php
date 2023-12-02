@@ -22,20 +22,18 @@
                             </nav>
                         </div>
                         <!-- Succession notification -->
-                        @if (count($errors) > 0)
-                            <div class="alert alert-success">
-                                <ul>
-                                    @foreach ($error->all as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
                         @if (\Session::has('success'))
-                            <div class="alert alert-success">
-                                <p>{{ \Session::get('success') }}</p>
-                            </div>
-                        @endif
+    <div class="alert alert-success alert-dismissible fade show rounded-3 position-fixed top-0 end-0 m-4" role="alert" style="width: 30%; height: 15%;">
+        <div class="d-flex align-items-center justify-content-left h-100">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            <div>
+                <strong>Success!</strong>
+                <p class="mb-0">{{ \Session::get('success') }}</p>
+            </div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
                         <!-- End of Succession notification -->
                         <!-- Scrollable modal -->
                         <!-- Button trigger modal -->
@@ -120,6 +118,7 @@
                                 <thead class="thead-primary table-info" style="background:#ce1212">
 
                                     <tr>
+                                        <th scope="col">S.N</th>
                                         <th scope="col">Food Name</th>
                                         <th scope="col">Category</th>
                                         <th scope="col">Price</th>
@@ -132,6 +131,7 @@
                                 <tbody>
                                     @foreach ($menus as $item)
                                         <tr>
+                                            <td>{{ $menus->firstItem() + $loop->index }}</td>
                                             <td>{{ $item->title }}</td>
                                             <td>{{ $item->category->category_name }}</td>
 

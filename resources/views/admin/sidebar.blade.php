@@ -51,12 +51,12 @@
         </li>
 
       
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="pages/charts/chartjs.html">
                 <span class="menu-title">Order History</span>
                 <i class="mdi mdi-chart-bar menu-icon"></i>
             </a>
-        </li>
+        </li> --}}
         <li class="nav-item">
             <a class="nav-link" href="{{url('/gallery')}}">
                 <span class="menu-title">Gallery</span>
