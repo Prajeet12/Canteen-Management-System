@@ -20,11 +20,37 @@
             <div class="col-md-3 stretch-card grid-margin">
                 <div class="card bg-gradient-danger card-img-holder text-white">
                     <div class="card-body">
-
+                        <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                         <h4 class="font-weight-normal mb-3">Total Income <i
                                 class="mdi mdi-chart-line mdi-24px float-right"></i>
                         </h4>
-                        <h2 class="mb-5">Rs. 15,0000</h2>
+                        <h2 class="mb-5">Rs.{{ $totalAmount }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 stretch-card grid-margin mr-0.6">
+                <div class="card bg-gradient-info card-img-holder text-light">
+
+                    <div class="card-body">
+                        <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                        <h4 class="font-weight-normal mb-3"> Most Ordered Food<i
+                                class="mdi mdi-diamond mdi-24px float-right"></i>
+                        </h4>
+                        <h2 class="mb-5">{{ $foodTitle }}</h2>
+                        <h4 class="card-text">Total Quantity is {{ $totalQuantity }}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 stretch-card grid-margin mr-0.6">
+                <div class="card bg-gradient-success card-img-holder text-white">
+
+                    <div class="card-body">
+                        <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                        <h4 class="font-weight-normal mb-3">Total Orders <i
+                                class="mdi mdi-diamond mdi-24px float-right"></i>
+                        </h4>
+                        <h1 class="mb-5">{{ $totalOrders }}</h1>
+
                     </div>
                 </div>
             </div>
@@ -32,72 +58,55 @@
                 <div class="card bg-gradient-info card-img-holder text-white">
                     <div class="card-body">
                         <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                        <h4 class="font-weight-normal mb-3">Total Orders <i
+                        <h4 class="font-weight-normal mb-3">Total Feedbacks <i
                                 class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
                         </h4>
-                        <h2 class="mb-5">45,6334</h2>
-                        <h6 class="card-text">Decreased by 10%</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 stretch-card grid-margin mr-0.6">
-                <div class="card bg-gradient-success card-img-holder text-white">
+                        <h2 class="mb-5">{{ $totalContacts }}</h2>
 
-                    <div class="card-body">
-                        <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                        <h4 class="font-weight-normal mb-3">Visitors Online <i
-                                class="mdi mdi-diamond mdi-24px float-right"></i>
-                        </h4>
-                        <h2 class="mb-5">95,5741</h2>
-                        <h6 class="card-text">Increased by 5%</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 stretch-card grid-margin mr-0.6">
-                <div class="card bg-gradient-success card-img-holder text-white">
-
-                    <div class="card-body">
-                        <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                        <h4 class="font-weight-normal mb-3">Visitors Online <i
-                                class="mdi mdi-diamond mdi-24px float-right"></i>
-                        </h4>
-                        <h2 class="mb-5">95,5741</h2>
-                        <h6 class="card-text">Increased by 5%</h6>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Error Notification -->
-<!-- Error Notification -->
-@if (\Session::has('success'))
-    <div class="alert alert-success alert-dismissible fade show rounded-3 position-fixed top-0 end-0 m-4" role="alert" style="width: 30%; height: 15%;">
-        <div class="d-flex align-items-center justify-content-left h-100">
-            <i class="bi bi-check-circle-fill me-2"></i>
-            <div>
-                <strong>Success!</strong>
-                <p class="mb-0">{{ \Session::get('success') }}</p>
+
+        <!-- Notification  -->
+        @php
+            $alertType = \Session::has('success') ? 'alert-success' : (\Session::has('deleted') ? 'alert-danger' : '');
+        @endphp
+
+        @if (\Session::has('success') || \Session::has('deleted'))
+            <div class="alert alert-dismissible fade show rounded-3 position-fixed top-0 end-0 m-4 {{ $alertType }}"
+                role="alert" style="width: 30%; height: 15%;" id="autoDismissAlert">
+                <div class="d-flex align-items-center justify-content-left h-100">
+                    @if (\Session::has('success'))
+                        <i class="bi bi-check-circle-fill me-2"></i>
+                        <div>
+                            <strong>Success!</strong>
+                            <p class="mb-0">{{ \Session::get('success') }}</p>
+                        </div>
+                    @elseif (\Session::has('deleted'))
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                        <div>
+                            <strong>Deleted!</strong>
+                            <p class="mb-0">{{ \Session::get('deleted') }}</p>
+                        </div>
+                    @endif
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-        </div>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
+             <script>
+        // Automatically remove the alert after 3 seconds
+        setTimeout(function() {
+            document.getElementById('autoDismissAlert').remove();
+        }, 2000);
+    </script>
+        @endif
 
-
-
-
-
-
-
-
-
-        <!-- Scrollable modal -->
-        <!-- Button trigger modal -->
-
-
+        <!-- End Notification -->
         <button type="button" class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
             style="background:#ce1212">
             Generate Order
         </button>
+       
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -130,14 +139,17 @@
                 </div>
             </div>
         </div>
-
+<!-- End Modal -->
+<div class="row py-3 "><h3>Order History</h3></div>
         <!--Form-->
-        <div class="row py-5 px-3">
+       
+        <div class="row  px-3">
+            
             <table class="table table-striped">
                 <thead class="thead-primary table-info" style="background:#ce1212">
 
                     <tr>
-                        <th scope="col">S.N</th>
+
                         <th scope="col gap-10">Customer Name</th>
                         <th scope="col">Order No.</th>
                         <th scope="col">Action</th>
@@ -147,9 +159,10 @@
 
                 </thead>
                 <tbody>
+
                     @foreach ($order as $item)
                         <tr>
-                            <td>{{ $order->firstItem() + $loop->index }}</td>
+
                             <td>{{ $item->customer_name }}</td>
                             <td>{{ $item->order_no }}</td>
                             <td><a href="{{ url('/takeorder/' . $item->id) }}">
@@ -176,7 +189,7 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="{{ url('/deleteorder/' . $item->id) }}" method="POST"
+                                                    <form action="{{ url('/deleteOrderItem/' . $item->id) }}" method="POST"
                                                         role="form" enctype="multipart/form-data"
                                                         class="php-email-form p-3 p-md-4">
                                                         @csrf
@@ -188,7 +201,8 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary"  data-bs-dismiss="alert" aria-label="Close"
+                                                    <button type="submit" class="btn btn-primary"
+                                                        data-bs-dismiss="alert" aria-label="Close"
                                                         style="background:#ce1212">Delete</button>
                                                 </div>
                                 </form>
@@ -210,6 +224,4 @@
     </div>
     </div>
     </div>
-
-
 @endsection

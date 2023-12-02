@@ -41,9 +41,13 @@
 
 <body>
 
+
     <!-- ======= Header ======= -->
     @include('client.header')
     <!-- End Header -->
+
+ 
+
 
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="hero d-flex align-items-center ">

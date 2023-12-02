@@ -13,6 +13,7 @@ class ContactController extends Controller
   {
     $contact = Contact::all();
     $data=Contact::paginate(3);
+    $totalContacts= Contact::count();
     return view('admin.contact', compact('contact','data'));
   }
   // Handle form submission

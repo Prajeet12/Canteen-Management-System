@@ -6,7 +6,7 @@
     <div class="d-flex flex-row mb-3 grid gap-0">
         <div class="col-sm-6 mb-2 mb-sm-0 bg-gray p-2 g-col-6">
             <form class="d-flex" role="search" method="get" action="/searchorder">
-                <input type="hidden" name="order" value="{{$order->id}}">
+                <input type="hidden" name="order" value="{{ $order->id }}">
                 <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search"
                     value={{ isset($search) ? $search : '' }}>
                 <button class="btn btn-outline-success" type="submit">Search</button>
@@ -15,11 +15,11 @@
             <h5> Name= {{ $order->customer_name }}</h5>
             <h5> Order Number = {{ $order->order_no }}</h5>
 
-            @if(isset($search))
-                 <table class="table">
+            @if (isset($search))
+                <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">SN.</th>
+
                             <th scope="col">Name</th>
                             <th scope="col">Price</th>
                             <th scope="col">Action</th>
@@ -33,15 +33,14 @@
                         @else
                             @foreach ($data as $food)
                                 <tr>
-                                    <th scope="row">{{ $data->firstItem() + $loop->index }}</th>
+
                                     <td>{{ $food->title }}</td>
                                     <td>{{ $food->price }}</td>
                                     @if ($order->orderitems->contains('food_id', $food->id))
                                         <td>
                                             <span class="text-danger">Already Added.</span>
 
-                                            <button type="button" class="btn btn-success btn-sm"
-                                                data-bs-toggle="modal"
+                                            <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal{{ $food->id }}">
                                                 <i class="material-icons"><span class="material-symbols-outlined">
                                                         update
@@ -50,10 +49,8 @@
                                             </button>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal{{ $food->id }}"
-                                                tabindex="-1"
-                                                aria-labelledby="exampleModal{{ $food->id }}Label"
-                                                aria-hidden="true">
+                                            <div class="modal fade" id="exampleModal{{ $food->id }}" tabindex="-1"
+                                                aria-labelledby="exampleModal{{ $food->id }}Label" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -61,8 +58,8 @@
                                                                 id="exampleModal{{ $food->id }}Label">Update
                                                                 Quantity
                                                             </h1>
-                                                            <button type="button" class="btn-close"
-                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
                                                         </div>
                                                         @php
                                                             $foodId = $food->id;
@@ -71,8 +68,7 @@
                                                             });
                                                         @endphp
                                                         <form action="{{ route('updatequantity', $foodItem->id) }}"
-                                                            method="POST" role="form"
-                                                            enctype="multipart/form-data"
+                                                            method="POST" role="form" enctype="multipart/form-data"
                                                             class="php-email-form p-3 p-md-4">
                                                             @csrf
                                                             <div class="modal-body">
@@ -82,9 +78,8 @@
                                                                             Quantity</label>
                                                                         <input type="text" class="form-control"
                                                                             id="title"
-                                                                            value="{{ $foodItem->quantity }}"
-                                                                            disabled placeholder="Quantity"
-                                                                            required>
+                                                                            value="{{ $foodItem->quantity }}" disabled
+                                                                            placeholder="Quantity" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="">New Quantity</label>
@@ -99,8 +94,7 @@
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit"
-                                                                    class="btn btn-primary">Save
+                                                                <button type="submit" class="btn btn-primary">Save
                                                                     changes</button>
                                                             </div>
                                                         </form>
@@ -110,32 +104,27 @@
                                         </td>
                                     @else
                                         <td><!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary btn-sm"
-                                                data-bs-toggle="modal"
+                                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal{{ $food->id }}">
                                                 <span class="material-symbols-outlined">
                                                     add_box
-                                                    </span>
+                                                </span>
                                             </button>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal{{ $food->id }}"
-                                                tabindex="-1"
-                                                aria-labelledby="exampleModal{{ $food->id }}Label"
-                                                aria-hidden="true">
+                                            <div class="modal fade" id="exampleModal{{ $food->id }}" tabindex="-1"
+                                                aria-labelledby="exampleModal{{ $food->id }}Label" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h1 class="modal-title fs-5"
                                                                 id="exampleModal{{ $food->id }}Label">Add food
                                                             </h1>
-                                                            <button type="button" class="btn-close"
-                                                                data-bs-dismiss="modal"
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                         </div>
-                                                        <form action="{{ route('addquantity', $food->id) }}"
-                                                            method="POST" role="form"
-                                                            enctype="multipart/form-data"
+                                                        <form action="{{ route('addquantity', $food->id) }}" method="POST"
+                                                            role="form" enctype="multipart/form-data"
                                                             class="php-email-form p-3 p-md-4">
                                                             @csrf
                                                             <div class="modal-body">
@@ -155,8 +144,7 @@
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit"
-                                                                    class="btn btn-primary">Save
+                                                                <button type="submit" class="btn btn-primary">Save
                                                                     changes</button>
                                                             </div>
                                                         </form>
@@ -176,7 +164,8 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="menu{{ $item->id }}-tab" data-bs-toggle="tab"
                                 data-bs-target="#menu{{ $item->id }}" type="button" role="tab"
-                                aria-controls="menu{{ $item->id }}" aria-selected="true">{{ $item->category_name }}</button>
+                                aria-controls="menu{{ $item->id }}"
+                                aria-selected="true">{{ $item->category_name }}</button>
                         </li>
                     @endforeach
 
@@ -221,7 +210,8 @@
                                                         <button type="button" class="btn btn-success btn-sm"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#exampleModal{{ $food->id }}">
-                                                            <i class="material-icons"><span class="material-symbols-outlined">
+                                                            <i class="material-icons"><span
+                                                                    class="material-symbols-outlined">
                                                                     update
                                                                 </span></i>
                                                             <!-- Replace 'edit' with the Material Icons icon name you want to use -->
@@ -236,11 +226,13 @@
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
                                                                         <h1 class="modal-title fs-5"
-                                                                            id="exampleModal{{ $food->id }}Label">Update
+                                                                            id="exampleModal{{ $food->id }}Label">
+                                                                            Update
                                                                             Quantity
                                                                         </h1>
                                                                         <button type="button" class="btn-close"
-                                                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
                                                                     </div>
                                                                     @php
                                                                         $foodId = $food->id;
@@ -248,7 +240,8 @@
                                                                             return $item->food_id === $foodId;
                                                                         });
                                                                     @endphp
-                                                                    <form action="{{ route('updatequantity', $foodItem->id) }}"
+                                                                    <form
+                                                                        action="{{ route('updatequantity', $foodItem->id) }}"
                                                                         method="POST" role="form"
                                                                         enctype="multipart/form-data"
                                                                         class="php-email-form p-3 p-md-4">
@@ -258,24 +251,28 @@
                                                                                 <div class="form-group">
                                                                                     <label for="">Previous
                                                                                         Quantity</label>
-                                                                                    <input type="text" class="form-control"
+                                                                                    <input type="text"
+                                                                                        class="form-control"
                                                                                         id="title"
                                                                                         value="{{ $foodItem->quantity }}"
                                                                                         disabled placeholder="Quantity"
                                                                                         required>
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <label for="">New Quantity</label>
+                                                                                    <label for="">New
+                                                                                        Quantity</label>
                                                                                     <input type="hidden" name="price"
                                                                                         value="{{ $food->price }}">
                                                                                     <input type="text" name="quantity"
-                                                                                        class="form-control" id="title"
+                                                                                        class="form-control"
+                                                                                        id="title"
                                                                                         placeholder="Quantity" required>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary"
+                                                                            <button type="button"
+                                                                                class="btn btn-secondary"
                                                                                 data-bs-dismiss="modal">Close</button>
                                                                             <button type="submit"
                                                                                 class="btn btn-primary">Save
@@ -293,7 +290,7 @@
                                                             data-bs-target="#exampleModal{{ $food->id }}">
                                                             <span class="material-symbols-outlined">
                                                                 add_box
-                                                                </span>
+                                                            </span>
                                                         </button>
 
                                                         <!-- Modal -->
@@ -305,7 +302,8 @@
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
                                                                         <h1 class="modal-title fs-5"
-                                                                            id="exampleModal{{ $food->id }}Label">Add food
+                                                                            id="exampleModal{{ $food->id }}Label">Add
+                                                                            food
                                                                         </h1>
                                                                         <button type="button" class="btn-close"
                                                                             data-bs-dismiss="modal"
@@ -325,13 +323,15 @@
                                                                                 <div class="form-group">
                                                                                     <label for="">Quantity</label>
                                                                                     <input type="text" name="quantity"
-                                                                                        class="form-control" id="title"
+                                                                                        class="form-control"
+                                                                                        id="title"
                                                                                         placeholder="Quantity" required>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary"
+                                                                            <button type="button"
+                                                                                class="btn btn-secondary"
                                                                                 data-bs-dismiss="modal">Close</button>
                                                                             <button type="submit"
                                                                                 class="btn btn-primary">Save

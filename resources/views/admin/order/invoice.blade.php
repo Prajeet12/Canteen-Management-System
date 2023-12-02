@@ -52,7 +52,7 @@
                             <h5 class="font-size-10">Order Summary</h5>
 
                             <div class="table-responsive">
-                                <table class="table align-middle table-nowrap table-centered mb-0">
+                                <table class="table align-middle table-nowrap table-centered mb-0" id="contentToPrint">
                                     <thead>
                                         <tr>
                                             <th>Item</th>
@@ -97,7 +97,7 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <form
-                                                                        action="{{ url('/deleteorderItem/' . $item->id) }}"
+                                                                        action="{{ url('/deleteOrderItem/' . $item->id) }}"
                                                                         method="POST" role="form"
                                                                         enctype="multipart/form-data"
                                                                         class="php-email-form p-3 p-md-4">
@@ -126,12 +126,27 @@
                                             <th scope="row" colspan="4" class="text-end">
                                                 Sub Total</th>
                                             <td class="text-end">Rs. {{ $order->total_amt }}</td>
+                                            
+                                        </tr>
+                                      
+
+
+                                        <tr>
+                                            <th scope="row" colspan="4" class="border-0 text-end">
+                                                Tax</th>
+                                            <td class="border-0 text-end">{{$order->vat_amount}}</td>
                                         </tr>
                                         <!-- end tr -->
                                         <tr>
-                                            <th scope="row" colspan="8" class="border-0 text-end form-group">
-
-                                                <select class="form-select" name="category_id"
+                                            <th scope="row" colspan="4" class="border-0 text-end">Total</th>
+                                            <td class="border-0 text-end">
+                                                <h4 class="m-0 fw-semibold">{{$order->grand_total}}</h4>
+                                            </td>
+                                        </tr>
+                                        <!-- end tr -->
+                                    </tbody><!-- end tbody -->
+                                </table><!-- end table -->
+                                 <select class="form-select" name="category_id"
                                                     aria-label="Default select example">
                                                     <option disabled selected>Payment</option>
                                                     <option value="">Cash</option>
@@ -140,29 +155,6 @@
 
 
                                                 </select>
-
-
-                                            </th>
-
-                                        </tr>
-                                        <!-- end tr -->
-
-
-                                        <tr>
-                                            <th scope="row" colspan="4" class="border-0 text-end">
-                                                Tax</th>
-                                            <td class="border-0 text-end">Rs12.00</td>
-                                        </tr>
-                                        <!-- end tr -->
-                                        <tr>
-                                            <th scope="row" colspan="4" class="border-0 text-end">Total</th>
-                                            <td class="border-0 text-end">
-                                                <h4 class="m-0 fw-semibold">Rs739.00</h4>
-                                            </td>
-                                        </tr>
-                                        <!-- end tr -->
-                                    </tbody><!-- end tbody -->
-                                </table><!-- end table -->
                             </div><!-- end table responsive -->
                             <!-- Place this button where you want to trigger the print action -->
                             <div class="d-print-none mt-4">
