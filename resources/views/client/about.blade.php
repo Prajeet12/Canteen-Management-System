@@ -7,7 +7,7 @@
         </div>
 @foreach ($abouts as $item)
         <div class="row gy-4">
-            <div class="col-lg-7 position-relative about-img" style="background-image: url(menu1/assets/img/about.jpg) ;"
+            <div class="col-lg-7 position-relative about-img" style="background-image: url('{{ asset('foodimage/' . $item->image1) }}');"
                 data-aos="fade-up" data-aos-delay="150">
                 <div class="call-us position-absolute">
                     <h4>{{$item->title}}</h4>

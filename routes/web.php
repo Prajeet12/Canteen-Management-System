@@ -86,7 +86,7 @@ Route::post('/update-quantity/{id}', [OrderController::class, 'update'])->name('
 Route::get('/searchorder', [OrderController::class, 'searchorder'])->name('searchorder');
 Route::delete('/delete-order/{id}', [OrderController::class, 'deleteOrder'])->name('deleteOrder');
 Route::delete('/deleteOrderItem/{id}', [OrderController::class, 'deleteOrderItem'])->name('deleteOrderItem');
-
+Route::get('/bill/{id}', [OrderController::class, 'generateInvoice'])->name('bill');
 
 //about
 Route::post('/add-about', [HomeController::class, 'addabout'])->name('add-about');

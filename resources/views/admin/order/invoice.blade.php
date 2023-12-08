@@ -66,12 +66,15 @@
                                     <tbody>
                                         @foreach ($order->orderitems as $item)
                                             <tr>
+                                                 <form method="POST" action="{{ route('updatequantity', ['id' => $item->id]) }}">
+                                                    @csrf
                                                 <td>
                                                     <h5>{{ $item->fooditem->title }}</h5>
                                                 </td>
                                                 <td> Rs. {{ $item->price }}</td>
                                                 <td>{{ $item->quantity }}</td>
-                                                <td class="text">Rs. {{ $item->total }}</td>
+                                                <td class="text">Rs. {{ $item->total}}</td>
+                                                 </form>
                                                 <td scope="row">
                                                     <button type="button" class="btn btn-danger btn-sm"
                                                         data-bs-toggle="modal"
@@ -125,7 +128,7 @@
                                         <tr>
                                             <th scope="row" colspan="4" class="text-end">
                                                 Sub Total</th>
-                                            <td class="text-end">Rs. {{ $order->total_amt }}</td>
+                                            <td class="text-end">Rs. {{ $item->total}}</td>
                                             
                                         </tr>
                                       
@@ -133,14 +136,14 @@
 
                                         <tr>
                                             <th scope="row" colspan="4" class="border-0 text-end">
-                                                Tax</th>
-                                            <td class="border-0 text-end">{{$order->vat_amount}}</td>
+                                                Tax (13%)</th>
+                                            <td class="border-0 text-end"> Rs. {{$order->vat_amount}}</td>
                                         </tr>
                                         <!-- end tr -->
                                         <tr>
                                             <th scope="row" colspan="4" class="border-0 text-end">Total</th>
                                             <td class="border-0 text-end">
-                                                <h4 class="m-0 fw-semibold">{{$order->grand_total}}</h4>
+                                                <h4 class="m-0 fw-semibold">Rs. {{$order->total_amt}}</h4>
                                             </td>
                                         </tr>
                                         <!-- end tr -->
@@ -159,7 +162,7 @@
                             <!-- Place this button where you want to trigger the print action -->
                             <div class="d-print-none mt-4">
                                 <div class="float-end">
-                                    <button class="btn btn-primary" onclick="printBill()">Generate Bill</button>
+                                    <a href="{{ url('/bill/' . $order->id) }}"><button class="btn btn-primary" >Generate Bill</button></a>
                                 </div>
                             </div>
 
@@ -179,7 +182,10 @@
         var contentToPrint = document.getElementById('contentToPrint'); // Identify the content to print
         var printWindow = window.open('', '_blank'); // Open a new window for printing
         printWindow.document.open();
-        printWindow.document.write('<html><head><title>Print Bill</title></head><body>');
+        printWindow.document.write('<html><head><title>Print Bill</title>');
+        // Include the Bootstrap CSS link for styles
+        printWindow.document.write('<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">');
+        printWindow.document.write('</head><body>');
         printWindow.document.write(contentToPrint.innerHTML); // Add the content to the new window
         printWindow.document.write('</body></html>');
         printWindow.document.close();

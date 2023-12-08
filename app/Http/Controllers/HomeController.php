@@ -45,7 +45,8 @@ class HomeController extends Controller
     public function about()
     {
         $hero = Aboutus::all();
-        return view('admin.aboutus.about', compact('hero'));
+        $homes = Home::all();
+        return view('admin.aboutus.about', compact('hero','homes'));
     }
     public function addabout(Request $request)
     {
@@ -116,6 +117,22 @@ class HomeController extends Controller
             // Update the 'image2' field in the database
             $about->image2 = $newImage2Name;
         }
+        // Check if a new 'image2' file has been provided in the request
+        if ($request->hasFile('image1')) {
+            // Delete the old 'image2' file, if it exists
+            $oldImage1Path = public_path('foodimage/' . $about->image1);
+            if (File::exists($oldImage1Path)) {
+                File::delete($oldImage1Path);
+            }
+
+            // Upload the new 'image2' file
+            $newImage1 = $request->file('image1');
+            $newImage1Name = time() . '.' . $newImage1->getClientOriginalExtension();
+            $newImage1->move('foodimage', $newImage1Name);
+
+            // Update the 'image2' field in the database
+            $about->image1 = $newImage1Name;
+        }
 
         // Update other fields
         $about->title = $request->input('title');
@@ -166,7 +183,7 @@ class HomeController extends Controller
         $homes->image = $homeimage;
         $homes->title = $request->input('title');
         $homes->save();
-        return redirect('/clienthome')->with('success', 'Data is updated.');
+        return redirect('/admin.aboutus.about')->with('success', 'Data is updated.');
 
 
     }

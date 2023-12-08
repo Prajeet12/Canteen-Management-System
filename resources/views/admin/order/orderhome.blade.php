@@ -167,7 +167,7 @@
                             <td>{{ $item->order_no }}</td>
                             <td><a href="{{ url('/takeorder/' . $item->id) }}">
                                     <button type="button" class="btn btn-info">
-                                        Add food
+                                        View Order
                                     </button>
                                 </a>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"

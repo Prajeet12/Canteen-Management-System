@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -19,7 +20,7 @@ return new class extends Migration {
             $table->integer('quantity');
             $table->double('price');
             $table->double('total');
-
+            $table->decimal('vat_amount', 8, 2)->default(0.00); // Change the parameters according to your needs
             $table->timestamps();
         });
     }
