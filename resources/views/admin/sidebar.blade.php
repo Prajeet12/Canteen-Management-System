@@ -15,8 +15,8 @@
         </li> --}}
           <li class="nav-item">
             <a class="nav-link" href="{{url('/order')}}">
-                <span class="menu-title">Order List</span>
-                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
+                <i class="mdi mdi-view-dashboard menu-icon"></i>
             </a>
         </li>
 
@@ -33,20 +33,15 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ url('/category') }}">
                 <span class="menu-title">Category</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url('/aboutus') }}">
-                <span class="menu-title">About Us</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
-            </a>
-        </li>
+        
 
         <li class="nav-item">
             <a class="nav-link" href="{{ url('/menu') }}">
                 <span class="menu-title">Menu</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
+                <i class="mdi mdi-menu menu-icon"></i>
             </a>
         </li>
 
@@ -64,9 +59,15 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{{ url('/aboutus') }}">
+                <span class="menu-title">About Us</span>
+                <i class="mdi mdi-information menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{{url('/contact')}}">
                 <span class="menu-title">Feedback</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
+                <i class="mdi mdi-comment-alert-outline menu-icon"></i>
             </a>
         </li>
 

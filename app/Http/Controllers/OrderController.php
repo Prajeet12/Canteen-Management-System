@@ -235,8 +235,8 @@ class OrderController extends Controller
         // Calculate subtotal, tax, total, etc., based on the retrieved order data
         $subtotal = $order->total_amt;
         $tax = $order->vat_amount;
-        $total = $order->grand_totald;
-        
+        $total = $order->grand_total;
+
         return view('/admin.order.bill', [
             'customerName' => $order->customer_name,
             'orderNumber' => $order->order_no,
