@@ -19,6 +19,10 @@ class Order extends Model
     {
         return $this->hasOne(Food::class, 'id', 'category_id');
     }
+    public function method()
+    {
+        return $this->belongsTo(Payment::class, 'method_id', 'id');
+    }
 
 
 }

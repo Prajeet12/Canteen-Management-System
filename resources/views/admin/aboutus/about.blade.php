@@ -5,7 +5,7 @@
         <div class="page-header">
             <h3 class="page-title">
                 <span class="page-title-icon text-white me-2" style="background:#ce1212";>
-                    <i class="mdi mdi-contacts menu-icon" style="background:#ce1212";></i>
+                    <i class="mdi mdi-information menu-icon" style="background:#ce1212";></i>
                 </span> About Us
             </h3>
             <nav aria-label="breadcrumb">

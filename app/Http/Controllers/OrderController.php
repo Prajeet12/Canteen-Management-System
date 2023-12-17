@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Food;
 use App\Models\Contact;
+use App\Models\Payment;
 
 class OrderController extends Controller
 {
@@ -18,6 +19,7 @@ class OrderController extends Controller
         $order = Order::orderBy('id', 'desc')->paginate(5);
         $totalOrders = Order::count();
         $totalContacts = Contact::count();
+
 
         // Calculate total amount of all orders
         $mostOrderedFood = OrderItem::select('food_id', \DB::raw('SUM(quantity) as quantity'))
@@ -37,6 +39,7 @@ class OrderController extends Controller
         }
 
         $totalAmount = Order::sum('total_amt');
+
         return view('admin.order.orderhome', compact('order', 'totalOrders', 'totalContacts', 'totalAmount', 'foodTitle', 'mostOrderedFood', 'totalQuantity'));
     }
 
@@ -76,6 +79,8 @@ class OrderController extends Controller
             $query->where('title', 'like', "%$search%")
                 ->orWhere('description', 'like', "%$search%");
         })->get();
+        // Search for orders based on customer names
+        $orders = Order::where('customer_name', 'like', "%$search%")->get();
         // ->orWhereHas('category', function ($query) use ($search) {
         //     $query->where('category_id', 'like', "%$search%");
 
@@ -93,8 +98,9 @@ class OrderController extends Controller
 
         $data = Category::with('food')->get();
         $order = Order::with('orderitems.fooditem')->find($id);
+        $payments = Payment::all();
 
-        return view('admin.order.takeorder', compact('data', 'order'));
+        return view('admin.order.takeorder', compact('data', 'order', 'payments'));
 
     }
 
@@ -228,16 +234,18 @@ class OrderController extends Controller
 
 
 
-    public function generateInvoice($id)
+    public function generateInvoice(Request $request, $id)
     {
         // Fetch the specific order data based on the provided order ID
         $order = Order::findOrFail($id);
+        $order->method_id = $request->method;
+        $order->update();
         // Calculate subtotal, tax, total, etc., based on the retrieved order data
-        $subtotal = $order->total_amt;
+        $subtotal = $order->total_amt - $order->vat_amount;
         $tax = $order->vat_amount;
-        $total = $order->grand_total;
+        $total = $order->total_amt;
 
-        return view('/admin.order.bill', [
+        return view('admin.order.bill', [
             'customerName' => $order->customer_name,
             'orderNumber' => $order->order_no,
             'orderItems' => $order->orderitems()->get()->map(function ($item) {
@@ -250,7 +258,8 @@ class OrderController extends Controller
             }),
             'subtotal' => $subtotal,
             'tax' => $tax,
-            'total' => $total
+            'total' => $total,
+            'method' => $order->method->method
         ]);
     }
 

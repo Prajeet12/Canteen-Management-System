@@ -21,10 +21,10 @@
                 <div class="card bg-gradient-danger card-img-holder text-white">
                     <div class="card-body">
                         <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                        <h4 class="font-weight-normal mb-3">Total Income <i
-                                class="mdi mdi-chart-line mdi-24px float-right"></i>
-                        </h4>
+                        <h4 class="font-weight-normal mb-3">Total Income
+                        </h4><i class="mdi mdi-chart-line mdi-36px float-right"></i>
                         <h2 class="mb-5">Rs.{{ $totalAmount }}</h2>
+
                     </div>
                 </div>
             </div>
@@ -33,11 +33,10 @@
 
                     <div class="card-body">
                         <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                        <h4 class="font-weight-normal mb-3"> Most Ordered Food<i
-                                class="mdi mdi-diamond mdi-24px float-right"></i>
-                        </h4>
+                        <h4 class="font-weight-normal mb-3"> Most Ordered Food
+                        </h4><i class="mdi mdi-food mdi-36px float-right"></i>
                         <h2 class="mb-5">{{ $foodTitle }}</h2>
-                        <h4 class="card-text">Total Quantity is {{ $totalQuantity }}</h4>
+                        <h5 class="card-text">Total Quantity is {{ $totalQuantity }}</h5>
                     </div>
                 </div>
             </div>
@@ -46,9 +45,8 @@
 
                     <div class="card-body">
                         <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                        <h4 class="font-weight-normal mb-3">Total Orders <i
-                                class="mdi mdi-diamond mdi-24px float-right"></i>
-                        </h4>
+                        <h4 class="font-weight-normal mb-3">Total Orders
+                        </h4><i class="mdi mdi-cart-outline mdi-36px float-right"></i>
                         <h1 class="mb-5">{{ $totalOrders }}</h1>
 
                     </div>
@@ -58,10 +56,9 @@
                 <div class="card bg-gradient-info card-img-holder text-white">
                     <div class="card-body">
                         <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                        <h4 class="font-weight-normal mb-3">Total Feedbacks <i
-                                class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
-                        </h4>
-                        <h2 class="mb-5">{{ $totalContacts }}</h2>
+                        <h4 class="font-weight-normal mb-3">Total Feedbacks
+                        </h4><i class="mdi mdi-comment-alert-outline mdi-36px float-right"></i>
+                        <h1 class="mb-5">{{ $totalContacts }}</h1>
 
                     </div>
                 </div>
@@ -93,12 +90,12 @@
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-             <script>
-        // Automatically remove the alert after 3 seconds
-        setTimeout(function() {
-            document.getElementById('autoDismissAlert').remove();
-        }, 2000);
-    </script>
+            <script>
+                // Automatically remove the alert after 3 seconds
+                setTimeout(function() {
+                    document.getElementById('autoDismissAlert').remove();
+                }, 2000);
+            </script>
         @endif
 
         <!-- End Notification -->
@@ -106,7 +103,8 @@
             style="background:#ce1212">
             Generate Order
         </button>
-       
+
+
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -127,6 +125,11 @@
                                     <input type="text" name="customer_name" class="form-control" id="title"
                                         placeholder="Customer Name" required>
                                 </div>
+                                 <div class="form-group">
+                                    <label for="">Mobile Number</label>
+                                    <input type="number" name="customer_name" class="form-control" id="title"
+                                        placeholder="Mobile number" required>
+                                </div>
 
                             </div>
                     </div>
@@ -139,73 +142,83 @@
                 </div>
             </div>
         </div>
-<!-- End Modal -->
-<div class="row py-3 "><h3>Order History</h3></div>
+        <!-- End Modal -->
+        <div class="row py-3 ">
+            <h3>Order History</h3>
+        </div>
         <!--Form-->
-       
+        <form class="d-flex" role="search" method="get" action="/searchorder">
+            <input type="hidden" name="order" value="#">
+            <input class="form-control me-1" name="search" type="search" placeholder="Search" aria-label="Search"
+                value={{ isset($search) ? $search : '' }}>
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <hr>
+
         <div class="row  px-3">
             
-            <table class="table table-striped">
-                <thead class="thead-primary table-info" style="background:#ce1212">
+                <table class="table table-striped">
+                    <thead class="thead-primary table-info" style="background:#ce1212">
 
-                    <tr>
-
-                        <th scope="col gap-10">Customer Name</th>
-                        <th scope="col">Order No.</th>
-                        <th scope="col">Action</th>
-
-                    </tr>
-
-
-                </thead>
-                <tbody>
-
-                    @foreach ($order as $item)
                         <tr>
 
-                            <td>{{ $item->customer_name }}</td>
-                            <td>{{ $item->order_no }}</td>
-                            <td><a href="{{ url('/takeorder/' . $item->id) }}">
-                                    <button type="button" class="btn btn-info">
-                                        View Order
+                            <th scope="col gap-10">Customer Name</th>
+                            <th scope="col">Order No.</th>
+                            <th scope="col">Mobile Number</th>
+                            <th scope="col">Action</th>
+
+                        </tr>
+
+
+                    </thead>
+                    <tbody>
+
+                        @foreach ($order as $item)
+                            <tr>
+
+                                <td>{{ $item->customer_name }}</td>
+                                <td>{{ $item->order_no }}</td>
+                                <td><a href="{{ url('/takeorder/' . $item->id) }}">
+                                        <button type="button" class="btn btn-info">
+                                            View Order
+                                        </button>
+                                    </a>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal{{ $item->id }}">
+                                        Delete
                                     </button>
-                                </a>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal{{ $item->id }}">
-                                    Delete
-                                </button>
-                                <form action="{{ route('deleteOrder', ['id' => $item->id]) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
+                                    <form action="{{ route('deleteOrder', ['id' => $item->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
 
-                                    <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1"
-                                        aria-labelledby="deleteModal{{ $item->id }}Label" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                                        Delete</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form action="{{ url('/deleteOrderItem/' . $item->id) }}" method="POST"
-                                                        role="form" enctype="multipart/form-data"
-                                                        class="php-email-form p-3 p-md-4">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <h5>Are you sure you want to delete prder no.
-                                                            '{{ $item->order_no }}'?</h5>
+                                        <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1"
+                                            aria-labelledby="deleteModal{{ $item->id }}Label" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                                            Delete</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="{{ url('/deleteOrderItem/' . $item->id) }}"
+                                                            method="POST" role="form" enctype="multipart/form-data"
+                                                            class="php-email-form p-3 p-md-4">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <h5>Are you sure you want to delete prder no.
+                                                                '{{ $item->order_no }}'?</h5>
 
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary"
-                                                        data-bs-dismiss="alert" aria-label="Close"
-                                                        style="background:#ce1212">Delete</button>
-                                                </div>
-                                </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary"
+                                                            data-bs-dismiss="alert" aria-label="Close"
+                                                            style="background:#ce1212">Delete</button>
+                                                    </div>
+                                    </form>
         </div>
     </div>
     </div>
@@ -217,6 +230,7 @@
     @endforeach
     </tbody>
     </table>
+    
     </div>
     <div class="col-md-12">
         {{ $order->links() }}

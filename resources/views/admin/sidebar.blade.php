@@ -6,15 +6,16 @@
             <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
         </a>
     </div> --}}
-{{-- 
+        {{-- 
         <li class="nav-item">
             <a class="nav-link" href="{{ url('home') }}">
                 <span class="menu-title">Dashboard</span>
                 <i class="mdi mdi-home menu-icon"></i>
             </a>
         </li> --}}
-          <li class="nav-item">
-            <a class="nav-link" href="{{url('/order')}}">
+        <li class="nav-item {{ request()->routeIs('order', 'takeorder') ? 'active' : '' }}">
+            <a class="nav-link " href="{{ url('/order') }}">
+
                 <span class="menu-title">Dashboard</span>
                 <i class="mdi mdi-view-dashboard menu-icon"></i>
             </a>
@@ -36,7 +37,7 @@
                 <i class="mdi mdi-format-list-bulleted menu-icon"></i>
             </a>
         </li>
-        
+
 
         <li class="nav-item">
             <a class="nav-link" href="{{ url('/menu') }}">
@@ -45,7 +46,7 @@
             </a>
         </li>
 
-      
+
         {{-- <li class="nav-item">
             <a class="nav-link" href="pages/charts/chartjs.html">
                 <span class="menu-title">Order History</span>
@@ -53,7 +54,7 @@
             </a>
         </li> --}}
         <li class="nav-item">
-            <a class="nav-link" href="{{url('/gallery')}}">
+            <a class="nav-link" href="{{ url('/gallery') }}">
                 <span class="menu-title">Gallery</span>
                 <i class="mdi mdi-table-large menu-icon"></i>
             </a>
@@ -65,9 +66,15 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{url('/contact')}}">
+            <a class="nav-link" href="{{ url('/contact') }}">
                 <span class="menu-title">Feedback</span>
                 <i class="mdi mdi-comment-alert-outline menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('/payment') }}">
+                <span class="menu-title">Income</span>
+                <i class="mdi mdi-chart-bar menu-icon"></i>
             </a>
         </li>
 

@@ -3,24 +3,24 @@
 @section('content')
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <div class="d-flex flex-row mb-3 grid gap-0">
         <div class="col-sm-6 mb-2 mb-sm-0 bg-gray p-2 g-col-6">
-            
+
             <form class="d-flex" role="search" method="get" action="/searchorder">
                 <input type="hidden" name="order" value="{{ $order->id }}">
                 <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search"
                     value={{ isset($search) ? $search : '' }}>
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-           
+
             <hr class="my-4">
             <div class="d-flex justify-content-end mb-3">
-            <!-- "Back" button aligned to the right -->
-             <a href="javascript:history.back()" class="btn-sm btn-primary">
-        <i class="fas fa-arrow-left me-2"></i>Back 
-    </a>
-        </div>
+                <!-- "Back" button aligned to the right -->
+                <a href="javascript:history.back()" class="btn-sm btn-primary">
+                    <i class="fas fa-arrow-left me-2"></i>Back
+                </a>
+            </div>
             <h5> Name= {{ $order->customer_name }}</h5>
             <h5> Order Number = {{ $order->order_no }}</h5>
 
@@ -132,8 +132,8 @@
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                         </div>
-                                                        <form action="{{ route('addquantity', $food->id) }}" method="POST"
-                                                            role="form" enctype="multipart/form-data"
+                                                        <form action="{{ route('addquantity', $food->id) }}"
+                                                            method="POST" role="form" enctype="multipart/form-data"
                                                             class="php-email-form p-3 p-md-4">
                                                             @csrf
                                                             <div class="modal-body">

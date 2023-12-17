@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,18 +87,21 @@ Route::post('/update-quantity/{id}', [OrderController::class, 'update'])->name('
 Route::get('/searchorder', [OrderController::class, 'searchorder'])->name('searchorder');
 Route::delete('/delete-order/{id}', [OrderController::class, 'deleteOrder'])->name('deleteOrder');
 Route::delete('/deleteOrderItem/{id}', [OrderController::class, 'deleteOrderItem'])->name('deleteOrderItem');
-Route::get('/bill/{id}', [OrderController::class, 'generateInvoice'])->name('bill');
+Route::post('/bill/{id}', [OrderController::class, 'generateInvoice'])->name('bill');
 
 //about
 Route::post('/add-about', [HomeController::class, 'addabout'])->name('add-about');
 Route::post('/update-about/{id}', [HomeController::class, 'update'])->name('update-about');
 
 //contact
-
-
 Route::get('/contact', [ContactController::class, 'sendMessage'])->name('contact.sendMessage');
 Route::post('/submit-ContactForm', [ContactController::class, 'submitContactForm'])->name('submit.contact.form');
 
+//Payment
+Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
+Route::post('/add-payment', [PaymentController::class, 'add'])->name('add-payment');
+Route::post('/update-payment/{id}', [PaymentController::class, 'update'])->name('update-payment');
+Route::delete('/delete-payment/{id}', [PaymentController::class, 'delete'])->name('delete-payment');
 
 
 //profile
