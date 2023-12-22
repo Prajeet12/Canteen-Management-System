@@ -249,6 +249,7 @@ class OrderController extends Controller
         $subtotal = $order->total_amt - $order->vat_amount;
         $tax = $order->vat_amount;
         $total = $order->total_amt;
+        
 
         return view('admin.order.bill', [
             'customerName' => $order->customer_name,
@@ -266,7 +267,7 @@ class OrderController extends Controller
             'total' => $total,
             'invoice_number' => $order->invoice_number,
             'method' => $order->method->method,
-            'invoice_date' => $invoice_date = Carbon::now()->format('Y-m-d H:i:s'), // Fetch invoice date time from $order object
+            'invoice_date' => $invoice_date = Carbon::now()->timezone('Asia/Kathmandu')->format('l, d F Y, h:i A'), // Fetch invoice date time from $order object
         ]);
     }
 
