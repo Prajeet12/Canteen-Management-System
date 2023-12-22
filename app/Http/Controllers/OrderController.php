@@ -57,6 +57,7 @@ class OrderController extends Controller
 
         $data = new Order;
         $data->customer_name = $request->customer_name;
+        $data->mobile_number = $request->mobile_number;
 
         if ($order) {
             $data->order_no = $order->order_no + 1;

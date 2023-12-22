@@ -8,6 +8,7 @@ use App\Http\Controllers\FoodController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\CBMSController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,6 +103,13 @@ Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index
 Route::post('/add-payment', [PaymentController::class, 'add'])->name('add-payment');
 Route::post('/update-payment/{id}', [PaymentController::class, 'update'])->name('update-payment');
 Route::delete('/delete-payment/{id}', [PaymentController::class, 'delete'])->name('delete-payment');
+
+//Bill
+
+Route::get('/postbill', [CBMSController::class, 'index'])->name('postbill');
+Route::get('/post-bill', [CBMSController::class, 'postBill']);
+Route::get('/post-credit-note', [CBMSController::class, 'postCreditNote']);
+
 
 
 //profile

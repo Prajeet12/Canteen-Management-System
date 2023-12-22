@@ -127,7 +127,7 @@
                                 </div>
                                  <div class="form-group">
                                     <label for="">Mobile Number</label>
-                                    <input type="number" name="customer_name" class="form-control" id="title"
+                                    <input type="number" name="mobile_number" class="form-control" id="title"
                                         placeholder="Mobile number" required>
                                 </div>
 
@@ -178,6 +178,7 @@
 
                                 <td>{{ $item->customer_name }}</td>
                                 <td>{{ $item->order_no }}</td>
+                                <td>{{ $item->mobile_number }}</td>
                                 <td><a href="{{ url('/takeorder/' . $item->id) }}">
                                         <button type="button" class="btn btn-info">
                                             View Order

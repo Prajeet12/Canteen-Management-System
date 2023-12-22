@@ -22,6 +22,7 @@
                 </a>
             </div>
             <h5> Name= {{ $order->customer_name }}</h5>
+            <h5> Mobile Number = {{ $order->mobile_number }}</h5>
             <h5> Order Number = {{ $order->order_no }}</h5>
 
             @if (isset($search))
@@ -76,7 +77,8 @@
                                                                 return $item->food_id === $foodId;
                                                             });
                                                         @endphp
-                                                        <form action="{{ route('updatequantity', $foodItem->id) }}"
+                                                        <form
+                                                            action="{{ route('updatequantity', ['id' => $foodItem->id]) }}"
                                                             method="POST" role="form" enctype="multipart/form-data"
                                                             class="php-email-form p-3 p-md-4">
                                                             @csrf

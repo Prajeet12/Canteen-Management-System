@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -17,6 +18,8 @@ return new class extends Migration {
             $table->double("total_amt")->default(0);
             $table->double("vat_amount")->default(0); // New field for VAT amount
             $table->double("grand_total")->default(0); // New field for grand total
+            $table->unsignedBigInteger('method_id')->nullable();
+            $table->string('mobile_number')->nullable();
             $table->timestamps();
         });
     }
