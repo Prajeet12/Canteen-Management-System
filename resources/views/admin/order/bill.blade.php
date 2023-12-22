@@ -30,6 +30,8 @@
                             <!-- Add customer details here -->
                             <p>Customer Name: {{ $customerName }}</p>
                             <p>Order Number: {{ $orderNumber }}</p>
+                            <p>Invoice Date: {{ $invoice_date }}</p>
+                            <p>Invoice Number: {{ $invoice_number }}</p>
                             <p>Payment: {{ $method }}</p>
                             <!-- Add more details as needed -->
                         </div>

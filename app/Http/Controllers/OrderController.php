@@ -9,6 +9,7 @@ use App\Models\OrderItem;
 use App\Models\Food;
 use App\Models\Contact;
 use App\Models\Payment;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -100,8 +101,10 @@ class OrderController extends Controller
         $data = Category::with('food')->get();
         $order = Order::with('orderitems.fooditem')->find($id);
         $payments = Payment::all();
-
-        return view('admin.order.takeorder', compact('data', 'order', 'payments'));
+        // Add the invoice date and time using Carbon
+         $invoice_date = now(); 
+        
+        return view('admin.order.takeorder', compact('data', 'order', 'payments','invoice_date'));
 
     }
 
@@ -240,6 +243,7 @@ class OrderController extends Controller
         // Fetch the specific order data based on the provided order ID
         $order = Order::findOrFail($id);
         $order->method_id = $request->method;
+        $order->invoice_number = 'INV_' . uniqid(); // Generate a unique invoice number
         $order->update();
         // Calculate subtotal, tax, total, etc., based on the retrieved order data
         $subtotal = $order->total_amt - $order->vat_amount;
@@ -260,7 +264,9 @@ class OrderController extends Controller
             'subtotal' => $subtotal,
             'tax' => $tax,
             'total' => $total,
-            'method' => $order->method->method
+            'invoice_number' => $order->invoice_number,
+            'method' => $order->method->method,
+            'invoice_date' => $invoice_date = Carbon::now()->format('Y-m-d H:i:s'), // Fetch invoice date time from $order object
         ]);
     }
 

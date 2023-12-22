@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Payment;
+use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
     public function index()
     {
-        $payments =Payment::all();
-        return view('admin.Payment.payment', compact('payments')); 
+        $payments = Payment::all();
+        $invoiceDateTime = Carbon::now()->format('Y-m-d H:i:s');
+        return view('admin.Payment.payment', compact('payments', 'invoiceDateTime'));
     }
     public function add(Request $request)
     {

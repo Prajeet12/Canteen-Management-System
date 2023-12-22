@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('order_items', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('food_id');
             $table->foreign('order_id')->references('id')->on('orders')->onUpdate('cascade')->onDelete('cascade');
@@ -20,7 +21,7 @@ return new class extends Migration
             $table->double('price');
             $table->double('total');
             $table->decimal('vat_amount', 8, 2)->default(0.00); // Change the parameters according to your needs
-            $table->timestamps();;
+            $table->timestamps();
         });
     }
 

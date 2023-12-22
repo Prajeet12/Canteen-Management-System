@@ -20,6 +20,8 @@ return new class extends Migration
             $table->double("grand_total")->default(0); // New field for grand total
             $table->unsignedBigInteger('method_id')->nullable();
             $table->string('mobile_number')->nullable();
+            $table->string('invoice_number')->nullable();
+            $table->timestamp('invoice_date')->nullable();
             $table->timestamps();
         });
     }
