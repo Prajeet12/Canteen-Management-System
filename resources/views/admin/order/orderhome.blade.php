@@ -125,7 +125,7 @@
                                     <input type="text" name="customer_name" class="form-control" id="title"
                                         placeholder="Customer Name" required>
                                 </div>
-                                 <div class="form-group">
+                                <div class="form-group">
                                     <label for="">Mobile Number</label>
                                     <input type="number" name="mobile_number" class="form-control" id="title"
                                         placeholder="Mobile number" required>
@@ -148,94 +148,110 @@
         </div>
         <!--Form-->
         <form class="d-flex" role="search" method="get" action="/searchorder">
-            <input type="hidden" name="order" value="#">
-            <input class="form-control me-1" name="search" type="search" placeholder="Search" aria-label="Search"
+            {{-- <input type="hidden" name="order" value="{{ $order->id }}"> --}}
+            <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search"
                 value={{ isset($search) ? $search : '' }}>
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
         <hr>
 
-        <div class="row  px-3">
-            
-                <table class="table table-striped">
-                    <thead class="thead-primary table-info" style="background:#ce1212">
 
+        <div class="row  px-3">
+
+            <table class="table table-striped">
+                <thead class="thead-primary table-info" style="background:#ce1212">
+
+                    <tr>
+
+                        <th scope="col gap-10">Customer Name</th>
+                        <th scope="col">Order No.</th>
+                        <th scope="col">Mobile Number</th>
+                        <th scope="col">Action</th>
+
+                    </tr>
+
+
+                </thead>
+                <tbody>
+
+                    @foreach ($order as $item)
                         <tr>
 
-                            <th scope="col gap-10">Customer Name</th>
-                            <th scope="col">Order No.</th>
-                            <th scope="col">Mobile Number</th>
-                            <th scope="col">Action</th>
-
-                        </tr>
-
-
-                    </thead>
-                    <tbody>
-
-                        @foreach ($order as $item)
-                            <tr>
-
-                                <td>{{ $item->customer_name }}</td>
-                                <td>{{ $item->order_no }}</td>
-                                <td>{{ $item->mobile_number }}</td>
-                                <td><a href="{{ url('/takeorder/' . $item->id) }}">
+                            <td>{{ $item->customer_name }}</td>
+                            <td>{{ $item->order_no }}</td>
+                            <td>{{ $item->mobile_number }}</td>
+                            <td>
+                                @if ($item->invoice_number == null)
+                                    <a href="{{ url('/takeorder/' . $item->id) }}">
                                         <button type="button" class="btn btn-info">
                                             View Order
                                         </button>
                                     </a>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal{{ $item->id }}">
-                                        Delete
-                                    </button>
-                                    <form action="{{ route('deleteOrder', ['id' => $item->id]) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
+                                @else
+                                    <a href="{{url('/view-invoice/'. $item->id)}}">
+                                        <button type="button" class="btn btn-info">
+                                            View Invoice
+                                        </button>
+                                    </a>
+                                @endif
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal{{ $item->id }}">
+                                    Delete
+                                </button>
+                                <form action="{{ route('deleteOrder', ['id' => $item->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
 
-                                        <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1"
-                                            aria-labelledby="deleteModal{{ $item->id }}Label" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                                            Delete</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form action="{{ url('/deleteOrderItem/' . $item->id) }}"
-                                                            method="POST" role="form" enctype="multipart/form-data"
-                                                            class="php-email-form p-3 p-md-4">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <h5>Are you sure you want to delete prder no.
-                                                                '{{ $item->order_no }}'?</h5>
+                                    <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1"
+                                        aria-labelledby="deleteModal{{ $item->id }}Label" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                                        Delete</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ url('/deleteOrderItem/' . $item->id) }}"
+                                                        method="POST" role="form" enctype="multipart/form-data"
+                                                        class="php-email-form p-3 p-md-4">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <h5>Are you sure you want to delete prder no.
+                                                            '{{ $item->order_no }}'?</h5>
+                                                    </form>
 
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary"
-                                                            data-bs-dismiss="alert" aria-label="Close"
-                                                            style="background:#ce1212">Delete</button>
-                                                    </div>
-                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary"
+                                                        data-bs-dismiss="alert" aria-label="Close"
+                                                        style="background:#ce1212">Delete
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </td>
+
+                        </tr>
+                    @endforeach
+
+                </tbody>
+
+            </table>
+
+
         </div>
-    </div>
-    </div>
-    </form>
-    </td>
 
 
-    </tr>
-    @endforeach
-    </tbody>
-    </table>
-    
-    </div>
-    <div class="col-md-12">
-        {{ $order->links() }}
-    </div>
+        <div class="col-md-12">
+            {{ $order->links() }}
+        </div>
     </div>
     </div>
     </div>

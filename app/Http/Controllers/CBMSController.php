@@ -40,7 +40,7 @@ class CBMSController extends Controller
             "buyer_pan" => "PRAJEET SHRESTHA1",
             "buyer_name" => "123456789",
             "fiscal_year" => "2080.81",
-            "invoice_number" => "TI80/81PAA/93",
+            "invoice_number" => "TI80/817AA/93",
             "invoice_date" => "2080.09.05",
             "total_sales" => 1289.9967,
             "taxable_sales_vat" => 1141.59,

@@ -121,6 +121,74 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <button type="button" class="btn btn-success btn-sm"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#updateexampleModal{{ $item->id }}">
+                                                        <i class="material-icons"><span
+                                                                class="material-symbols-outlined">
+                                                                update
+                                                            </span></i>
+                                                        <!-- Replace 'edit' with the Material Icons icon name you want to use -->
+                                                    </button>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="updateexampleModal{{ $item->id }}"
+                                                        tabindex="-1"
+                                                        aria-labelledby="updateexampleModal{{ $item->id }}Label"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5"
+                                                                        id="updateexampleModal{{ $item->id }}Label">
+                                                                        Update
+                                                                        Quantity
+                                                                    </h1>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <form
+                                                                    action="{{ route('updatequantity', ['id' => $item->id]) }}"
+                                                                    method="POST" role="form"
+                                                                    enctype="multipart/form-data"
+                                                                    class="php-email-form p-3 p-md-4">
+                                                                    @csrf
+                                                                    <div class="modal-body">
+                                                                        <div class=" row">
+                                                                            <div class="form-group">
+                                                                                <label for="">Previous
+                                                                                    Quantity</label>
+                                                                                <input type="text"
+                                                                                    class="form-control" id="title"
+                                                                                    value="{{ $item->quantity }}"
+                                                                                    disabled placeholder="Quantity"
+                                                                                    required>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="">New
+                                                                                    Quantity</label>
+                                                                                <input type="hidden" name="price"
+                                                                                    value="{{ $item->fooditem->price }}">
+                                                                                <input type="text" name="quantity"
+                                                                                    class="form-control"
+                                                                                    id="title"
+                                                                                    placeholder="Quantity" required>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button"
+                                                                            class="btn btn-secondary"
+                                                                            data-bs-dismiss="modal">Close</button>
+                                                                        <button type="submit"
+                                                                            class="btn btn-primary">Save
+                                                                            changes</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                             <!-- end tr -->

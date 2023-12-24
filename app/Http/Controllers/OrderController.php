@@ -40,7 +40,6 @@ class OrderController extends Controller
         }
 
         $totalAmount = Order::sum('total_amt');
-
         return view('admin.order.orderhome', compact('order', 'totalOrders', 'totalContacts', 'totalAmount', 'foodTitle', 'mostOrderedFood', 'totalQuantity'));
     }
 
@@ -75,22 +74,23 @@ class OrderController extends Controller
     {
         $search = $request->search;
         // $order = Order::latest()->first();
+        $payments = Payment::all();
 
         $order = Order::with('orderitems.fooditem')->find($request->order);
+
         $data = Food::where(function ($query) use ($search) {
             $query->where('title', 'like', "%$search%")
                 ->orWhere('description', 'like', "%$search%");
-        })->get();
+        })->paginate(7);
         // Search for orders based on customer names
-        $orders = Order::where('customer_name', 'like', "%$search%")->get();
-        // ->orWhereHas('category', function ($query) use ($search) {
-        //     $query->where('category_id', 'like', "%$search%");
 
-        // })->get();
+        // Search for orders based on mobile number or customer name
+        $customerOrders = Order::where('mobile_number', 'like', '%' . $search . '%')
+            ->orWhere('customer_name', 'like', '%' . $search . '%')
+            ->paginate(7);
 
-        // return $data;
 
-        return view('admin.order.takeorder', compact('order', 'data', 'search'));
+        return view('admin.order.takeorder', compact('order', 'data', 'search', 'payments', 'customerOrders'));
     }
 
 
@@ -102,9 +102,9 @@ class OrderController extends Controller
         $order = Order::with('orderitems.fooditem')->find($id);
         $payments = Payment::all();
         // Add the invoice date and time using Carbon
-         $invoice_date = now(); 
-        
-        return view('admin.order.takeorder', compact('data', 'order', 'payments','invoice_date'));
+        $invoice_date = now();
+
+        return view('admin.order.takeorder', compact('data', 'order', 'payments', 'invoice_date'));
 
     }
 
@@ -244,12 +244,13 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
         $order->method_id = $request->method;
         $order->invoice_number = 'INV_' . uniqid(); // Generate a unique invoice number
+        $order->invoice_date = Carbon::now();
         $order->update();
         // Calculate subtotal, tax, total, etc., based on the retrieved order data
         $subtotal = $order->total_amt - $order->vat_amount;
         $tax = $order->vat_amount;
         $total = $order->total_amt;
-        
+
 
         return view('admin.order.bill', [
             'customerName' => $order->customer_name,
@@ -267,7 +268,7 @@ class OrderController extends Controller
             'total' => $total,
             'invoice_number' => $order->invoice_number,
             'method' => $order->method->method,
-            'invoice_date' => $invoice_date = Carbon::now()->timezone('Asia/Kathmandu')->format('l, d F Y, h:i A'), // Fetch invoice date time from $order object
+            'invoice_date' => $order->invoice_date->format('l, d F Y, h:i A'), // Fetch invoice date time from $order object
         ]);
     }
 

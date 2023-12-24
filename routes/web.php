@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
@@ -89,6 +90,8 @@ Route::get('/searchorder', [OrderController::class, 'searchorder'])->name('searc
 Route::delete('/delete-order/{id}', [OrderController::class, 'deleteOrder'])->name('deleteOrder');
 Route::delete('/deleteOrderItem/{id}', [OrderController::class, 'deleteOrderItem'])->name('deleteOrderItem');
 Route::post('/bill/{id}', [OrderController::class, 'generateInvoice'])->name('bill');
+//invoice
+Route::get('/view-invoice/{id}', [InvoiceController::class, 'viewinvoice'])->name('viewinvoice');
 
 //about
 Route::post('/add-about', [HomeController::class, 'addabout'])->name('add-about');
@@ -107,7 +110,7 @@ Route::delete('/delete-payment/{id}', [PaymentController::class, 'delete'])->nam
 //Bill
 
 Route::get('/postbill', [CBMSController::class, 'index'])->name('postbill');
-Route::get('/post-bill', [CBMSController::class, 'postBill']);
+Route::post('/post-bill/{id}', [CBMSController::class, 'postBill']);
 Route::get('/post-credit-note', [CBMSController::class, 'postCreditNote']);
 
 
