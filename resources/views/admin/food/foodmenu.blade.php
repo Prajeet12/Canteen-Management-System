@@ -1,5 +1,4 @@
 @extends('admin.adminhome')
-
 @section('content')
     <div class="content-wrapper">
         <div class="page-header">
@@ -21,19 +20,9 @@
             </nav>
         </div>
         <!-- Succession notification -->
-        @if (\Session::has('success'))
-            <div class="alert alert-success alert-dismissible fade show rounded-3 position-fixed top-0 end-0 m-4"
-                role="alert" style="width: 30%; height: 15%;">
-                <div class="d-flex align-items-center justify-content-left h-100">
-                    <i class="bi bi-check-circle-fill me-2"></i>
-                    <div>
-                        <strong>Success!</strong>
-                        <p class="mb-0">{{ \Session::get('success') }}</p>
-                    </div>
-                </div>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+        
+        @include('admin.notification')
+         
         <!-- End of Succession notification -->
         <!-- Scrollable modal -->
         <!-- Button trigger modal -->
@@ -151,7 +140,7 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                                    Update Category</h1>
+                                                    Update Food</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>

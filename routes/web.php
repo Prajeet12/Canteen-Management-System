@@ -90,6 +90,7 @@ Route::get('/searchorder', [OrderController::class, 'searchorder'])->name('searc
 Route::delete('/delete-order/{id}', [OrderController::class, 'deleteOrder'])->name('deleteOrder');
 Route::delete('/deleteOrderItem/{id}', [OrderController::class, 'deleteOrderItem'])->name('deleteOrderItem');
 Route::post('/bill/{id}', [OrderController::class, 'generateInvoice'])->name('bill');
+Route::get('/searchorderhistory', [OrderController::class, 'searchOrderHistory'])->name('searchorderhistorysearchorderhistory');
 //invoice
 Route::get('/view-invoice/{id}', [InvoiceController::class, 'viewinvoice'])->name('viewinvoice');
 

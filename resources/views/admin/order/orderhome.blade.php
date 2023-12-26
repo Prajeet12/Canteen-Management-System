@@ -65,38 +65,9 @@
             </div>
         </div>
 
-        <!-- Notification  -->
-        @php
-            $alertType = \Session::has('success') ? 'alert-success' : (\Session::has('deleted') ? 'alert-danger' : '');
-        @endphp
-
-        @if (\Session::has('success') || \Session::has('deleted'))
-            <div class="alert alert-dismissible fade show rounded-3 position-fixed top-0 end-0 m-4 {{ $alertType }}"
-                role="alert" style="width: 30%; height: 15%;" id="autoDismissAlert">
-                <div class="d-flex align-items-center justify-content-left h-100">
-                    @if (\Session::has('success'))
-                        <i class="bi bi-check-circle-fill me-2"></i>
-                        <div>
-                            <strong>Success!</strong>
-                            <p class="mb-0">{{ \Session::get('success') }}</p>
-                        </div>
-                    @elseif (\Session::has('deleted'))
-                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                        <div>
-                            <strong>Deleted!</strong>
-                            <p class="mb-0">{{ \Session::get('deleted') }}</p>
-                        </div>
-                    @endif
-                </div>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <script>
-                // Automatically remove the alert after 3 seconds
-                setTimeout(function() {
-                    document.getElementById('autoDismissAlert').remove();
-                }, 2000);
-            </script>
-        @endif
+        {{-- <!-- Notification  -->
+        @include('admin.notification')
+         <!--End Notification  --> --}}
 
         <!-- End Notification -->
         <button type="button" class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -147,12 +118,23 @@
             <h3>Order History</h3>
         </div>
         <!--Form-->
-        <form class="d-flex" role="search" method="get" action="/searchorder">
+        <form class="d-flex" role="search" method="get" action="/order">
             {{-- <input type="hidden" name="order" value="{{ $order->id }}"> --}}
-            <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search"
-                value={{ isset($search) ? $search : '' }}>
+
+            <select name="search" id="" class="js-example-basic-single form-control" required>
+                <option value="" selected disabled>---Select--</option>
+                @foreach ($orders as $item)
+                    <option value="{{ $item->id }}" @if (Request::get('search') == $item->id) selected @endif>
+                        {{ $item->order_no }} ({{ $item->customer_name }})
+                        ({{ $item->mobile_number }})
+                    </option>
+                @endforeach
+            </select>
+            {{-- <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search"
+                value={{ isset($search) ? $search : '' }}> --}}
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
+        <a href="{{ url('/order') }}" class="btn btn-outline-danger">Clear Search</a>
         <hr>
 
 
@@ -188,8 +170,8 @@
                                         </button>
                                     </a>
                                 @else
-                                    <a href="{{url('/view-invoice/'. $item->id)}}">
-                                        <button type="button" class="btn btn-info">
+                                    <a href="{{ url('/view-invoice/' . $item->id) }}">
+                                        <button type="button" class="btn btn-success">
                                             View Invoice
                                         </button>
                                     </a>
@@ -253,6 +235,11 @@
             {{ $order->links() }}
         </div>
     </div>
-    </div>
-    </div>
+@endsection
+@section('custom-script')
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
+    </script>
 @endsection

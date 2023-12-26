@@ -17,19 +17,8 @@
             </nav>
         </div>
         <!-- Succession notification -->
-        @if (\Session::has('success'))
-            <div class="alert alert-success alert-dismissible fade show rounded-3 position-fixed top-0 end-0 m-4"
-                role="alert" style="width: 30%; height: 15%;">
-                <div class="d-flex align-items-center justify-content-left h-100">
-                    <i class="bi bi-check-circle-fill me-2"></i>
-                    <div>
-                        <strong>Success!</strong>
-                        <p class="mb-0">{{ \Session::get('success') }}</p>
-                    </div>
-                </div>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+        @include('admin.notification')
+        
         <h3>Add home content</h3>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addContentModal"
             style="background:#ce1212">

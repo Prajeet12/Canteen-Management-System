@@ -10,14 +10,24 @@ use App\Models\Food;
 use App\Models\Contact;
 use App\Models\Payment;
 use Carbon\Carbon;
+use PragmaRX\NepaliCalendars\Nepali;
+use Illuminate\Support\Facades\Http;
+use Nilambar\NepaliDate\NepaliDate;
+use App\Helpers\NepaliDateHelper;
+use Illuminate\Support\Facades\Session;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $orders = Order::latest()->get();
         //$data = Category::with('food')->get();
-        $order = Order::latest()->get();
-        $order = Order::orderBy('id', 'desc')->paginate(5);
+        if ($request->search) {
+            $order = Order::where('id', $request->search)->paginate(7);
+        } else {
+
+            $order = Order::orderBy('id', 'desc')->paginate(5);
+        }
         $totalOrders = Order::count();
         $totalContacts = Contact::count();
 
@@ -40,7 +50,7 @@ class OrderController extends Controller
         }
 
         $totalAmount = Order::sum('total_amt');
-        return view('admin.order.orderhome', compact('order', 'totalOrders', 'totalContacts', 'totalAmount', 'foodTitle', 'mostOrderedFood', 'totalQuantity'));
+        return view('admin.order.orderhome', compact('order', 'orders', 'totalOrders', 'totalContacts', 'totalAmount', 'foodTitle', 'mostOrderedFood', 'totalQuantity'));
     }
 
 
@@ -73,8 +83,6 @@ class OrderController extends Controller
     public function searchorder(Request $request)
     {
         $search = $request->search;
-        // $order = Order::latest()->first();
-        $payments = Payment::all();
 
         $order = Order::with('orderitems.fooditem')->find($request->order);
 
@@ -251,25 +259,84 @@ class OrderController extends Controller
         $tax = $order->vat_amount;
         $total = $order->total_amt;
 
+        $baseUrl = 'https://cbapi.ird.gov.np/api/bill'; // CBMS API endpoint
 
-        return view('admin.order.bill', [
-            'customerName' => $order->customer_name,
-            'orderNumber' => $order->order_no,
-            'orderItems' => $order->orderitems()->get()->map(function ($item) {
-                return [
-                    'title' => $item->fooditem->title,
-                    'price' => $item->price,
-                    'quantity' => $item->quantity,
-                    'total' => $item->total  // Include VAT in the total
-                ];
-            }),
-            'subtotal' => $subtotal,
-            'tax' => $tax,
-            'total' => $total,
-            'invoice_number' => $order->invoice_number,
-            'method' => $order->method->method,
-            'invoice_date' => $order->invoice_date->format('l, d F Y, h:i A'), // Fetch invoice date time from $order object
-        ]);
+
+       
+        // Format the Nepali date as needed
+        // Call the helper function to convert the date
+       
+
+      
+
+        // Define your bill data here...
+        $requestData = [
+            "username" => "Test_CBMS",
+            "password" => "test@321",
+            "seller_pan" => "999999999",
+            "buyer_pan" => "PRAJEET SHRESTHA1",
+            "buyer_name" => "123456789",
+            "fiscal_year" => "2080.81",
+            "invoice_number" => $order->invoice_number,
+            "invoice_date" => "2080.10.10",
+            "total_sales" => $total,
+            "taxable_sales_vat" => $subtotal,
+            "vat" => $tax,
+            "excisable_amount" => 0,
+            "excise" => 0,
+            "taxable_sales_hst" => 0,
+            "hst" => 0,
+            "amount_for_esf" => 0,
+            "esf" => 0,
+            "export_sales" => 0,
+            "tax_exempted_sales" => 0,
+            "isrealtime" => true,
+            "datetimeclient" => "2023-12-21T17:49:14"
+
+        ];
+
+        // return $requestData;
+
+        try {
+            // Send HTTP POST request to CBMS API
+            $response = Http::withHeaders([
+                'Accept' => 'application/json',
+            ])->post($baseUrl, $requestData);
+
+            $statusCode = $response->status();
+
+            if ($statusCode === 200) {
+                // Set a success message in the session
+                Session::flash('success', 'Bill creation successful.');
+
+                // Redirect to the invoice page
+                return view('admin.order.bill', [
+                    'customerName' => $order->customer_name,
+                    'orderNumber' => $order->order_no,
+                    'orderItems' => $order->orderitems()->get()->map(function ($item) {
+                        return [
+                            'title' => $item->fooditem->title,
+                            'price' => $item->price,
+                            'quantity' => $item->quantity,
+                            'total' => $item->total  // Include VAT in the total
+                        ];
+                    }),
+                    'subtotal' => $subtotal,
+                    'tax' => $tax,
+                    'total' => $total,
+                    'invoice_number' => $order->invoice_number,
+                    'method' => $order->method->method,
+                    'invoice_date' => $order->invoice_date->format('l, d F Y, h:i A'), // Fetch invoice date time from $order object
+                ]); 
+            } else {
+                return $statusCode; // Return the HTTP status code as error
+            }
+        } catch (\Exception $e) {
+            return $e->getMessage(); // Return the exception message as error
+        }
+
+
+        
     }
 
 
