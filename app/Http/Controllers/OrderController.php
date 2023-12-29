@@ -83,7 +83,7 @@ class OrderController extends Controller
     public function searchorder(Request $request)
     {
         $search = $request->search;
-
+        $payments = Payment::all();
         $order = Order::with('orderitems.fooditem')->find($request->order);
 
         $data = Food::where(function ($query) use ($search) {
@@ -262,12 +262,12 @@ class OrderController extends Controller
         $baseUrl = 'https://cbapi.ird.gov.np/api/bill'; // CBMS API endpoint
 
 
-       
+
         // Format the Nepali date as needed
         // Call the helper function to convert the date
-       
 
-      
+
+
 
         // Define your bill data here...
         $requestData = [
@@ -310,7 +310,11 @@ class OrderController extends Controller
                 Session::flash('success', 'Bill creation successful.');
 
                 // Redirect to the invoice page
+
+                $imageUrl = asset('Image/KhaltiQR.jpg');
+
                 return view('admin.order.bill', [
+                    'imageUrl' => $imageUrl,
                     'customerName' => $order->customer_name,
                     'orderNumber' => $order->order_no,
                     'orderItems' => $order->orderitems()->get()->map(function ($item) {
@@ -327,7 +331,7 @@ class OrderController extends Controller
                     'invoice_number' => $order->invoice_number,
                     'method' => $order->method->method,
                     'invoice_date' => $order->invoice_date->format('l, d F Y, h:i A'), // Fetch invoice date time from $order object
-                ]); 
+                ]);
             } else {
                 return $statusCode; // Return the HTTP status code as error
             }
@@ -336,7 +340,7 @@ class OrderController extends Controller
         }
 
 
-        
+
     }
 
 

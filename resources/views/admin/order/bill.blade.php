@@ -8,7 +8,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Canteen Food Invoice</title>
-        
+
         <!-- Bootstrap CSS -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <style>
@@ -18,17 +18,46 @@
     </head>
 
     <body>
-        <!-- Notification  -->
-        @include('admin.notification')
-         <!--End Notification  -->
-         
-         <div class="d-print-none mt-4">
-                    <div class="float-start">
-                        <button class="btn btn-primary" onclick="printBill()">Generate Bill</button>
+        <!-- Bootstrap CSS link -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- HTML -->
+        @if (isset($imageUrl))
+            <!-- Modal -->
+            <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="imageModalLabel">QR code</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="{{ $imageUrl }}" class="img-fluid" alt="Image">
+                        </div>
                     </div>
                 </div>
+            </div>
+        @endif
+
+
+        <!-- Notification  -->
+        @include('admin.notification')
+        <!--End Notification  -->
+
+        <div class="d-print-none mt-4">
+            <div class="float-start">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#imageModal">
+                QR Image
+            </button>
+             <button class="btn" onclick="printBill()" style="background-color: #ce1212; color: white;">Generate Bill</button>
+                
+            </div>
+        </div>
         <div class="container mt-3" id="contentToPrint">
-           
+
             <div class="row">
                 <div class="col-sm-6 mb-2 mb-sm-0 bg-gray p-2 g-col-6">
                     <div class="card">
@@ -129,11 +158,11 @@
 
                     </div>
                 </div>
-                
+
             </div>
 
         </div>
-        
+
         {{-- <div class="container mt-5" id="kotContent">
         <div class="row">
             <div class="col-sm-6 mb-2 mb-sm-0 g-col-6">
@@ -185,33 +214,38 @@
     </div> --}}
 
         <script>
-    function printBill() {
-                var contentToPrint = document.getElementById('contentToPrint').innerHTML; // Invoice content
-                var kotContent = document.getElementById('kotContent').innerHTML; // KOT content
-
-                var printWindow = window.open('', '_self'); // Open a blank page in the same tab
-                printWindow.document.open();
-                printWindow.document.write('<html><head><title>Print Bill</title>');
-                // Include the Bootstrap CSS link for styles
-                printWindow.document.write(
-                    '<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">');
-                printWindow.document.write('</head><body>');
-
-                // Add the Food Invoice content
-                printWindow.document.write(contentToPrint);
-
-                // Divider between Invoice and KOT
-                printWindow.document.write('<hr>');
-                printWindow.document.close();
-                printWindow.print(); // Trigger the print dialog
-
+            function printBill() {
                 
+                var contentToPrint = document.getElementById('contentToPrint').outerHTML; // Invoice content
+                var kotContent = document.getElementById('kotContent').outerHTML; // KOT content
 
-                // After printing, redirect back to the home page
-                setTimeout(function() {
-                    window.location.href = '{{ url('/order') }}'; // Redirect to the order page
-                }, 5000); // Redirect after 15 seconds (adjust as needed)
+                // Create a hidden container to hold the content to print
+                var printContainer = document.createElement('div');
+                printContainer.innerHTML = contentToPrint + '<hr>';
+
+                // Open a new window for printing
+                var printWindow = window.open('', '_blank');
+
+                // Include Bootstrap CSS link for styles
+                var bootstrapCSS =
+                    '<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">';
+                printWindow.document.write(bootstrapCSS);
+
+                // Write the contents into the new window
+                printWindow.document.write(printContainer.innerHTML);
+
+                // Close the document to ensure styles are applied
+                printWindow.document.close();
+
+                // Print the contents
+                printWindow.print();
+
+                // Close the window after printing
+                printWindow.close();
+                 // Remove the temporary container from the DOM after printing
+    document.body.removeChild(printContainer);
             }
+        
         </script>
 
 
@@ -220,6 +254,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     </body>
 
     </html>

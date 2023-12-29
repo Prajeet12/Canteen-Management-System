@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Mail\ContactMail;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Contact;
+use App\Models\ContactInformation;
 
 class ContactController extends Controller
 {
@@ -14,7 +15,8 @@ class ContactController extends Controller
     $contact = Contact::all();
     $data=Contact::paginate(3);
     $totalContacts= Contact::count();
-    return view('admin.contact', compact('contact','data'));
+    $contactInfo = ContactInformation::all();
+    return view('admin.contact', compact('contact','data','contactInfo'));
   }
   // Handle form submission
   public function submitContactForm(Request $request)

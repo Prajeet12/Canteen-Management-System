@@ -16,18 +16,7 @@
                 </ul>
             </nav>
         </div>
-      <!-- Notification  -->
-       @include('admin.notification')
-                </div>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-             <script>
-        // Automatically remove the alert after 3 seconds
-        setTimeout(function() {
-            document.getElementById('autoDismissAlert').remove();
-        }, 2000);
-    </script>
-        @endif
+        @include('admin.notification')
         <!-- End of Succession notification -->
         <!-- Scrollable modal -->
         <!-- Button trigger modal -->

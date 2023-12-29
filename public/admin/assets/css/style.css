@@ -1822,6 +1822,36 @@ body {
 .word-wrap {
   word-wrap: break-word;
 }
+.modal {
+  display: none;
+  /* Hide the modal by default */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  
+}
+
+/* Style for the close button */
+.close {
+  color: #fff;
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
 
 .card {
   position: relative;
@@ -6649,7 +6679,7 @@ textarea.form-control-lg {
   z-index: 1050;
   width: 100vw;
   height: 100vh;
-  background-color: #000000; }
+  }
   .modal-backdrop.fade {
     opacity: 0; }
   .modal-backdrop.show {

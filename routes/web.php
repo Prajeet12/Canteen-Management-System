@@ -10,6 +10,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CBMSController;
+use App\Http\Controllers\ContactInformationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,6 +102,13 @@ Route::post('/update-about/{id}', [HomeController::class, 'update'])->name('upda
 //contact
 Route::get('/contact', [ContactController::class, 'sendMessage'])->name('contact.sendMessage');
 Route::post('/submit-ContactForm', [ContactController::class, 'submitContactForm'])->name('submit.contact.form');
+
+
+//ContactInfo
+Route::get('/contact-information', [ContactInformationController::class, 'index'])->name('contact-information.index');
+Route::post('/contact-information-edit', [ContactInformationController::class, 'edit'])->name('contact-information.edit');
+Route::post('/contact-information-update/{id}', [ContactInformationController::class, 'update'])->name('contact-information.update');
+
 
 //Payment
 Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');

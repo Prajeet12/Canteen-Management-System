@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactInformation;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -39,7 +40,8 @@ class HomeController extends Controller
         $abouts = Aboutus::all(); // Fetch 'abouts' data
         $galleries= Gallery::all();
         $homes= Home::all();
-        return view('client.master', compact('data', 'abouts', 'galleries','homes')); // Pass both 'data' and 'abouts' to the view
+        $contactInfo=ContactInformation::all();
+        return view('client.master', compact('data', 'abouts', 'galleries','homes','contactInfo')); // Pass both 'data' and 'abouts' to the view
     }
 
     public function about()

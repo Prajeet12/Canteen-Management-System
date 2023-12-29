@@ -7,7 +7,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Food Invoice</title>
+        <title>Canteen Food Invoice</title>
+
         <!-- Bootstrap CSS -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <style>
@@ -16,7 +17,7 @@
         </style>
     </head>
 
-    <body >
+    <body>
         <!-- Notification  -->
         @include('admin.notification')
         <!--End Notification  -->
@@ -26,13 +27,14 @@
                 <button class="btn btn-primary" onclick="printBill()">Generate Bill</button>
             </div>
         </div>
-        <div class="container mt-3" id="contentToPrint" >
+        <div class="container mt-3" id="contentToPrint">
 
-            <div class="row" >
+            <div class="row">
                 <div class="col-sm-6 mb-2 mb-sm-0 bg-gray p-2 g-col-6">
                     <div class="card">
-                        <div class="card-header bg-primary text-white">
-                            <h4 class="card-title text-center">Food Invoice</h4>
+                        <div class="card-header">
+                            <h4 class="card-title text-center">Canteen Food Invoice</h4>
+                            <h5 class="card-title text-center">Naxal, Kathmandu</h5>
                         </div>
                         <div class="card-body">
                             <!-- Customer Information -->
@@ -75,9 +77,9 @@
 
                             <!-- Totals -->
                             <div class="text-right">
-                                <p><strong>Subtotal:</strong> {{ $subtotal }}</p>
-                                <p><strong>Tax (13%):</strong> {{ $tax }}</p>
-                                <h4><strong>Total:</strong> {{ $total }}</h4>
+                                <p><strong>Subtotal:</strong> Rs {{ $subtotal }}</p>
+                                <p><strong>Tax (13%):</strong> Rs {{ $tax }}</p>
+                                <h4><strong>Total:</strong> Rs. {{ $total }}</h4>
                             </div>
                         </div>
 
@@ -85,7 +87,7 @@
                 </div>
                 <div class="col-sm-6 mb-2 mb-sm-0 p-2 g-col-6" id="kotContent">
                     <div class="card">
-                        <div class="card-header bg-primary text-white">
+                        <div class="card-header ">
 
                             <h4 class="card-title text-center">KOT</h4>
                             <h4 class="card-title text-center">Token Number {{ $orderNumber }} </h4>
@@ -132,86 +134,39 @@
 
         </div>
 
-        {{-- <div class="container mt-5" id="kotContent">
-        <div class="row">
-            <div class="col-sm-6 mb-2 mb-sm-0 g-col-6">
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
 
-                        <h4 class="card-title text-center">KOT</h4>
-                        <h4 class="card-title text-center">Token Number {{ $orderNumber }} </h4>
-
-                    </div>
-                    <div class="card-body">
-                        <!-- Customer Information -->
-
-
-                        <!-- Order Details Table -->
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Item</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Loop through ordered items -->
-                                    @foreach ($orderItems as $item)
-                                        <tr>
-                                            <td>{{ $item['title'] }}</td>
-                                            <td>{{ $item['price'] }}</td>
-                                            <td>{{ $item['quantity'] }}</td>
-                                            <td>{{ $item['total'] }}</td>
-                                        </tr>
-                                    @endforeach
-                                    <!-- Add more rows for other items -->
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <!-- Totals -->
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </div> --}}
 
         <script>
             function printBill() {
-                var contentToPrint = document.getElementById('contentToPrint').innerHTML; // Invoice content
-                var kotContent = document.getElementById('kotContent').innerHTML; // KOT content
+                var contentToPrint = document.getElementById('contentToPrint').outerHTML; // Invoice content
+                var kotContent = document.getElementById('kotContent').outerHTML; // KOT content
 
-                var printWindow = window.open('', '_self'); // Open a blank page in the same tab
-                printWindow.document.open();
-                printWindow.document.write('<html><head><title>Print Bill</title>');
-                // Include the Bootstrap CSS link for styles
-                printWindow.document.write(
-                    '<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">');
-                printWindow.document.write('</head><body>');
+                // Create a hidden container to hold the content to print
+                var printContainer = document.createElement('div');
+                printContainer.innerHTML = contentToPrint + '<hr>';
 
-                // Add the Food Invoice content
-                printWindow.document.write(contentToPrint);
+                // Open a new window for printing
+                var printWindow = window.open('', '_blank');
 
-                // Divider between Invoice and KOT
-                printWindow.document.write('<hr>');
+                // Include Bootstrap CSS link for styles
+                var bootstrapCSS =
+                    '<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">';
+                printWindow.document.write(bootstrapCSS);
+
+                // Write the contents into the new window
+                printWindow.document.write(printContainer.innerHTML);
+
+                // Close the document to ensure styles are applied
                 printWindow.document.close();
-                printWindow.print(); // Trigger the print dialog
 
-                
+                // Print the contents
+                printWindow.print();
 
-                // After printing, redirect back to the home page
-                setTimeout(function() {
-                    window.location.href = '{{ url('/order') }}'; // Redirect to the order page
-                }, 5000); // Redirect after 15 seconds (adjust as needed)
+                // Close the window after printing
+                printWindow.close();
+                 // Remove the temporary container from the DOM after printing
+    document.body.removeChild(printContainer);
             }
-
-         
         </script>
 
 

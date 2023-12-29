@@ -30,17 +30,11 @@
                             <!-- end col -->
                             <div class="row">
                                 <div class="text-muted text-sm-start">
-                                    {{-- <div>
-                                                            <h5 class="font-size-5 mb-1">Invoice No:</h5>
-                                                            <p>#DZ0112</p>
-                                                        </div> --}}
-                                    {{-- <div class="mt-1">
-                                                            <h5 class="font-size-5 mb-1">Invoice Date:</h5>
-                                                            <p>12 Oct, 2020</p>
-                                                        </div> --}}
+                                    <h5> Name= {{ $order->customer_name }}</h5>
+            <h5> Mobile Number = {{ $order->mobile_number }}</h5>
+            <h5> Order Number = {{ $order->order_no }}</h5>
                                     <div class="mt-1">
-                                        <h5 class="font-size-5 mb-1">Order No:</h5>
-                                        <p>{{ $order->order_no }}</p>
+                                        
                                     </div>
                                 </div>
                             </div>
