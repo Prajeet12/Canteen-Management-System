@@ -9,11 +9,11 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('qr_images', function (Blueprint $table) {
             $table->id();
-            $table->string('method'); // Column to store payment method (e.g., Cash, Khalti)
+            $table->string('qrimage');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('qr_images');
     }
 };

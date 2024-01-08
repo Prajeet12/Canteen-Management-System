@@ -10,11 +10,12 @@ use App\Models\Food;
 use App\Models\Contact;
 use App\Models\Payment;
 use Carbon\Carbon;
-use PragmaRX\NepaliCalendars\Nepali;
+
 use Illuminate\Support\Facades\Http;
-use Nilambar\NepaliDate\NepaliDate;
-use App\Helpers\NepaliDateHelper;
+
 use Illuminate\Support\Facades\Session;
+use App\Models\Vat;
+use App\Models\QrImage;
 
 class OrderController extends Controller
 {
@@ -30,6 +31,8 @@ class OrderController extends Controller
         }
         $totalOrders = Order::count();
         $totalContacts = Contact::count();
+        $vats = Vat::all();
+        $qrimage = QrImage::all();
 
 
         // Calculate total amount of all orders
@@ -50,7 +53,7 @@ class OrderController extends Controller
         }
 
         $totalAmount = Order::sum('total_amt');
-        return view('admin.order.orderhome', compact('order', 'orders', 'totalOrders', 'totalContacts', 'totalAmount', 'foodTitle', 'mostOrderedFood', 'totalQuantity'));
+        return view('admin.order.orderhome', compact('qrimage', 'vats', 'order', 'orders', 'totalOrders', 'totalContacts', 'totalAmount', 'foodTitle', 'mostOrderedFood', 'totalQuantity'));
     }
 
 
@@ -111,8 +114,11 @@ class OrderController extends Controller
         $payments = Payment::all();
         // Add the invoice date and time using Carbon
         $invoice_date = now();
+        $vat = Vat::all()->first();
+        $vat = intval($vat->percentage);
+        $qrimage=QrImage::all()->first();
 
-        return view('admin.order.takeorder', compact('data', 'order', 'payments', 'invoice_date'));
+        return view('admin.order.takeorder', compact('data', 'order', 'payments', 'invoice_date', 'vat','qrimage'));
 
     }
 
@@ -126,7 +132,9 @@ class OrderController extends Controller
         $data->total = $request->quantity * $request->price;
 
         // Calculate VAT (13%)
-        $vatPercentage = 13;
+        $vat = Vat::all()->first();
+        $vat = intval($vat->percentage);
+        $vatPercentage = $vat;
         $vatAmount = ($data->total * $vatPercentage) / 100;
 
         // Calculate grand total with VAT
@@ -150,9 +158,10 @@ class OrderController extends Controller
 
         // Find associated order items for the order
         $orderItems = OrderItem::where('order_id', $id)->get();
-
+        $vat = Vat::all()->first();
+        $vat = intval($vat->percentage);
         // Calculate and accumulate VAT and total amounts from order items
-        $vatPercentage = 13;
+        $vatPercentage = $vat;
         $totalVatAmount = 0;
         $totalOrderItemTotal = 0;
 
@@ -183,6 +192,8 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         $data = OrderItem::find($id);
+        $vat = Vat::all()->first();
+        
         $oldTotal = $data->total; // Store the old total amount
 
         $data->quantity = $request->quantity;
@@ -190,7 +201,8 @@ class OrderController extends Controller
         $data->total = $request->quantity * $request->price;
 
         // Calculate VAT (13%)
-        $vatPercentage = 13;
+        $vat = intval($vat->percentage);
+        $vatPercentage = $vat;
         $vatAmount = ($data->total * $vatPercentage) / 100;
 
         // Update VAT amount for the item
@@ -226,10 +238,12 @@ class OrderController extends Controller
     {
         $orderItem = OrderItem::find($id);
         $order = Order::find($orderItem->order_id);
+        $vat = Vat::all()->first();
+        $vat = intval($vat->percentage);
 
         if ($orderItem) {
             // Subtract values from the order when deleting an item
-            $vatAmount = ($orderItem->total * 13) / 100; // Assuming VAT percentage is 5%
+            $vatAmount = ($orderItem->total * $vat) / 100; // Assuming VAT percentage is 5%
             $order->total_amt -= ($orderItem->total + $vatAmount); // Subtract the total with VAT from the order's total
             $order->vat_amount -= $vatAmount; // Subtract VAT from the order's VAT total
             $order->grand_total = $order->total_amt + $order->vat_amount; // Recalculate the grand total including VAT
@@ -250,24 +264,19 @@ class OrderController extends Controller
     {
         // Fetch the specific order data based on the provided order ID
         $order = Order::findOrFail($id);
+
+        // Access the first VAT percentage (you might need to modify this logic based on your requirements)
+
         $order->method_id = $request->method;
         $order->invoice_number = 'INV_' . uniqid(); // Generate a unique invoice number
         $order->invoice_date = Carbon::now();
-        $order->update();
+
         // Calculate subtotal, tax, total, etc., based on the retrieved order data
         $subtotal = $order->total_amt - $order->vat_amount;
         $tax = $order->vat_amount;
         $total = $order->total_amt;
 
         $baseUrl = 'https://cbapi.ird.gov.np/api/bill'; // CBMS API endpoint
-
-
-
-        // Format the Nepali date as needed
-        // Call the helper function to convert the date
-
-
-
 
         // Define your bill data here...
         $requestData = [
@@ -310,11 +319,16 @@ class OrderController extends Controller
                 Session::flash('success', 'Bill creation successful.');
 
                 // Redirect to the invoice page
+                $qrimage = QrImage::all();
 
-                $imageUrl = asset('Image/KhaltiQR.jpg');
+                $imageUrl = $qrimage;
+
+                // $imageUrl = asset('Image/KhaltiQR.jpg');
+
 
                 return view('admin.order.bill', [
                     'imageUrl' => $imageUrl,
+                    
                     'customerName' => $order->customer_name,
                     'orderNumber' => $order->order_no,
                     'orderItems' => $order->orderitems()->get()->map(function ($item) {
@@ -332,7 +346,9 @@ class OrderController extends Controller
                     'method' => $order->method->method,
                     'invoice_date' => $order->invoice_date->format('l, d F Y, h:i A'), // Fetch invoice date time from $order object
                 ]);
-            } else {
+            } 
+            else
+             {
                 return $statusCode; // Return the HTTP status code as error
             }
         } catch (\Exception $e) {

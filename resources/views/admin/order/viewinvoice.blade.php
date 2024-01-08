@@ -165,7 +165,7 @@
                 // Close the window after printing
                 printWindow.close();
                  // Remove the temporary container from the DOM after printing
-    document.body.removeChild(printContainer);
+    
             }
         </script>
 

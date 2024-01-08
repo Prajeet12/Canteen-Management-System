@@ -16,12 +16,12 @@
                 </ul>
             </nav>
         </div>
-       <!-- Notification  -->
+        <!-- Notification  -->
         @include('admin.notification')
-         <!--End Notification  -->
+        <!--End Notification  -->
 
         <!-- End of Succession notification -->
-       
+
         <!-- Button trigger modal -->
         <div class="row py-2 px-1">
             <div class="col-md-3 stretch-card grid-margin">
@@ -82,6 +82,7 @@
                             changes</button>
                     </div>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -124,8 +125,8 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="{{ url('/update-payment/' . $item->id) }}"
-                                                        method="POST" role="form" enctype="multipart/form-data"
+                                                    <form action="{{ url('/update-payment/' . $item->id) }}" method="POST"
+                                                        role="form" enctype="multipart/form-data"
                                                         class="php-email-form p-3 p-md-4">
                                                         @csrf
                                                         <div class=" row">
@@ -154,7 +155,7 @@
                                         Delete
                                     </button>
 
-                                    <!-- Modal -->
+                                    <!-- Mo dal -->
                                     <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1"
                                         aria-labelledby="deleteModal{{ $item->id }}Label" aria-hidden="true">
                                         <div class="modal-dialog">
@@ -195,8 +196,165 @@
                     </tbody>
                 </table>
             </div>
+            <div class="col-md-6">
+                <table class="table  ">
+                    <thead class="thead-primary table-info" style="background:#ce1212">
+
+                        <tr>
+
+                            <th scope="col">Vat Percentage</th>
+                            <th scope="col">Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($vats as $item)
+                            <tr>
+                                <td>{{ $item->percentage }}</td>
+
+                                <td colspan="2">
+                                    <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal{{ $item->id }}">
+                                        Update
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1"
+                                        aria-labelledby="exampleModal{{ $item->id }}Label" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                                        Update Vat Percentage</h1>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ url('/update-vat/' . $item->id) }}" method="POST"
+                                                        role="form" enctype="multipart/form-data"
+                                                        class="php-email-form p-3 p-md-4">
+
+                                                        @csrf
+                                                        <div class=" row">
+
+                                                            <div class="form-group">
+                                                                <label for="">Vat percentage</label>
+                                                                <input type="text" name="percentage"
+                                                                    class="form-control" id="title"
+                                                                    placeholder="method" value="{{ $item->percentage }}"
+                                                                    required>
+                                                            </div>
+
+                                                        </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary"
+                                                        style="background:#ce1212">Save changes</button>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
+
+
+
+                            </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table class="table  ">
+                    <thead class="thead-primary table-info" style="background:#ce1212">
+
+                        <tr>
+
+                            <th scope="col">Image</th>
+                            <th scope="col">Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($qrimage as $item)
+                            <tr>
+                                <td><img src="{{ asset('foodimage/' . $item->qrimage) }}" alt=""></td>
+
+                                <td colspan="2">
+                                    <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal3{{ $item->id }}">
+                                        Update
+                                    </button>
+
+                                    <!-- Modal -->
+                                     <div class="modal fade" id="exampleModal3{{ $item->id }}" tabindex="-1"
+                                aria-labelledby="exampleModal3{{ $item->id }}Label" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                                Update Photos</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ url('/update-qrimage/' . $item->id) }}" method="POST"
+                                                role="form" enctype="multipart/form-data"
+                                                class="php-email-form p-3 p-md-4">
+                                                @csrf
+                                                <div class=" row">
+                                                    <div class="mb-3">
+                                                        <label for="formFile" class="form-label">Old
+                                                            image</label>
+                                                        <img height="200" width="200"
+                                                            src="{{ asset('foodimage/' . $item->qrimage) }}" alt="">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="formFile" class="form-label">New
+                                                            image</label>
+
+                                                        <input class="form-control" type="file" name="qrimage"
+                                                            id="image" required>
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary"
+                                                        style="background:#ce1212">Save
+                                                        changes</button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                                </td>
+
+
+
+                            </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
+            </div>
 
         </div>
+
+
+
+
 
     </div>
 

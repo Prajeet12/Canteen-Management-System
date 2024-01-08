@@ -31,10 +31,10 @@
                             <div class="row">
                                 <div class="text-muted text-sm-start">
                                     <h5> Name= {{ $order->customer_name }}</h5>
-            <h5> Mobile Number = {{ $order->mobile_number }}</h5>
-            <h5> Order Number = {{ $order->order_no }}</h5>
+                                    <h5> Mobile Number = {{ $order->mobile_number }}</h5>
+                                    <h5> Order Number = {{ $order->order_no }}</h5>
                                     <div class="mt-1">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -197,7 +197,7 @@
 
                                         <tr>
                                             <th scope="row" colspan="4" class="border-0 text-end">
-                                                Tax (13%)</th>
+                                                Tax ({{ $vat }}%)</th>
                                             <td class="border-0 text-end"> Rs. {{ $order->vat_amount }}</td>
                                         </tr>
                                         <!-- end tr -->

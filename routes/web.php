@@ -11,6 +11,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CBMSController;
 use App\Http\Controllers\ContactInformationController;
+use App\Http\Controllers\VATQRController;
+use App\Http\Controllers\VATController;
 
 /*
 |--------------------------------------------------------------------------
@@ -115,6 +117,12 @@ Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index
 Route::post('/add-payment', [PaymentController::class, 'add'])->name('add-payment');
 Route::post('/update-payment/{id}', [PaymentController::class, 'update'])->name('update-payment');
 Route::delete('/delete-payment/{id}', [PaymentController::class, 'delete'])->name('delete-payment');
+Route::post('/add-qrimage', [PaymentController::class, 'store'])->name('add-qrimage');
+Route::post('/update-qrimage/{id}', [PaymentController::class, 'updateqrimage'])->name('update-qrimage');
+
+Route::get('/add-vat', [VATController::class, 'index'])->name('addvat');
+Route::post('/add-vat', [VATController::class, 'store'])->name('add-vat');
+Route::post('/update-vat/{id}', [VATController::class, 'updatevat'])->name('updateVat');
 
 //Bill
 

@@ -118,10 +118,11 @@
             <h3>Order History</h3>
         </div>
         <!--Form-->
+
         <form class="d-flex" role="search" method="get" action="/order">
             {{-- <input type="hidden" name="order" value="{{ $order->id }}"> --}}
 
-            <select name="search" id="" class="js-example-basic-single form-control" required>
+            <select name="search" id="" class="d-flex js-example-basic-single form-control " required>
                 <option value="" selected disabled>---Select--</option>
                 @foreach ($orders as $item)
                     <option value="{{ $item->id }}" @if (Request::get('search') == $item->id) selected @endif>
@@ -132,9 +133,10 @@
             </select>
             {{-- <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search"
                 value={{ isset($search) ? $search : '' }}> --}}
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button class="btn btn-outline-success btn-sm" type="submit">Search</button>
+            <button><a href="{{ url('/order') }}" class="btn btn-outline-danger btn-sm">Clear</a></button>
         </form>
-        <a href="{{ url('/order') }}" class="btn btn-outline-danger">Clear Search</a>
+
         <hr>
 
 

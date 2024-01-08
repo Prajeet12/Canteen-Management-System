@@ -21,9 +21,9 @@
                     <i class="fas fa-arrow-left me-2"></i>Back
                 </a>
             </div>
-            <h5> Name= {{ $order->customer_name }}</h5>
+            {{-- <h5> Name= {{ $order->customer_name }}</h5>
             <h5> Mobile Number = {{ $order->mobile_number }}</h5>
-            <h5> Order Number = {{ $order->order_no }}</h5>
+            <h5> Order Number = {{ $order->order_no }}</h5> --}}
 
             @if (isset($search))
                 <table class="table">
