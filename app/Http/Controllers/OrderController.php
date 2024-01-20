@@ -53,6 +53,14 @@ class OrderController extends Controller
         }
 
         $totalAmount = Order::sum('total_amt');
+        // Calculate total sum done by Khalti method
+        $totalKhaltiSum = Order::where('method_id', 2)->sum('total_amt');
+
+        // Calculate total sum done by Cash method
+        $totalCashSum = Order::where('method_id', 1)->sum('total_amt');
+
+        // dd($totalKhaltiSum, $totalCashSum);
+
         return view('admin.order.orderhome', compact('qrimage', 'vats', 'order', 'orders', 'totalOrders', 'totalContacts', 'totalAmount', 'foodTitle', 'mostOrderedFood', 'totalQuantity'));
     }
 
@@ -87,6 +95,9 @@ class OrderController extends Controller
     {
         $search = $request->search;
         $payments = Payment::all();
+        $vat = Vat::all()->first();
+        $vat = intval($vat->percentage);
+
         $order = Order::with('orderitems.fooditem')->find($request->order);
 
         $data = Food::where(function ($query) use ($search) {
@@ -101,7 +112,7 @@ class OrderController extends Controller
             ->paginate(7);
 
 
-        return view('admin.order.takeorder', compact('order', 'data', 'search', 'payments', 'customerOrders'));
+        return view('admin.order.takeorder', compact('vat', 'order', 'data', 'search', 'payments', 'customerOrders'));
     }
 
 
@@ -116,9 +127,9 @@ class OrderController extends Controller
         $invoice_date = now();
         $vat = Vat::all()->first();
         $vat = intval($vat->percentage);
-        $qrimage=QrImage::all()->first();
+        $qrimage = QrImage::all()->first();
 
-        return view('admin.order.takeorder', compact('data', 'order', 'payments', 'invoice_date', 'vat','qrimage'));
+        return view('admin.order.takeorder', compact('data', 'order', 'payments', 'invoice_date', 'vat', 'qrimage'));
 
     }
 
@@ -193,7 +204,7 @@ class OrderController extends Controller
     {
         $data = OrderItem::find($id);
         $vat = Vat::all()->first();
-        
+
         $oldTotal = $data->total; // Store the old total amount
 
         $data->quantity = $request->quantity;
@@ -270,11 +281,19 @@ class OrderController extends Controller
         $order->method_id = $request->method;
         $order->invoice_number = 'INV_' . uniqid(); // Generate a unique invoice number
         $order->invoice_date = Carbon::now();
+        $order->save();
 
         // Calculate subtotal, tax, total, etc., based on the retrieved order data
         $subtotal = $order->total_amt - $order->vat_amount;
         $tax = $order->vat_amount;
         $total = $order->total_amt;
+        // Redirect to the invoice page
+        $qrimage = QrImage::all();
+
+        $imageUrl = $qrimage;
+
+        // $imageUrl = asset('Image/KhaltiQR.jpg');
+
 
         $baseUrl = 'https://cbapi.ird.gov.np/api/bill'; // CBMS API endpoint
 
@@ -304,7 +323,7 @@ class OrderController extends Controller
 
         ];
 
-        // return $requestData;
+
 
         try {
             // Send HTTP POST request to CBMS API
@@ -318,17 +337,12 @@ class OrderController extends Controller
                 // Set a success message in the session
                 Session::flash('success', 'Bill creation successful.');
 
-                // Redirect to the invoice page
-                $qrimage = QrImage::all();
 
-                $imageUrl = $qrimage;
-
-                // $imageUrl = asset('Image/KhaltiQR.jpg');
 
 
                 return view('admin.order.bill', [
                     'imageUrl' => $imageUrl,
-                    
+
                     'customerName' => $order->customer_name,
                     'orderNumber' => $order->order_no,
                     'orderItems' => $order->orderitems()->get()->map(function ($item) {
@@ -345,10 +359,10 @@ class OrderController extends Controller
                     'invoice_number' => $order->invoice_number,
                     'method' => $order->method->method,
                     'invoice_date' => $order->invoice_date->format('l, d F Y, h:i A'), // Fetch invoice date time from $order object
+
                 ]);
-            } 
-            else
-             {
+
+            } else {
                 return $statusCode; // Return the HTTP status code as error
             }
         } catch (\Exception $e) {

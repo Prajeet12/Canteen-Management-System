@@ -15,12 +15,12 @@
             </form>
 
             <hr class="my-4">
-            <div class="d-flex justify-content-end mb-3">
+            {{-- <div class="d-flex justify-content-end mb-3">
                 <!-- "Back" button aligned to the right -->
                 <a href="javascript:history.back()" class="btn-sm btn-primary">
                     <i class="fas fa-arrow-left me-2"></i>Back
                 </a>
-            </div>
+            </div> --}}
             {{-- <h5> Name= {{ $order->customer_name }}</h5>
             <h5> Mobile Number = {{ $order->mobile_number }}</h5>
             <h5> Order Number = {{ $order->order_no }}</h5> --}}
@@ -48,7 +48,7 @@
                                     <td>{{ $food->price }}</td>
                                     @if ($order->orderitems->contains('food_id', $food->id))
                                         <td>
-                                            <span class="text-danger">Already Added.</span>
+                                            {{-- <span class="text-danger">Already Added.</span> --}}
 
                                             <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal{{ $food->id }}">
@@ -218,81 +218,10 @@
                                                     <td>
                                                         <span class="text-danger">Already Added.</span>
 
-                                                        <button type="button" class="btn btn-success btn-sm"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#exampleModal{{ $food->id }}">
-                                                            <i class="material-icons"><span
-                                                                    class="material-symbols-outlined">
-                                                                    update
-                                                                </span></i>
-                                                            <!-- Replace 'edit' with the Material Icons icon name you want to use -->
-                                                        </button>
+                                                      
 
                                                         <!-- Modal -->
-                                                        <div class="modal fade" id="exampleModal{{ $food->id }}"
-                                                            tabindex="-1"
-                                                            aria-labelledby="exampleModal{{ $food->id }}Label"
-                                                            aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h1 class="modal-title fs-5"
-                                                                            id="exampleModal{{ $food->id }}Label">
-                                                                            Update
-                                                                            Quantity
-                                                                        </h1>
-                                                                        <button type="button" class="btn-close"
-                                                                            data-bs-dismiss="modal"
-                                                                            aria-label="Close"></button>
-                                                                    </div>
-                                                                    @php
-                                                                        $foodId = $food->id;
-                                                                        $foodItem = $order->orderitems->first(function ($item) use ($foodId) {
-                                                                            return $item->food_id === $foodId;
-                                                                        });
-                                                                    @endphp
-                                                                    <form
-                                                                        action="{{ route('updatequantity', $foodItem->id) }}"
-                                                                        method="POST" role="form"
-                                                                        enctype="multipart/form-data"
-                                                                        class="php-email-form p-3 p-md-4">
-                                                                        @csrf
-                                                                        <div class="modal-body">
-                                                                            <div class=" row">
-                                                                                <div class="form-group">
-                                                                                    <label for="">Previous
-                                                                                        Quantity</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="title"
-                                                                                        value="{{ $foodItem->quantity }}"
-                                                                                        disabled placeholder="Quantity"
-                                                                                        required>
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="">New
-                                                                                        Quantity</label>
-                                                                                    <input type="hidden" name="price"
-                                                                                        value="{{ $food->price }}">
-                                                                                    <input type="text" name="quantity"
-                                                                                        class="form-control"
-                                                                                        id="title"
-                                                                                        placeholder="Quantity" required>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button"
-                                                                                class="btn btn-secondary"
-                                                                                data-bs-dismiss="modal">Close</button>
-                                                                            <button type="submit"
-                                                                                class="btn btn-primary">Save
-                                                                                changes</button>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                      
                                                     </td>
                                                 @else
                                                     <td><!-- Button trigger modal -->

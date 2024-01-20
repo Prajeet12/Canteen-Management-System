@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Models\Vat;
 use App\Models\QrImage;
 use Illuminate\Support\Facades\File;
+use App\Models\Order;
 
 
 class PaymentController extends Controller
@@ -17,9 +18,16 @@ class PaymentController extends Controller
         $payments = Payment::all();
         $vats = Vat::all();
         $qrimage = QrImage::all();
-        
+        $totalAmount = Order::sum('total_amt');
+        // Calculate total sum done by Khalti method
+        $totalKhaltiSum = Order::where('method_id', 2)->sum('total_amt');
+
+        // Calculate total sum done by Cash method
+        $totalCashSum = Order::where('method_id', 1)->sum('total_amt');
+
+       // dd($totalKhaltiSum, $totalCashSum);
         $invoiceDateTime = Carbon::now()->format('Y-m-d H:i:s');
-        return view('admin.Payment.payment', compact('qrimage','vats', 'payments', 'invoiceDateTime'));
+        return view('admin.Payment.payment', compact('qrimage','vats', 'payments', 'invoiceDateTime','totalAmount','totalKhaltiSum','totalCashSum'));
     }
     public function add(Request $request)
     {

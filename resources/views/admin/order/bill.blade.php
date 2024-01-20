@@ -82,7 +82,7 @@
                                 <p>Invoice Date: {{ $invoice_date }}</p>
                                 <p>Invoice Number: {{ $invoice_number }}</p>
                                 <p>Payment: {{ $method }}</p>
-                                <!-- Add more details as needed -->
+                                
                             </div>
 
                             <!-- Order Details Table -->
@@ -201,6 +201,10 @@
 
                 // Close the window after printing
                 printWindow.close();
+                 setTimeout(function() {
+            printWindow.close(); // Close the print window
+            window.location.href = '{{ url("/order") }}'; // Redirect to the order page
+        }, 5000);
             }
         </script>
 

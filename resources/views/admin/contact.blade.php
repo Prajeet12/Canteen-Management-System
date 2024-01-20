@@ -8,22 +8,16 @@
                     <i class="mdi mdi-comment-alert-outline menu-icon" style="background:#ce1212";></i>
                 </span> Feedbacks
             </h3>
-            <nav aria-label="breadcrumb">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                        <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
-                    </li>
-                </ul>
-            </nav>
+         
         </div>
 
         @include('admin.notification')
 
         <!--Add contact details form -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
             style="background:#ce1212">
             Add 
-        </button>
+        </button> --}}
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
