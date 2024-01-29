@@ -16,9 +16,13 @@ class VatsTableSeeder extends Seeder
     {
         // Seed data for the vats table
         $vats = [
-            ['percentage' => 13],
-           
-           
+            [
+                'percentage' => 13,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+
         ];
 
         // Insert data into the vats table

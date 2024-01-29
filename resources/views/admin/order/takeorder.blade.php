@@ -10,17 +10,27 @@
             <form class="d-flex" role="search" method="get" action="/searchorder">
                 <input type="hidden" name="order" value="{{ $order->id }}">
                 <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search"
-                    value={{ isset($search) ? $search : '' }}>
+                    value="{{ isset($search) ? $search : '' }}">
                 <button class="btn btn-outline-success" type="submit">Search</button>
+
+                <!-- Cross button with id "crossButton" -->
+                <button id="crossButton" class="btn btn-outline-danger" type="button">
+                    <i class="fas fa-times"></i>
+                </button>
             </form>
 
+            <script>
+                // Add event listener to the cross button
+                document.getElementById('crossButton').addEventListener('click', function() {
+                    // Navigate back to the home page
+                    window.location.href = '/takeorder/{{ $order->id }}';
+                });
+            </script>
+
             <hr class="my-4">
-            {{-- <div class="d-flex justify-content-end mb-3">
-                <!-- "Back" button aligned to the right -->
-                <a href="javascript:history.back()" class="btn-sm btn-primary">
-                    <i class="fas fa-arrow-left me-2"></i>Back
-                </a>
-            </div> --}}
+
+
+
             {{-- <h5> Name= {{ $order->customer_name }}</h5>
             <h5> Mobile Number = {{ $order->mobile_number }}</h5>
             <h5> Order Number = {{ $order->order_no }}</h5> --}}
@@ -50,14 +60,14 @@
                                         <td>
                                             {{-- <span class="text-danger">Already Added.</span> --}}
 
-                                            <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
+                                            {{-- <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal{{ $food->id }}">
                                                 <i class="material-icons"><span class="material-symbols-outlined">
                                                         update
                                                     </span></i>
                                                 <!-- Replace 'edit' with the Material Icons icon name you want to use -->
-                                            </button>
-
+                                            </button> --}}
+                                            <span class="text-danger">Already Added.</span>
                                             <!-- Modal -->
                                             <div class="modal fade" id="exampleModal{{ $food->id }}" tabindex="-1"
                                                 aria-labelledby="exampleModal{{ $food->id }}Label" aria-hidden="true">
@@ -88,9 +98,8 @@
                                                                         <label for="">Previous
                                                                             Quantity</label>
                                                                         <input type="text" class="form-control"
-                                                                            id="title"
-                                                                            value="{{ $foodItem->quantity }}" disabled
-                                                                            placeholder="Quantity" required>
+                                                                            id="title" value="{{ $foodItem->quantity }}"
+                                                                            disabled placeholder="Quantity" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="">New Quantity</label>
@@ -134,8 +143,8 @@
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                         </div>
-                                                        <form action="{{ route('addquantity', $food->id) }}"
-                                                            method="POST" role="form" enctype="multipart/form-data"
+                                                        <form action="{{ route('addquantity', $food->id) }}" method="POST"
+                                                            role="form" enctype="multipart/form-data"
                                                             class="php-email-form p-3 p-md-4">
                                                             @csrf
                                                             <div class="modal-body">
@@ -218,10 +227,10 @@
                                                     <td>
                                                         <span class="text-danger">Already Added.</span>
 
-                                                      
+
 
                                                         <!-- Modal -->
-                                                      
+
                                                     </td>
                                                 @else
                                                     <td><!-- Button trigger modal -->

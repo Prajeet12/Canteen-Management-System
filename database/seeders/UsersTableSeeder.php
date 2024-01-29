@@ -18,7 +18,9 @@ class UsersTableSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'prajeetsth1@gmail.com',
             'password' => Hash::make('admin123'),
-            'usertype' => 'Admin'
+            'usertype' => 'Admin',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }
