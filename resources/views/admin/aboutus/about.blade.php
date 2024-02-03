@@ -18,7 +18,7 @@
         </div>
         <!-- Succession notification -->
         @include('admin.notification')
-        
+
         <h3>Add home content</h3>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addContentModal"
             style="background:#ce1212">
@@ -29,7 +29,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Home Content</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -120,8 +120,7 @@
 
                                     <div class="modal-body">
                                         <form action="{{ url('/update-clienthome/' . $item->id) }}" method="POST"
-                                            role="form" enctype="multipart/form-data"
-                                            class="php-email-form p-3 p-md-4">
+                                            role="form" enctype="multipart/form-data" class="php-email-form p-3 p-md-4">
                                             @csrf
                                             <div class=" row">
 

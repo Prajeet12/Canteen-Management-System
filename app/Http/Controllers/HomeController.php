@@ -23,7 +23,7 @@ class HomeController extends Controller
             if ($usertype == 'user') {
                 return view('admin.dashboard');
             } else if ($usertype == 'Admin') {
-                return view('admin.dashboard');
+                return view('admin.orderhome');
             } else {
                 return redirect();
             }
@@ -38,17 +38,18 @@ class HomeController extends Controller
     {
         $data = Category::with('food')->get();
         $abouts = Aboutus::all(); // Fetch 'abouts' data
-        $galleries= Gallery::all();
-        $homes= Home::all();
-        $contactInfo=ContactInformation::all();
-        return view('client.master', compact('data', 'abouts', 'galleries','homes','contactInfo')); // Pass both 'data' and 'abouts' to the view
+        $galleries = Gallery::all();
+        $homes = Home::all();
+        $contactInfo = ContactInformation::all();
+        $food = Food::where('category_id', 1)->get();
+        return view('client.master', compact('data', 'abouts', 'galleries', 'homes', 'contactInfo', 'food')); // Pass both 'data' and 'abouts' to the view
     }
 
     public function about()
     {
         $hero = Aboutus::all();
         $homes = Home::all();
-        return view('admin.aboutus.about', compact('hero','homes'));
+        return view('admin.aboutus.about', compact('hero', 'homes'));
     }
     public function addabout(Request $request)
     {
@@ -184,8 +185,9 @@ class HomeController extends Controller
 
         $homes->image = $homeimage;
         $homes->title = $request->input('title');
+        $homes->description = $request->input('description');
         $homes->save();
-        return redirect('/admin.aboutus.about')->with('success', 'Data is updated.');
+        return redirect('/aboutus')->with('success', 'Data is updated.');
 
 
     }
@@ -231,7 +233,7 @@ class HomeController extends Controller
 
 
     }
-    
+
     public function deleteGallery($id)
     {
         $galleryItem = Gallery::findOrFail($id);

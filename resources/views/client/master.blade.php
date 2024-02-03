@@ -50,20 +50,46 @@
 
 
     <!-- ======= Hero Section ======= -->
-    <section id="hero" class="hero d-flex align-items-center ">
+    <section id="hero" class="hero d-flex align-items-center section-bg "
+        style="padding-top:100px; padding-bottom:20px">
         <div class="container">
             @foreach ($homes as $item)
                 <div class="row justify-content-between gy-5">
                     <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start"
                         style="font-family: poppins">
-                        <h3 data-aos="fade-up" style="font-family: poppins">{{ $item->title }}</h3>
-                        <p data-aos="fade-up" data-aos-delay="100">{{ $item->description }}</p>
+                        <h2 data-aos="fade-up" style="font-family: poppins; color:#ce1212;">{{ $item->title }}</h2>
+                        <p data-aos="fade-up" data-aos-delay="100" style="font-family: poppins; font-weight:500;">
+                            {{ $item->description }}</p>
                         <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
                         </div>
                     </div>
                     <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
-                        <img src="{{ asset('foodimage/' . $item->image) }}" class="img-fluid" alt=""
-                            data-aos="zoom-out" data-aos-delay="300">
+                        {{-- <img src="{{ asset('foodimage/' . $item->image) }}" class="img-fluid" alt=""
+                            data-aos="zoom-out" data-aos-delay="300"> --}}
+                            
+                        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                @foreach ($food->take(1) as $fd)
+                                    <div class="carousel-item active">
+                                        <img src="{{ asset('foodimage/' . $fd->image) }}" class="d-block w-100"
+                                            alt="{{ $fd->title }}">
+                                        <h3 class="text-center">{{ $fd->title }}</h3>
+                                        <h4 class="text-center " style="color:#ce1212; font-weight:800;">Rs.
+                                            {{ $fd->price }}
+                                        </h4>
+                                    </div>
+                                @endforeach
+                                @foreach ($food->skip(1) as $fd)
+                                    <div class="carousel-item">
+                                        <img src="{{ asset('foodimage/' . $fd->image) }}" class="d-block w-100"
+                                            alt="{{ $fd->title }}">
+                                        <h3 class="text-center">{{ $fd->title }}</h3>
+                                        <h4 class="text-center" style="color:#ce1212; font-weight:800; ">Rs.
+                                            {{ $fd->price }}</h4>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
             @endforeach

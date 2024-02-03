@@ -13,7 +13,7 @@
                 <i class="mdi mdi-home menu-icon"></i>
             </a>
         </li> --}}
-        <li class="nav-item {{ request()->routeIs('order', 'takeorder','bill','viewinvoice') ? 'active' : '' }}">
+        <li class="nav-item {{ request()->routeIs('order', 'takeorder', 'bill', 'viewinvoice') ? 'active' : '' }} ">
             <a class="nav-link " href="{{ url('/order') }}">
 
                 <span class="menu-title">Dashboard</span>
@@ -27,10 +27,6 @@
         <i class="mdi mdi-contacts menu-icon"></i>
       </a>
     </li> --}}
-        <li class="nav-item">
-
-
-        </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ url('/category') }}">
                 <span class="menu-title">Category</span>
