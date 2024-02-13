@@ -32,7 +32,7 @@
                                 <div class="text-muted text-sm-start">
                                     <h5> Name= {{ $order->customer_name }}</h5>
                                     <h5> Mobile Number = {{ $order->mobile_number }}</h5>
-                                    <h5> Order Number = {{ $order->order_no }}</h5>
+                                    <h5> Order Number = ORD{{ $order->order_no }}</h5>
                                     <div class="mt-1">
 
                                     </div>
@@ -234,7 +234,7 @@
                                 </div>
                                 <div class="d-print-none mt-4">
                                     <div class="float-end">
-                                        <button class="btn btn-primary" type="submit">Generate
+                                        <button class="btn btn-primary" style="background:#ce1212" type="submit">Generate
                                             Bill</button>
                                     </div>
                                 </div>

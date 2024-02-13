@@ -112,9 +112,9 @@
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
+                                                                <button type="button" class="btn btn-secondary" style="background:#ce1212"
                                                                     data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-primary">Save
+                                                                <button type="submit" class="btn btn-primary" style="background:#ce1212">Save
                                                                     changes</button>
                                                             </div>
                                                         </form>
@@ -124,7 +124,7 @@
                                         </td>
                                     @else
                                         <td><!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                            <button type="button" class="btn btn-primary btn-sm" style="background:#ce1212" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal{{ $food->id }}">
                                                 <span class="material-symbols-outlined">
                                                     add_box
@@ -164,7 +164,7 @@
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-primary">Save
+                                                                <button type="submit" class="btn btn-primary" style="background:#ce1212">Save
                                                                     changes</button>
                                                             </div>
                                                         </form>
@@ -235,7 +235,7 @@
                                                 @else
                                                     <td><!-- Button trigger modal -->
                                                         <button type="button" class="btn btn-primary btn-sm"
-                                                            data-bs-toggle="modal"
+                                                            data-bs-toggle="modal" style="background:#ce1212"
                                                             data-bs-target="#exampleModal{{ $food->id }}">
                                                             <span class="material-symbols-outlined">
                                                                 add_box
@@ -283,7 +283,7 @@
                                                                                 class="btn btn-secondary"
                                                                                 data-bs-dismiss="modal">Close</button>
                                                                             <button type="submit"
-                                                                                class="btn btn-primary">Save
+                                                                                class="btn btn-primary" style="background:#ce1212">Save
                                                                                 changes</button>
                                                                         </div>
                                                                     </form>

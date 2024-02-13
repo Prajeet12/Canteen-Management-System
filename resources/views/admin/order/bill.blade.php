@@ -37,8 +37,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            @foreach($imageUrl as $image)
-                              <img src="{{ asset('foodimage/' . $image->qrimage) }}" class="img-fluid" alt="Image">
+                            @foreach ($imageUrl as $image)
+                                <img src="{{ asset('foodimage/' . $image->qrimage) }}" class="img-fluid" alt="Image">
                             @endforeach
                         </div>
                     </div>
@@ -53,7 +53,7 @@
 
         <div class="d-print-none mt-4">
             <div class="float-start">
-                
+
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#imageModal">
                     QR Image
                 </button>
@@ -78,11 +78,11 @@
                                 <h5>Customer Information:</h5>
                                 <!-- Add customer details here -->
                                 <p>Customer Name: {{ $customerName }}</p>
-                                <p>Order Number: {{ $orderNumber }}</p>
+                                <p>Order Number: ORD{{ $orderNumber }}</p>
                                 <p>Invoice Date: {{ $invoice_date }}</p>
                                 <p>Invoice Number: {{ $invoice_number }}</p>
                                 <p>Payment: {{ $method }}</p>
-                                
+
                             </div>
 
                             <!-- Order Details Table -->
@@ -127,6 +127,8 @@
 
                             <h4 class="card-title text-center">KOT</h4>
                             <h4 class="card-title text-center">Token Number {{ $orderNumber }} </h4>
+                            <h6>Ordered By Hamro Canteen</h6>
+                            <h6>Invoice Date: {{ $invoice_date }}</h6>
 
                         </div>
                         <div class="card-body">
@@ -201,10 +203,10 @@
 
                 // Close the window after printing
                 printWindow.close();
-                 setTimeout(function() {
-            printWindow.close(); // Close the print window
-            window.location.href = '{{ url("/order") }}'; // Redirect to the order page
-        }, 5000);
+                setTimeout(function() {
+                    printWindow.close(); // Close the print window
+                    window.location.href = '{{ url('/order') }}'; // Redirect to the order page
+                }, 5000);
             }
         </script>
 

@@ -71,7 +71,7 @@
                                 <h5>Customer Information:</h5>
                                 <!-- Add customer details here -->
                                 <p>Customer Name: {{ $customerName }}</p>
-                                <p>Order Number: {{ $orderNumber }}</p>
+                                <p>Order Number: ORD{{ $orderNumber }}</p>
                                 <p>Invoice Date: {{ $invoice_date }}</p>
                                 <p>Invoice Number: {{ $invoice_number }}</p>
                                 <p>Payment: {{ $method }}</p>

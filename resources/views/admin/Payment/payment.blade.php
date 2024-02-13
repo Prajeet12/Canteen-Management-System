@@ -44,7 +44,7 @@
                     <div class="card-body">
                         <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                         <h4 class="font-weight-normal mb-3">Cash
-                        </h4><i class="mdi mdi-comment-alert-outline mdi-36px float-right"></i>
+                        </h4><i class="mdi mdi-currency-usd mdi-36px float-right"></i>
                         <h1 class="mb-5">Rs. {{$totalCashSum}}</h1>
 
                     </div>
@@ -84,7 +84,7 @@
     };
 
     // Replace the sample data with dynamic total amount data
-    incomeData.datasets[0].data = [totalAmount, 1500, 1500, 1600, 800, totalAmount];
+    incomeData.datasets[0].data = [5000, totalAmount, 2500, 1600, 800, totalAmount];
 
     // Render income chart
     var ctx = document.getElementById('incomeChart').getContext('2d');

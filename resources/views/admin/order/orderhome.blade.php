@@ -1,6 +1,5 @@
 @extends('admin.adminhome')
 @section('content')
-
     <div class="content-wrapper">
         {{-- <div class="page-header">
                             <h3 class="page-title">
@@ -21,7 +20,7 @@
             <div class="col-md-3 stretch-card grid-margin">
                 <div class="card bg-gradient-danger card-img-holder text-white">
                     <div class="card-body">
-                        <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                        <a href="{{ url('/payment') }}"><img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" /></a>
                         <h4 class="font-weight-normal mb-3">Total Income
                         </h4><i class="mdi mdi-chart-line mdi-36px float-right"></i>
                         <h2 class="mb-5">Rs.{{ $totalAmount }}</h2>
@@ -36,7 +35,7 @@
                         <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                         <h4 class="font-weight-normal mb-3"> Most Ordered Food
                         </h4><i class="mdi mdi-food mdi-36px float-right"></i>
-                        <h2 class="mb-5">{{ $foodTitle }}</h2>
+                        <h3 class="mb-5">{{ $foodTitle }}</h3>
                         <h5 class="card-text">Total Quantity is {{ $totalQuantity }}</h5>
                     </div>
                 </div>
@@ -56,7 +55,8 @@
             <div class="col-md-3 stretch-card grid-margin">
                 <div class="card bg-gradient-info card-img-holder text-white">
                     <div class="card-body">
-                        <img src="admin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                        <a href="{{ url('/contact') }}"><img src="admin/assets/images/dashboard/circle.svg"
+                                class="card-img-absolute" alt="circle-image" /> </a>
                         <h4 class="font-weight-normal mb-3">Total Feedbacks
                         </h4><i class="mdi mdi-comment-alert-outline mdi-36px float-right"></i>
                         <h1 class="mb-5">{{ $totalContacts }}</h1>
@@ -163,7 +163,7 @@
                         <tr>
 
                             <td>{{ $item->customer_name }}</td>
-                            <td>{{ $item->order_no }}</td>
+                            <td>ORD{{ $item->order_no }}</td>
                             <td>{{ $item->mobile_number }}</td>
                             <td>
                                 @if ($item->invoice_number == null)

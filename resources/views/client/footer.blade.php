@@ -1,14 +1,15 @@
 <footer id="footer" class="footer">
 
     <div class="container">
+      @foreach ($contactInfo as $item)
       <div class="row gy-3">
         <div class="col-lg-3 col-md-6 d-flex">
           <i class="bi bi-geo-alt icon"></i>
           <div>
             <h4>Address</h4>
             <p>
-              Kathmandu <br>
-              Naxal, Kathmandu, Nepal<br>
+              {{ $item->address }} <br>
+              
             </p>
           </div>
 
@@ -19,8 +20,8 @@
           <div>
             <h4>College</h4>
             <p>
-              <strong>Name :</strong> Herald College Kathamnadu<br>
-              <strong>Email:</strong> Heraldcollege.edu.np<br>
+              <strong>Phone : </strong> {{ $item->phoneNumber }}<br>
+              <strong>Email: </strong> {{$item->contactEmail}}<br>
             </p>
           </div>
         </div>
@@ -30,7 +31,7 @@
           <div>
             <h4>Opening Hours</h4>
             <p>
-              <strong>Mon-Sat: 7 AM</strong> - 6 PM<br>
+              <strong>{{ $item->openingTime }}</strong><br>
               Saturday: Closed
             </p>
           </div>
@@ -47,6 +48,7 @@
         </div>
 
       </div>
+      @endforeach
     </div>
 
     <div class="container">
