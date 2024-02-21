@@ -15,7 +15,7 @@ class ContactInformationSeeder extends Seeder
     public function run()
     {
         DB::table('contact_information')->insert([
-            'address' => 'Naxa, Kathmandu',
+            'address' => 'Naxal, Kathmandu',
             'phoneNumber' => '9841378841',
             'contactEmail' => 'prajeetsth3@gmail.com',
             'openingTime' => 'Sunday-Friday 6AM - 6PM',

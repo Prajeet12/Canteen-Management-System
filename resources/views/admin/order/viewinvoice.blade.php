@@ -120,6 +120,8 @@
 
                             <h4 class="card-title text-center">KOT</h4>
                             <h4 class="card-title text-center">Token Number {{ $orderNumber }} </h4>
+                            <h6>Ordered By Hamro Canteen</h6>
+                            <h6>Invoice Date: {{ $invoice_date }}</h6>
 
                         </div>
                         <div class="card-body">

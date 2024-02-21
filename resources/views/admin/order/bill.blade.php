@@ -37,9 +37,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            @foreach ($imageUrl as $image)
-                                <img src="{{ asset('foodimage/' . $image->qrimage) }}" class="img-fluid" alt="Image">
-                            @endforeach
+                            <img src="{{ asset('foodimage/' . $imageUrl->qrimage) }}" class="img-fluid" alt="Image">
                         </div>
                     </div>
                 </div>
@@ -53,10 +51,11 @@
 
         <div class="d-print-none mt-4">
             <div class="float-start">
-
+                @if (isset($imageUrl))
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#imageModal">
                     QR Image
                 </button>
+                @endif
                 <button class="btn btn-behance" onclick="printBill()"
                     style="background-color: #ce1212; color: white;">Generate
                     Bill</button>

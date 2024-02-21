@@ -203,7 +203,7 @@
                                                         class="php-email-form p-3 p-md-4">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <h5>Are you sure you want to delete prder no.
+                                                        <h5>Are you sure you want to delete order no.
                                                             '{{ $item->order_no }}'?</h5>
                                                     </form>
 

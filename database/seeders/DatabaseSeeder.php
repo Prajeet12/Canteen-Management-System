@@ -20,6 +20,10 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             UsersTableSeeder::class,
+            VatsTableSeeder::class,
+            PaymentTableSeeder::class,
+            QrImageSeeder::class,
+            ContactInformationSeeder::class
         ]);
     }
 }

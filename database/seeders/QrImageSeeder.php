@@ -20,13 +20,24 @@ class QrImageSeeder extends Seeder
         // ...
 
 
-        $qrimage = 'Image/KhaltiQR.jpg'; // Replace with the correct path to your image
-        $url = asset(Storage::url($qrimage));
+        $khalti = 'Image/KhaltiQR.jpg'; // Replace with the correct path to your image
+        $esewa = 'Image/KhaltiQR.jpg';
+        $khalti_url = asset(Storage::url($khalti));
+        $esewa_url = asset(Storage::url($esewa));
 
         DB::table('qr_images')->insert([
-            'qrimage' => $url,
-            'created_at' => now(),
-            'updated_at' => now(),
+            [
+                'method_id' => 2,
+                'qrimage' => $khalti_url,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'method_id' => 3, 
+                'qrimage' => $esewa_url,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
         ]);
 
     }

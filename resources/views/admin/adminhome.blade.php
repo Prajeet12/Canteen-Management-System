@@ -35,9 +35,6 @@
         </div>
     </div>
 
-
-
-
     <!-- endinject -->
     <script src="{{ asset('admin/assets/js/jquery.js') }}" type="text/javascript"></script>
     <script src="{{ asset('admin/assets/js/jquery.cookie.js') }}" type="text/javascript"></script>

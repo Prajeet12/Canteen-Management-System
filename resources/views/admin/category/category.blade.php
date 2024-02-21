@@ -16,9 +16,10 @@
                 </ul>
             </nav>
         </div>
+         <!-- Notification  -->
         @include('admin.notification')
-        <!-- End of Succession notification -->
-        <!-- Scrollable modal -->
+        <!--End Notification  -->
+        
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
             style="background:#ce1212">

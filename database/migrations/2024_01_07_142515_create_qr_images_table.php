@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('qr_images', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('method_id');
+            $table->foreign('method_id')->references('id')->on('payments')->onUpdate('cascade')->onDelete('cascade');
             $table->string('qrimage');
             $table->timestamps();
         });

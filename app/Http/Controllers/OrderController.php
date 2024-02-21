@@ -288,9 +288,7 @@ class OrderController extends Controller
         $tax = $order->vat_amount;
         $total = $order->total_amt;
         // Redirect to the invoice page
-        $qrimage = QrImage::all();
-
-        $imageUrl = $qrimage;
+        $imageUrl = QrImage::where('method_id', $request->method)->first();
 
         // $imageUrl = asset('Image/KhaltiQR.jpg');
 
@@ -342,7 +340,6 @@ class OrderController extends Controller
 
                 return view('admin.order.bill', [
                     'imageUrl' => $imageUrl,
-
                     'customerName' => $order->customer_name,
                     'orderNumber' => $order->order_no,
                     'orderItems' => $order->orderitems()->get()->map(function ($item) {

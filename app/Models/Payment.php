@@ -20,4 +20,8 @@ class Payment extends Model
     {
         return $this->belongsTo(Order::class);
     }
+    public function qrimage()
+    {
+        return $this->hasOne(QrImage::class,'method_id');
+    }
 }

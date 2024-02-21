@@ -87,8 +87,8 @@
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                                                        Category</h1>
+                                                                    <h1 class="modal-title fs-6" id="exampleModalLabel">
+                                                                        Delete Category</h1>
                                                                     <button type="button" class="btn-close"
                                                                         data-bs-dismiss="modal"
                                                                         aria-label="Close"></button>
@@ -101,7 +101,7 @@
                                                                         class="php-email-form p-3 p-md-4">
                                                                         @csrf
                                                                         @method('DELETE')
-                                                                        <h5>Are you sure you want to delete the category
+                                                                        <h5>Are you sure you want to delete
                                                                             '{{ $item->fooditem->title }}'?</h5>
 
                                                                 </div>
@@ -176,7 +176,7 @@
                                                                             class="btn btn-secondary"
                                                                             data-bs-dismiss="modal">Close</button>
                                                                         <button type="submit"
-                                                                            class="btn btn-primary">Save
+                                                                            class="btn btn-primary" style="background:#ce1212";>Save
                                                                             changes</button>
                                                                     </div>
                                                                 </form>
